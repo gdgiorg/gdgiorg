@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/check-links.py
+      - uses: actions/configure-pages@v5
+      # No build step — this is a plain static HTML/CSS/JS site, deployed
+      # as-is. Root-relative paths (/assets/styles.css, /about/, ...)
+      # assume a custom domain or a Pages "user/org site" root deployment;
+      # see README "Deployment" if serving from a project-page subpath.
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

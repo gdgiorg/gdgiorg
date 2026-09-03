@@ -79,18 +79,19 @@ To add or change a photo: drop the file in `assets/photos/`, point a `photo:` fi
 
 ## Forms & payments
 
-Three things are wired in the code and waiting on one URL each — no template changes needed, just fill in `generator/data.mjs` and re-run `node generator/build.mjs`:
+The National Summit registration form is live: it submits to a Make.com webhook (`site.formEndpoints.summitRegistration`) with a hidden `tag=cot-summit` field so that scenario can route/filter submissions from this form specifically. Two more things are wired in the code and waiting on one URL each — no template changes needed, just fill in `generator/data.mjs` and re-run `node generator/build.mjs`:
 
 | What | Field in `generator/data.mjs` | Until it's set |
 |---|---|---|
 | Donate button | `site.paystackUrl` | Donate page shows a `mailto:`-based "Contact us to give" instead |
 | Contact form | `site.formEndpoints.contact` | Submitting composes a `mailto:` to `site.email` instead of posting anywhere |
 | Volunteer sign-up form | `site.formEndpoints.volunteer` | Same `mailto:` fallback |
-| Summit registration form | `site.formEndpoints.summitRegistration` | Same `mailto:` fallback |
 
-Each form (`class="js-backend-form"` in the generated HTML) POSTs natively to its `action` URL once one is set — see `assets/script.js`. Pick any form/webhook provider that accepts a standard HTML POST (Formspree, Getform, a Zapier/Make catch-hook, etc.), create the endpoint there, and paste its URL into the matching field. **A static site cannot send email itself** — if you want the summit registration form to auto-reply to the registrant, that autoresponder has to be configured on whichever form/webhook service you pick (most have one), not in this repo.
+Each form (`class="js-backend-form"` in the generated HTML) submits to its `action` URL via `fetch()` once one is set, showing an inline "Thanks…" message in place of the form on success — see `assets/script.js`. Pick any form/webhook provider that accepts a browser POST (Formspree, Getform, a Zapier/Make catch-hook, etc.), create the endpoint there, and paste its URL into the matching field. The fetch uses `mode: 'no-cors'`, because most webhook receivers don't return CORS headers for a plain browser POST — the request still goes out, but the page can't read the response, so success shows optimistically once the request is sent rather than after a confirmed 200. **A static site cannot send email itself** — if you want a form to auto-reply to whoever submitted it (e.g. summit registrants), that autoresponder has to be configured on whichever form/webhook service you pick (most have one), not in this repo.
 
-The summit registration form's fields live in `generator/data.mjs` as `events[…].registrationFields` — an ordered array of `{name, label, type, required, options}`. Adding a field your client asks for later is one array entry, not a template edit; the two conditional fields (organisation name, accessibility needs) are already wired to show only when relevant (see `assets/script.js`).
+The summit registration form's fields live in `generator/data.mjs` as `events[…].registrationFields` — an ordered array of `{name, label, type, required, options}`. Adding a field your client asks for later is one array entry, not a template edit; two fields (organisation name, "please specify your disability") are already wired to show only when relevant (see the `conditionalFields` list in `assets/script.js` — add a new pair there if a future field should be conditional too).
+
+**Summit speakers:** `events[…].speakers` is an empty array — the page shows a "coming soon" notice until it isn't. Once GDGI's client sends the two international and two national speakers with bios, add each as `{ name, role, type: 'international' | 'national', bio, photo }` (`photo` optional) and re-run the generator.
 
 The Summit event's `photo` field is intentionally unset — its artwork is still being designed. Add `photo: 'assets/photos/<file>.jpg'` to that event in `generator/data.mjs` once it's ready; the page currently shows the brand SVG pattern in its place.
 

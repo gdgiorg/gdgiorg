@@ -63,26 +63,46 @@ Every internal link and asset reference (`assets/styles.css`, `../about/`, etc.)
 
 ## Photography
 
-No photograph, portrait, or flyer from the original site was migrated. The independent rebuild brief prepared for this project is explicit that every image needs an owner-confirmed license before reuse, and this project had no access to the original media library to verify one. Every image slot is a brand-toned SVG pattern (inlined directly in each page, see the `<svg>` inside `.hero-art` / `.card-art`) instead of a photograph. Once GDGI supplies licensed photography, replace these `<div class="hero-art">…</div>` blocks with `<img>` tags — no other layout changes needed.
+`assets/photos/` holds real GDGI photography — sourced directly from the organization (extracted from the live site's own media library, with a page-by-page usage manifest) rather than scraped or invented. It covers all 15 board and advisory portraits, the three project case studies, both site hero images, the Get Involved pathway and job cards, a Donate-page image, three Insights/Events photos, and the ten-photo "Moments of Impact" gallery on `/projects/`. Each is wired in via a `photo:` field in `generator/data.mjs` — see `hero()`, `projectCard()`, `eventCard()`, `postCard()`, and `personCard()` in `generator/build.mjs` for how a `photo` field is rendered as a real `<img>`, falling back to a brand-toned SVG pattern when one isn't set (still the case for the upcoming National Summit, which has no photo yet).
+
+Two source images were deliberately excluded after review: one was a stock charity flyer for an unrelated Ghanaian organization's campaign, the other was literally the cover of a different NGO's (IRC) annual report — neither is GDGI's own content, so neither was used anywhere on the site, regardless of what page they appeared on in the original crawl.
+
+To add or change a photo: drop the file in `assets/photos/`, point a `photo:` field at it in `generator/data.mjs` (path relative to the repo root, no leading slash), and run `node generator/build.mjs`.
 
 ## What changed from the old site
 
 - **Preserved:** every real page and its substance — mission, board bios, the Solar Lamp Distribution case study, event and project descriptions, Get Involved and Donate copy — carried over from the org's Organisational Profile, the National Summit proposal, and the live site's own content inventory.
 - **Not migrated, intentionally:** the restaurant-template demo pages (`/menu/`, `/menu-dark/`), the default WordPress `/sample-page/`, the two generic personal-development blog posts and the default "Hello World" post, and the "Giving Back to the Streets" project card, which had no real content behind it (Lorem ipsum only) on the old site. None of these routes redirect anywhere — they 404, per the rebuild brief's own instruction not to redirect a removed placeholder to unrelated content.
 - **Fixed:** the Contact page's leftover restaurant address/copy is replaced with GDGI's real Abuja details; Mission and Vision are now two genuinely distinct statements (the old site repeated the same wording for both); the Events/Solar-Installation-Training date conflict between the old index (13 Nov 2025) and detail (July 2025) pages is called out explicitly in `generator/data.mjs` and on the page itself rather than silently guessed at.
-- **Added:** a full `/events/national-summit-disability-inclusive-climate-action/` landing page — this did not exist anywhere on the old site, despite the summit's 11 September 2026 sponsorship deadline.
+- **Added:** a full `/events/national-summit-disability-inclusive-climate-action/` landing page — this did not exist anywhere on the old site, despite the summit's 11 September 2026 sponsorship deadline. Also added two real, dateable engagements found only in supplied photo evidence (a flyer, a banner) and not in any of the text sources: a Pre-Launch Lecture on 18 June 2025 (`/events/pre-launch-lecture-disability-climate-change/`) and the 6–7 October 2025 JT-GAP national validation workshop (`/insights/national-validation-workshop-just-transition-guidelines/`).
 - **Legacy URLs preserved via redirect:** `/about-us/`, `/our-projects/`, `/project-detail/`, `/event-detail/`, `/blog/`, `/testimonial/`, and the seven board members' old root-level URLs (e.g. `/dr-angelina-ugben/`) all redirect (via `<meta http-equiv="refresh">` plus a `rel="canonical"` tag — the only redirect mechanism available on a plain static host with no server config) to their new location.
+
+## Forms & payments
+
+Three things are wired in the code and waiting on one URL each — no template changes needed, just fill in `generator/data.mjs` and re-run `node generator/build.mjs`:
+
+| What | Field in `generator/data.mjs` | Until it's set |
+|---|---|---|
+| Donate button | `site.paystackUrl` | Donate page shows a `mailto:`-based "Contact us to give" instead |
+| Contact form | `site.formEndpoints.contact` | Submitting composes a `mailto:` to `site.email` instead of posting anywhere |
+| Volunteer sign-up form | `site.formEndpoints.volunteer` | Same `mailto:` fallback |
+| Summit registration form | `site.formEndpoints.summitRegistration` | Same `mailto:` fallback |
+
+Each form (`class="js-backend-form"` in the generated HTML) POSTs natively to its `action` URL once one is set — see `assets/script.js`. Pick any form/webhook provider that accepts a standard HTML POST (Formspree, Getform, a Zapier/Make catch-hook, etc.), create the endpoint there, and paste its URL into the matching field. **A static site cannot send email itself** — if you want the summit registration form to auto-reply to the registrant, that autoresponder has to be configured on whichever form/webhook service you pick (most have one), not in this repo.
+
+The summit registration form's fields live in `generator/data.mjs` as `events[…].registrationFields` — an ordered array of `{name, label, type, required, options}`. Adding a field your client asks for later is one array entry, not a template edit; the two conditional fields (organisation name, accessibility needs) are already wired to show only when relevant (see `assets/script.js`).
+
+The Summit event's `photo` field is intentionally unset — its artwork is still being designed. Add `photo: 'assets/photos/<file>.jpg'` to that event in `generator/data.mjs` once it's ready; the page currently shows the brand SVG pattern in its place.
 
 ## Open items for the GDGI team
 
 Things this rebuild could not resolve without your input:
 
 - **`Strictly Confidential`** (search the repo) — the Organisational Profile PDF supplied for this project carries that watermark, so its content was used for page copy but the file itself was not published. The About page's download button is a placeholder until you provide a public-facing version.
-- **`Form link pending`** — the Volunteer and Partner pathways on Get Involved, and the one live job listing, all pointed to Google Forms on the old site, but no form URLs were supplied.
-- **Donate page has no payment button** — by design. No verified payment provider, bank details, or gateway was supplied. It links to a `mailto:` instead. Do not wire up a payment button until GDGI confirms a real provider.
+- **Paystack / form endpoints / summit artwork** — see [Forms & payments](#forms--payments) above; all three just need a URL or file dropped in.
+- **Partner pathway and the one live job listing** — still point at "Application form link pending"; the old site linked these to Google Forms, and no replacement URLs were supplied. (Contact and Volunteer are already live backend-connected forms — see above.)
 - **`date to be reconfirmed`** — the Solar Installation Training Cohort 2 event date conflict (see `events/disability-inclusive-solar-installation-training-cohort-2/index.html`).
-- **Advisory Board** — eight names are on the site (`people/index.html`) with no biography or photo supplied for any of them; their cards are intentionally non-clickable rather than linking to a broken image file, as the old site did.
-- **Social media handles** — none were supplied; the footer simply omits the row until they're added (search `Social links pending`).
+- **Advisory Board** — all eight now have real photos, but no biography text was supplied for any of them; their cards are intentionally non-clickable (no bio page to link to) rather than linking to a broken image file, as the old site did.
 - **Domain/DNS** — whether `globaldisabilitiesgi.com` will point at this GitHub Pages deployment, and who controls that DNS record, is still open. See [Deployment](#deployment) for what changes if it doesn't.
 - **Truncated board bios** — Zainab Yusuf, Adama Ojochogwu Innocent Esq., and Echiche Kenneth Adinya's biographies were cut short in the source content; each page says so rather than inventing an ending.
 

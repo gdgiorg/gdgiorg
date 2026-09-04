@@ -19,14 +19,20 @@ export const site = {
   paystackUrl: '',
   // Backend form endpoints — leave empty until GDGI picks a form/webhook
   // provider (Formspree, Getform, a Zapier/Make catch-hook, etc.) and
-  // supplies the submission URL. Each form POSTs natively to its endpoint
-  // once set (see assets/script.js); while empty, forms fall back to
-  // composing a mailto: so nothing is ever a dead end. No other code
-  // changes needed — paste the URL here and re-run the generator.
+  // supplies the submission URL. Each form submits to its endpoint via
+  // fetch() once set (see assets/script.js); while empty, forms fall back
+  // to composing a mailto: instead, so nothing is ever a dead end. No
+  // other code changes needed — paste the URL here and re-run the
+  // generator.
   formEndpoints: {
     contact: '',
     volunteer: '',
-    summitRegistration: '',
+    summitRegistration: 'https://hook.eu1.make.com/adwff4cvtftk1h9943g9m1gh174hqyk4',
+  },
+  // A hidden field sent alongside each form's own fields, so the receiving
+  // webhook/Make.com scenario can route or filter submissions by source.
+  formTags: {
+    summitRegistration: 'cot-summit',
   },
   vision: 'We envision a world where disability is central to sustainability, with every person with a disability actively participating and leading in crafting universally accessible sustainable energy solutions, designing environmental and climate initiatives with inclusivity at their core, shaping accessible and inclusive agricultural practices, and fostering a global network where advocacy for disability rights is seamlessly integrated into strategies for environmental health and agricultural innovation.',
   mission: 'To spearhead a transformative global movement that champions disability rights advocacy by delivering accessible technological innovation and sustainable energy solutions, fostering environmental stewardship, driving climate action, and advancing sustainable agriculture for an inclusive future.',
@@ -163,18 +169,27 @@ export const events = [
     ],
     // Attendee registration form fields — data-driven so a new field GDGI
     // asks for later is a one-line addition here, not a template change.
-    // type: 'text' | 'email' | 'select' | 'textarea'; options for 'select'.
+    // type: 'text' | 'email' | 'tel' | 'select' | 'textarea'; options for 'select'.
     registrationFields: [
       { name: 'full_name', label: 'Full name', type: 'text', required: true },
       { name: 'email', label: 'Email address', type: 'email', required: true },
+      { name: 'phone', label: 'Phone number', type: 'tel', required: true },
+      { name: 'gender', label: 'Gender', type: 'select', required: true, options: ['Female', 'Male', 'Prefer not to say'] },
       { name: 'location', label: 'Location (city, country)', type: 'text', required: true },
       { name: 'attendance_mode', label: 'How do you plan to attend?', type: 'select', required: true, options: ['In person', 'Virtually'] },
       { name: 'designation', label: 'Designation / role', type: 'text', required: true },
       { name: 'representing_org', label: 'Are you representing an organisation?', type: 'select', required: true, options: ['Yes', 'No'] },
       { name: 'organisation_name', label: 'Organisation name (if applicable)', type: 'text', required: false },
       { name: 'has_disability', label: 'Do you identify as a person with a disability?', type: 'select', required: true, options: ['Yes', 'No', 'Prefer not to say'] },
+      { name: 'disability_specify', label: 'Please specify your disability', type: 'text', required: false },
       { name: 'accessibility_needs', label: 'Any accessibility requirements we should prepare for? (optional)', type: 'textarea', required: false },
     ],
+    // Speakers — none supplied yet; GDGI's client will send 2 international
+    // + 2 national speakers with bios. Add entries here in the shape below
+    // and re-run the generator; the page shows a "to be announced" notice
+    // until at least one exists.
+    // { name: '', role: '', type: 'international' | 'national', bio: '', photo: 'assets/photos/…' }
+    speakers: [],
     body: [
       'GDGI proposes the inaugural National Summit on Disability-Inclusive Climate Action at the Shehu Musa Yar’Adua Centre, Abuja, on 14–15 October 2026. The summit is co-hosted by the Federal Ministry of Environment, the Office of the Senior Special Assistant to the President on Climate Technology and Operations, and the National Council on Climate Change (NCCC), with financial sponsorship confirmed from the Nigeria country offices of UNDP, ILO, and Oxfam.',
       'Nigeria is home to an estimated 19 million persons with disabilities who face two to four times higher climate vulnerability than the general population, yet only 30% of national climate plans worldwide contain disability-specific measures. The summit maps every session directly onto Nigeria’s existing climate governance architecture — the Climate Change Act 2021, the National Climate Change Policy 2021–2030, NDC 3.0, the Energy Transition Plan, and the Just Transition Guidelines and Action Plan — so its outcomes plug directly into national policy rather than sitting alongside it.',

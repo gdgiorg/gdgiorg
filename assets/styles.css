@@ -37,7 +37,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; margin: 0;
 p { margin: 0; }
 a { color: var(--brand-dark); text-decoration: none; }
 img { max-width: 100%; display: block; }
-.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 22px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
 
 .skip-link {
   position: absolute; left: -9999px; top: 0; z-index: 100;

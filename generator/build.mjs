@@ -278,10 +278,11 @@ function personCard(fromPath, p) {
 }
 
 function registrationForm(fromPath, e) {
+  const conditional = { organisation_name: 'representing_org', disability_specify: 'has_disability' }
   const fields = e.registrationFields
     .map((f) => {
       const id = `reg-${f.name}`
-      const wrapId = ['organisation_name', 'accessibility_needs'].includes(f.name) ? ` id="field-${f.name}" hidden` : ''
+      const wrapId = conditional[f.name] ? ` id="field-${f.name}" hidden` : ''
       const req = f.required ? ' required' : ''
       let control
       if (f.type === 'select') {
@@ -295,11 +296,15 @@ function registrationForm(fromPath, e) {
     })
     .join('')
   const endpoint = site.formEndpoints.summitRegistration
-  return `<form id="register" class="js-backend-form" action="${endpoint}" method="POST" data-to="${site.email}" data-subject="Summit registration — ${esc(e.title)}">
+  const tag = site.formTags.summitRegistration
+  return `<div id="register">
+  <form class="js-backend-form" action="${endpoint}" method="POST" data-to="${site.email}" data-subject="Summit registration — ${esc(e.title)}" data-success="Thanks — you're registered for the summit. GDGI will be in touch with joining details closer to 14–15 October 2026.">
+    ${tag ? `<input type="hidden" name="tag" value="${esc(tag)}" />` : ''}
     ${fields}
-    <p class="form-note">${endpoint ? 'Your details go to GDGI\'s registration system.' : `Sending opens your email app addressed to ${site.email}.`} GDGI will use this information solely to plan and run the summit, including any accessibility arrangements you request.</p>
+    <p class="form-note">${endpoint ? 'Your details go straight to GDGI\'s registration system.' : `Sending opens your email app addressed to ${site.email}.`} GDGI will use this information solely to plan and run the summit, including any accessibility arrangements you request.</p>
     <button type="submit" class="btn btn-primary">Register to attend</button>
-  </form>`
+  </form>
+  </div>`
 }
 
 // ---------- File writer ----------
@@ -603,12 +608,21 @@ ${section({ tone: 'surface', inner: `
   <div class="grid grid-2 mt-lg">${e.webinars.map((w) => `<div class="card"><span class="eyebrow">${esc(w.label)} · ${esc(w.dateDisplay)}</span><h3 style="font-size:17px">${esc(w.title)}</h3><p>${esc(w.partner)}</p></div>`).join('')}</div>
 ` })}
 ${section({ inner: `
+  ${sectionHead({ kicker: 'Who\'s speaking', title: 'Featured speakers' })}
+  ${e.speakers.length ? `
+    <div class="grid grid-2 mt-lg">${e.speakers.map((s) => `<div class="card" style="flex-direction:row;gap:16px;align-items:flex-start">
+      ${s.photo ? `<img src="${L(`/${s.photo}`)}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none" />` : `<div class="avatar" style="width:72px;height:72px;flex:none" aria-hidden="true">${initials(s.name)}</div>`}
+      <div><span class="eyebrow">${s.type === 'international' ? 'International Speaker' : 'National Speaker'}</span><h3 style="font-size:17px">${esc(s.name)}</h3><p style="font-size:13px;color:var(--ink-faint);margin-top:2px">${esc(s.role)}</p><p style="margin-top:8px">${esc(s.bio)}</p></div>
+    </div>`).join('')}</div>
+  ` : `<p class="callout-dashed mt-lg" style="display:block">Speaker announcements — two international, two national — are coming soon.</p>`}
+` })}
+${section({ tone: 'surface', inner: `
   ${sectionHead({ kicker: 'Partner with GDGI', title: 'Sponsorship bands', subtitle: 'Every line of the $125,000 budget is individually sponsorable.' })}
   <div class="table-scroll mt-lg"><table><thead><tr><th>Band</th><th>Contribution</th><th>Recognition</th></tr></thead><tbody>
     ${sponsorshipBands.map((b) => `<tr><td style="font-weight:700">${b.band}</td><td class="mono">${b.value}</td><td style="color:var(--ink-soft)">${b.note}</td></tr>`).join('')}
   </tbody></table></div>
 ` })}
-${section({ tone: 'surface', inner: `
+${section({ inner: `
   ${sectionHead({ kicker: 'Programme', title: 'Five thematic policy dialogue tracks' })}
   <ul class="grid grid-2 mt-lg" style="list-style:none;padding:0;margin:0;gap:12px">${tracks.map((t) => `<li class="card" style="padding:16px">${esc(t)}</li>`).join('')}</ul>
 ` })}
@@ -682,7 +696,7 @@ ${section({ tone: 'surface', inner: `
 ${section({ id: 'volunteer-form', inner: `
   <div class="card" style="max-width:560px;margin:0 auto">
     <h2 style="font-size:18px">Become a volunteer</h2>
-    <form class="js-backend-form" action="${site.formEndpoints.volunteer}" method="POST" data-to="${site.email}" data-subject="Volunteer sign-up" style="margin-top:16px">
+    <form class="js-backend-form" action="${site.formEndpoints.volunteer}" method="POST" data-to="${site.email}" data-subject="Volunteer sign-up" data-success="Thanks for signing up to volunteer — GDGI will be in touch." style="margin-top:16px">
       <div class="field"><label for="vf-name">Full name</label><input id="vf-name" name="name" type="text" required autocomplete="name" /></div>
       <div class="field"><label for="vf-email">Email address</label><input id="vf-email" name="email" type="email" required autocomplete="email" /></div>
       <div class="field"><label for="vf-interest">Area of interest</label>
@@ -792,7 +806,7 @@ ${section({ tone: 'surface', inner: `
     </div>
     <div class="card">
       <h2 style="font-size:18px">Send a message</h2>
-      <form class="js-backend-form" action="${site.formEndpoints.contact}" method="POST" data-to="${site.email}" data-subject="Website contact form" style="margin-top:16px">
+      <form class="js-backend-form" action="${site.formEndpoints.contact}" method="POST" data-to="${site.email}" data-subject="Website contact form" data-success="Thanks — your message has been sent." style="margin-top:16px">
         <div class="field"><label for="cf-name">Full name</label><input id="cf-name" name="name" type="text" required autocomplete="name" /></div>
         <div class="field"><label for="cf-email">Email address</label><input id="cf-email" name="email" type="email" required autocomplete="email" /></div>
         <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" required rows="5"></textarea></div>

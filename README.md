@@ -93,6 +93,8 @@ The summit registration form's fields live in `generator/data.mjs` as `events[�
 
 **Summit speakers:** `events[…].speakers` is an empty array — the page shows a "coming soon" notice until it isn't. Once GDGI's client sends the two international and two national speakers with bios, add each as `{ name, role, type: 'international' | 'national', bio, photo }` (`photo` optional) and re-run the generator.
 
+**Summit co-hosts &amp; sponsors:** `events[…].partners.cohosts` and `.sponsors` list the summit's three co-hosts (Federal Ministry of Environment, National Council on Climate Change, Office of the SSA on Climate Technology and Operations) and four sponsors (ILO, UNDP, UNFPA, CMB International). Each entry shows as a plain text badge until it has a `logo`. To add a logo: drop the file in `assets/partners/` and add `logo: 'assets/partners/<file>.png'` to that entry, then re-run `node generator/build.mjs`. Expected filenames for the logos already on hand: `assets/partners/ilo.png`, `assets/partners/undp.png`, `assets/partners/unfpa.png`, `assets/partners/cmb-international.png`, `assets/partners/ssa-climate-technology-operations.png` — still needed: Federal Ministry of Environment and NCCC logos.
+
 The Summit event's `photo` field is intentionally unset — its artwork is still being designed. Add `photo: 'assets/photos/<file>.jpg'` to that event in `generator/data.mjs` once it's ready; the page currently shows the brand SVG pattern in its place.
 
 ## Open items for the GDGI team

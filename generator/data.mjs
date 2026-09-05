@@ -11,6 +11,7 @@ export const site = {
     { label: 'Instagram', href: 'https://www.instagram.com/gdginative/' },
     { label: 'Facebook', href: 'https://www.facebook.com/share/1DYWXwNRig/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/global-disabilities-green-initiative-420799353' },
+    { label: 'X', href: 'https://x.com/Gdginitiative' },
   ],
   // Paystack payment page URL — leave empty until GDGI supplies it. The
   // Donate page shows a real "Donate via Paystack" button once this is
@@ -190,6 +191,23 @@ export const events = [
     // until at least one exists.
     // { name: '', role: '', type: 'international' | 'national', bio: '', photo: 'assets/photos/…' }
     speakers: [],
+    // Co-hosts and confirmed sponsors. `logo` is optional per entry — while
+    // it's unset the page shows the organisation's name as a plain text
+    // badge; once the actual logo file is in assets/partners/ (see README),
+    // add e.g. logo: 'assets/partners/undp.png' and re-run the generator.
+    partners: {
+      cohosts: [
+        { name: 'Federal Ministry of Environment', logo: 'assets/partners/federal-ministry-of-environment.jpg' },
+        { name: 'National Council on Climate Change (NCCC)', logo: 'assets/partners/ncc-climate-change.png' },
+        { name: 'Office of the Senior Special Assistant to the President on Climate Technology and Operations', logo: 'assets/partners/ssa-climate-technology-operations.jpg' },
+      ],
+      sponsors: [
+        { name: 'International Labour Organization (ILO)', logo: 'assets/partners/ilo.png' },
+        { name: 'United Nations Development Programme (UNDP)', logo: 'assets/partners/undp.png' },
+        { name: 'United Nations Population Fund (UNFPA)', logo: 'assets/partners/unfpa.png' },
+        { name: 'CMB International', logo: 'assets/partners/cmb-international.jpg' },
+      ],
+    },
     body: [
       'GDGI proposes the inaugural National Summit on Disability-Inclusive Climate Action at the Shehu Musa Yar’Adua Centre, Abuja, on 14–15 October 2026. The summit is co-hosted by the Federal Ministry of Environment, the Office of the Senior Special Assistant to the President on Climate Technology and Operations, and the National Council on Climate Change (NCCC), with financial sponsorship confirmed from the Nigeria country offices of UNDP, ILO, and Oxfam.',
       'Nigeria is home to an estimated 19 million persons with disabilities who face two to four times higher climate vulnerability than the general population, yet only 30% of national climate plans worldwide contain disability-specific measures. The summit maps every session directly onto Nigeria’s existing climate governance architecture — the Climate Change Act 2021, the National Climate Change Policy 2021–2030, NDC 3.0, the Energy Transition Plan, and the Just Transition Guidelines and Action Plan — so its outcomes plug directly into national policy rather than sitting alongside it.',

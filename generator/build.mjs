@@ -564,6 +564,11 @@ const tracks = [
   'Inclusive Climate Education, Technology & the ACE Pillar — IDA advisory',
   'Green Jobs, Clean Energy & Entrepreneurship for PWDs — chaired by ILO',
 ]
+// A co-host/sponsor logo once its file exists in assets/partners/ (see
+// data.mjs), or a plain name badge until then — never a broken image.
+const partnerBadge = (L) => (p) => p.logo
+  ? `<div class="card" style="display:flex;align-items:center;justify-content:center;padding:20px;min-height:96px"><img src="${L(`/${p.logo}`)}" alt="${esc(p.name)}" style="max-width:100%;max-height:56px;object-fit:contain" /></div>`
+  : `<div class="card" style="display:flex;align-items:center;justify-content:center;padding:20px;min-height:96px;text-align:center;font-weight:600;color:var(--ink-soft)">${esc(p.name)}</div>`
 
 {
   const path = '/events/'
@@ -600,14 +605,20 @@ ${hero({
 ${section({ tone: 'surface', inner: `<div class="prose" style="margin:0 auto">${e.body.map((b) => `<p style="color:var(--ink-soft)">${esc(b)}</p>`).join('')}</div>` })}
 ${isSummit ? `
 ${section({ inner: `
+  ${sectionHead({ kicker: 'Co-hosts', title: 'Co-hosted with' })}
+  <div class="grid grid-3 mt-lg">${e.partners.cohosts.map(partnerBadge(L)).join('')}</div>
+  <div style="margin-top:48px">${sectionHead({ kicker: 'Sponsors', title: 'With sponsorship from' })}</div>
+  <div class="grid grid-4 mt-lg">${e.partners.sponsors.map(partnerBadge(L)).join('')}</div>
+` })}
+${section({ tone: 'surface', inner: `
   ${sectionHead({ kicker: 'Attend', title: 'Register to attend', subtitle: 'In person in Abuja or joining virtually — tell us a little about yourself so we can plan the summit around every attendee.' })}
   <div class="card mt-lg" style="max-width:640px">${registrationForm(path, e)}</div>
 ` })}
-${section({ tone: 'surface', inner: `
+${section({ inner: `
   ${sectionHead({ kicker: 'Ahead of the summit', title: 'Pre-summit webinars' })}
   <div class="grid grid-2 mt-lg">${e.webinars.map((w) => `<div class="card"><span class="eyebrow">${esc(w.label)} · ${esc(w.dateDisplay)}</span><h3 style="font-size:17px">${esc(w.title)}</h3><p>${esc(w.partner)}</p></div>`).join('')}</div>
 ` })}
-${section({ inner: `
+${section({ tone: 'surface', inner: `
   ${sectionHead({ kicker: 'Who\'s speaking', title: 'Featured speakers' })}
   ${e.speakers.length ? `
     <div class="grid grid-2 mt-lg">${e.speakers.map((s) => `<div class="card" style="flex-direction:row;gap:16px;align-items:flex-start">
@@ -616,13 +627,13 @@ ${section({ inner: `
     </div>`).join('')}</div>
   ` : `<p class="callout-dashed mt-lg" style="display:block">Speaker announcements — two international, two national — are coming soon.</p>`}
 ` })}
-${section({ tone: 'surface', inner: `
+${section({ inner: `
   ${sectionHead({ kicker: 'Partner with GDGI', title: 'Sponsorship bands', subtitle: 'Every line of the $125,000 budget is individually sponsorable.' })}
   <div class="table-scroll mt-lg"><table><thead><tr><th>Band</th><th>Contribution</th><th>Recognition</th></tr></thead><tbody>
     ${sponsorshipBands.map((b) => `<tr><td style="font-weight:700">${b.band}</td><td class="mono">${b.value}</td><td style="color:var(--ink-soft)">${b.note}</td></tr>`).join('')}
   </tbody></table></div>
 ` })}
-${section({ inner: `
+${section({ tone: 'surface', inner: `
   ${sectionHead({ kicker: 'Programme', title: 'Five thematic policy dialogue tracks' })}
   <ul class="grid grid-2 mt-lg" style="list-style:none;padding:0;margin:0;gap:12px">${tracks.map((t) => `<li class="card" style="padding:16px">${esc(t)}</li>`).join('')}</ul>
 ` })}

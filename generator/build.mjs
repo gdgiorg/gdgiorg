@@ -452,10 +452,15 @@ ${section({ inner: `
     <a class="btn btn-primary" href="${L('/people/')}">View profiles</a>
   </div>
 ` })}
-${section({ tone: 'surface', inner: `
+${section({ tone: 'surface', inner: site.orgProfileUrl ? `
+  <div class="card" style="flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px">
+    <div><h2 style="font-size:20px">Organizational Profile (PDF)</h2><p style="margin-top:6px">GDGI's full organizational profile — mission, programs, and impact.</p></div>
+    <a class="btn btn-primary" href="${L(`/${site.orgProfileUrl}`)}" target="_blank" rel="noreferrer">Download PDF</a>
+  </div>
+` : `
   <div class="callout-dashed">
     <h2 style="font-size:18px">Organizational Profile (PDF)</h2>
-    <p style="margin-top:8px;max-width:60ch;color:var(--ink-soft)">A downloadable profile is planned for this page. The source document supplied for this rebuild is marked "Strictly Confidential," so it has not been published here — GDGI should provide a public-facing version before this download goes live.</p>
+    <p style="margin-top:8px;max-width:60ch;color:var(--ink-soft)">A downloadable profile is planned for this page.</p>
     <span class="pending mt-lg">Download pending</span>
   </div>
 ` })}
@@ -683,10 +688,6 @@ ${section({ tone: 'surface', inner: `<div class="prose" style="margin:0 auto">${
 // ======================================================================
 // GET INVOLVED
 // ======================================================================
-const pathways = [
-  { name: 'Volunteer', body: 'Support community engagement, environmental projects, research, advocacy, and event coordination.', photo: 'assets/photos/volunteer.jpg' },
-  { name: 'Partner', body: 'Co-branded projects, technical expertise, ESG/CSR/SDG alignment, visibility, and policy engagement.', photo: 'assets/photos/partnerships.jpg' },
-]
 
 {
   const path = '/get-involved/'
@@ -697,33 +698,30 @@ const pathways = [
     path,
     bodyHtml: `
 ${hero({ path, kicker: 'Take action', title: 'Join Us in Building a Greener, More Inclusive Future', subtitle: "Whether you want to volunteer, partner with us, or build a career in inclusive climate action, there's a place for you here.", variant: 'rays' })}
-${section({ tone: 'surface', inner: `
-  ${sectionHead({ kicker: 'Pathways', title: 'Volunteer or partner' })}
-  <div class="grid grid-2 mt-lg">
-    <div class="card"><div class="card-art"><img src="${L('/assets/photos/volunteer.jpg')}" alt="" /></div><h3>Volunteer</h3><p>${pathways[0].body}</p><a class="more" href="#volunteer-form">Sign up below ↓</a></div>
-    <div class="card"><div class="card-art"><img src="${L('/assets/photos/partnerships.jpg')}" alt="" /></div><h3>Partner</h3><p>${pathways[1].body}</p><span class="pending mt-lg">Application form link pending — see README</span></div>
+${section({ tone: 'surface', inner: `<p style="max-width:70ch;margin:0 auto;font-size:17px;color:var(--ink-soft)">At GDGI, we believe that sustainable change happens when passionate individuals, visionary organizations, and dedicated professionals come together.</p>` })}
+${section({ inner: `
+  <div class="grid" style="grid-template-columns:280px 1fr;gap:40px;align-items:center">
+    <img src="${L('/assets/photos/volunteer.jpg')}" alt="" style="width:100%;border-radius:8px;object-fit:cover" />
+    <div>
+      ${sectionHead({ kicker: 'Volunteer opportunities', title: 'Be Part of the Movement. Make a Difference.' })}
+      <p style="margin-top:14px;color:var(--ink-soft)">Join our growing network of volunteers committed to advancing disability-inclusive sustainability. From community engagements to environmental projects, research assistance, advocacy support, and event coordination, your time and skills can create real impact. We provide a simple application process through our volunteer form, where interested individuals can indicate their areas of strength and availability.</p>
+      <ul class="tag-list mt-lg">${site.getInvolved.volunteerFeatures.map((f) => `<li>${esc(f)}</li>`).join('')}</ul>
+      <p style="margin-top:14px;color:var(--ink-soft)">Your contribution helps us empower communities, restore environments, and expand our reach.</p>
+      <a class="btn btn-primary mt-lg" href="${esc(site.getInvolved.volunteerFormUrl)}" target="_blank" rel="noreferrer">Apply to volunteer</a>
+    </div>
   </div>
 ` })}
-${section({ id: 'volunteer-form', inner: `
-  <div class="card" style="max-width:560px;margin:0 auto">
-    <h2 style="font-size:18px">Become a volunteer</h2>
-    <form class="js-backend-form" action="${site.formEndpoints.volunteer}" method="POST" data-to="${site.email}" data-subject="Volunteer sign-up" data-success="Thanks for signing up to volunteer — GDGI will be in touch." style="margin-top:16px">
-      <div class="field"><label for="vf-name">Full name</label><input id="vf-name" name="name" type="text" required autocomplete="name" /></div>
-      <div class="field"><label for="vf-email">Email address</label><input id="vf-email" name="email" type="email" required autocomplete="email" /></div>
-      <div class="field"><label for="vf-interest">Area of interest</label>
-        <select id="vf-interest" name="area_of_interest" required style="width:100%;padding:11px 13px;border:1px solid var(--line-strong);border-radius:4px;background:var(--surface);font-family:var(--font-body);font-size:15px;color:var(--ink)">
-          <option value="">Choose one…</option>
-          <option>Community engagement</option>
-          <option>Environmental projects</option>
-          <option>Research</option>
-          <option>Advocacy</option>
-          <option>Event coordination</option>
-        </select>
-      </div>
-      <div class="field"><label for="vf-message">Tell us about yourself (optional)</label><textarea id="vf-message" name="message" rows="4"></textarea></div>
-      <p class="form-note">${site.formEndpoints.volunteer ? 'GDGI does not store this submission anywhere except through the form service handling it.' : `Sending opens your email app addressed to ${site.email}. GDGI does not store this submission on our servers.`}</p>
-      <button type="submit" class="btn btn-primary">Sign up to volunteer</button>
-    </form>
+${section({ tone: 'surface', inner: `
+  <div class="grid" style="grid-template-columns:1fr 280px;gap:40px;align-items:center">
+    <div>
+      ${sectionHead({ kicker: 'Partnerships', title: 'Collaborate With Us to Drive Inclusive Climate Solutions' })}
+      <p style="margin-top:14px;color:var(--ink-soft)">We welcome collaborations with organizations, agencies, institutions, and businesses that share our vision of merging disability inclusion with sustainability. Our partnership form makes it easy for interested stakeholders to submit their organization details and areas of interest, allowing us to explore potential collaborations that align with our mission.</p>
+      <p style="margin-top:14px;font-weight:700">What partners gain:</p>
+      <ul class="tag-list mt-lg">${site.getInvolved.partnershipBenefits.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
+      <p style="margin-top:14px;color:var(--ink-soft)">Together, we can create more inclusive and sustainable communities — locally and globally.</p>
+      <a class="btn btn-primary mt-lg" href="${esc(site.getInvolved.partnershipFormUrl)}" target="_blank" rel="noreferrer">Partner with us</a>
+    </div>
+    <img src="${L('/assets/photos/partnerships.jpg')}" alt="" style="width:100%;border-radius:8px;object-fit:cover" />
   </div>
 ` })}
 ${section({ inner: `

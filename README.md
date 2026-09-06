@@ -1,3 +1,4 @@
+[README (1).md](https://github.com/user-attachments/files/31872667/README.1.md)
 # Global Disabilities Green Initiative — website
 
 A rebuild of [globaldisabilitiesgi.com](https://globaldisabilitiesgi.com), replacing the previous WordPress/Elementor install.
@@ -85,15 +86,16 @@ The National Summit registration form is live: it submits to a Make.com webhook 
 |---|---|---|
 | Donate button | `site.paystackUrl` | Donate page shows a `mailto:`-based "Contact us to give" instead |
 | Contact form | `site.formEndpoints.contact` | Submitting composes a `mailto:` to `site.email` instead of posting anywhere |
-| Volunteer sign-up form | `site.formEndpoints.volunteer` | Same `mailto:` fallback |
 
 Each form (`class="js-backend-form"` in the generated HTML) submits to its `action` URL via `fetch()` once one is set, showing an inline "Thanks…" message in place of the form on success — see `assets/script.js`. Pick any form/webhook provider that accepts a browser POST (Formspree, Getform, a Zapier/Make catch-hook, etc.), create the endpoint there, and paste its URL into the matching field. The fetch uses `mode: 'no-cors'`, because most webhook receivers don't return CORS headers for a plain browser POST — the request still goes out, but the page can't read the response, so success shows optimistically once the request is sent rather than after a confirmed 200. **A static site cannot send email itself** — if you want a form to auto-reply to whoever submitted it (e.g. summit registrants), that autoresponder has to be configured on whichever form/webhook service you pick (most have one), not in this repo.
+
+**Volunteer and Partnership sign-up** go straight to GDGI's own Google Forms rather than a custom in-page form — `site.getInvolved.volunteerFormUrl` and `.partnershipFormUrl` in `generator/data.mjs`. The Get Involved page's "Apply to volunteer" and "Partner with us" buttons just link out to whichever URL is set there (opened in a new tab); swap either URL and re-run the generator to point them elsewhere. The bullet lists under each ("What partners gain", etc.) live alongside them as `volunteerFeatures` / `partnershipBenefits`.
 
 The summit registration form's fields live in `generator/data.mjs` as `events[…].registrationFields` — an ordered array of `{name, label, type, required, options}`. Adding a field your client asks for later is one array entry, not a template edit; two fields (organisation name, "please specify your disability") are already wired to show only when relevant (see the `conditionalFields` list in `assets/script.js` — add a new pair there if a future field should be conditional too).
 
 **Summit speakers:** `events[…].speakers` is an empty array — the page shows a "coming soon" notice until it isn't. Once GDGI's client sends the two international and two national speakers with bios, add each as `{ name, role, type: 'international' | 'national', bio, photo }` (`photo` optional) and re-run the generator.
 
-**Summit co-hosts &amp; sponsors:** `events[…].partners.cohosts` and `.sponsors` list the summit's three co-hosts (Federal Ministry of Environment, National Council on Climate Change, Office of the SSA on Climate Technology and Operations) and four sponsors (ILO, UNDP, UNFPA, CMB International). Each entry shows as a plain text badge until it has a `logo`. To add a logo: drop the file in `assets/partners/` and add `logo: 'assets/partners/<file>.png'` to that entry, then re-run `node generator/build.mjs`. Expected filenames for the logos already on hand: `assets/partners/ilo.png`, `assets/partners/undp.png`, `assets/partners/unfpa.png`, `assets/partners/cmb-international.png`, `assets/partners/ssa-climate-technology-operations.png` — still needed: Federal Ministry of Environment and NCCC logos.
+**Summit co-hosts &amp; sponsors:** `events[…].partners.cohosts` and `.sponsors` list the summit's three co-hosts (Federal Ministry of Environment, National Council on Climate Change, Office of the SSA on Climate Technology and Operations) and four sponsors (ILO, UNDP, UNFPA, CMB International), each with a real logo in `assets/partners/`. Each entry shows as a plain text badge if its `logo` field is ever unset — to add or swap a logo, drop the file in `assets/partners/` and point `logo:` at it, then re-run `node generator/build.mjs`.
 
 The Summit event's `photo` field is intentionally unset — its artwork is still being designed. Add `photo: 'assets/photos/<file>.jpg'` to that event in `generator/data.mjs` once it's ready; the page currently shows the brand SVG pattern in its place.
 
@@ -101,13 +103,12 @@ The Summit event's `photo` field is intentionally unset — its artwork is still
 
 Things this rebuild could not resolve without your input:
 
-- **`Strictly Confidential`** (search the repo) — the Organisational Profile PDF supplied for this project carries that watermark, so its content was used for page copy but the file itself was not published. The About page's download button is a placeholder until you provide a public-facing version.
-- **Paystack / form endpoints / summit artwork** — see [Forms & payments](#forms--payments) above; all three just need a URL or file dropped in.
-- **Partner pathway and the one live job listing** — still point at "Application form link pending"; the old site linked these to Google Forms, and no replacement URLs were supplied. (Contact and Volunteer are already live backend-connected forms — see above.)
+- **Paystack / contact form endpoint / summit artwork** — see [Forms & payments](#forms--payments) above; each just needs a URL or file dropped in.
+- **Organizational Profile PDF** — GDGI has confirmed the "Strictly Confidential" watermark is fine to publish as-is. Drop the file in `assets/` (e.g. `assets/gdgi-organizational-profile-2025.pdf`), set `site.orgProfileUrl` to that path in `generator/data.mjs`, and re-run the generator — the About page's download button goes live automatically.
+- **The one live job listing** — still points at "Apply link pending"; no replacement URL was supplied for it. (Volunteer, Partnership, Contact, and the Summit registration are all already live — see above.)
 - **`date to be reconfirmed`** — the Solar Installation Training Cohort 2 event date conflict (see `events/disability-inclusive-solar-installation-training-cohort-2/index.html`).
 - **Advisory Board** — all eight now have real photos, but no biography text was supplied for any of them; their cards are intentionally non-clickable (no bio page to link to) rather than linking to a broken image file, as the old site did.
 - **Domain/DNS** — whether `globaldisabilitiesgi.com` will point at this GitHub Pages deployment, and who controls that DNS record, is still open. See [Deployment](#deployment) for what changes if it doesn't.
-- **Truncated board bios** — Zainab Yusuf, Adama Ojochogwu Innocent Esq., and Echiche Kenneth Adinya's biographies were cut short in the source content; each page says so rather than inventing an ending.
 
 ## Sources reviewed
 

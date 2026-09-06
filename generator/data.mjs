@@ -18,6 +18,12 @@ export const site = {
   // set; until then it shows the mailto fallback. No code changes needed
   // beyond pasting the URL here and re-running node generator/build.mjs.
   paystackUrl: '',
+  // The Organizational Profile PDF (GDGI has confirmed it's fine to publish
+  // as-is, "Strictly Confidential" watermark included). Leave empty until
+  // the file is in the repo; set to its path (e.g.
+  // 'assets/gdgi-organizational-profile-2025.pdf') and re-run the generator
+  // to make the About page's download button live.
+  orgProfileUrl: 'assets/gdgi-organizational-profile-2025.pdf',
   // Backend form endpoints — leave empty until GDGI picks a form/webhook
   // provider (Formspree, Getform, a Zapier/Make catch-hook, etc.) and
   // supplies the submission URL. Each form submits to its endpoint via
@@ -27,13 +33,34 @@ export const site = {
   // generator.
   formEndpoints: {
     contact: '',
-    volunteer: '',
     summitRegistration: 'https://hook.eu1.make.com/adwff4cvtftk1h9943g9m1gh174hqyk4',
   },
   // A hidden field sent alongside each form's own fields, so the receiving
   // webhook/Make.com scenario can route or filter submissions by source.
   formTags: {
     summitRegistration: 'cot-summit',
+  },
+  // Volunteer and Partnership sign-up now go through GDGI's own Google
+  // Forms rather than a custom in-page form — the Get Involved page links
+  // straight out to whichever URL is set here. To swap either form later,
+  // just replace the URL and re-run node generator/build.mjs.
+  getInvolved: {
+    volunteerFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeoch82RSh4IPTsyRfE9yfbUgl4IqG-PuN_pfoIx9pAREi6wA/viewform?usp=header',
+    volunteerFeatures: [
+      'Easy-to-use volunteer application form',
+      'Clear list of current volunteer roles and needs',
+      '"Apply Now" button for quick submission',
+      'Opportunities open to persons with and without disabilities',
+    ],
+    partnershipFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScBmqJ7y_kO9V-0eimi_IV07FvdPAqvhj2mjdQEIM98UFXVCA/viewform',
+    partnershipBenefits: [
+      'Co-branded projects with measurable impact',
+      'Access to disability-inclusive sustainability expertise',
+      'Opportunity to co-create innovative green solutions',
+      'Visibility across GDGI platforms and events',
+      'Strengthened ESG, CSR, and SDG alignment',
+      'Participation in high-level dialogues and policy engagements',
+    ],
   },
   vision: 'We envision a world where disability is central to sustainability, with every person with a disability actively participating and leading in crafting universally accessible sustainable energy solutions, designing environmental and climate initiatives with inclusivity at their core, shaping accessible and inclusive agricultural practices, and fostering a global network where advocacy for disability rights is seamlessly integrated into strategies for environmental health and agricultural innovation.',
   mission: 'To spearhead a transformative global movement that champions disability rights advocacy by delivering accessible technological innovation and sustainable energy solutions, fostering environmental stewardship, driving climate action, and advancing sustainable agriculture for an inclusive future.',

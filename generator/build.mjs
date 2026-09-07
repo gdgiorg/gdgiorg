@@ -874,6 +874,10 @@ Allow: /
 Sitemap: ${site.domain}/sitemap.xml
 `)
 
+// Tells GitHub Pages which custom domain to serve this site on — see
+// README "Deployment" for the matching cPanel DNS records.
+writeFileSync(resolve(OUT, 'CNAME'), `${site.domain.replace(/^https?:\/\//, '')}\n`)
+
 const allRoutes = [
   '/', '/about/', '/people/', '/projects/', '/events/', '/insights/', '/get-involved/', '/donate/', '/contact/',
   ...trustees.map((p) => `/people/${p.slug}/`),

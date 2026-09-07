@@ -1,4 +1,4 @@
-[README (1).md](https://github.com/user-attachments/files/31872667/README.1.md)
+(https://github.com/user-attachments/files/31929281/README.md)
 # Global Disabilities Green Initiative — website
 
 A rebuild of [globaldisabilitiesgi.com](https://globaldisabilitiesgi.com), replacing the previous WordPress/Elementor install.
@@ -58,6 +58,25 @@ then open `http://localhost:8000/`. Opening `index.html` directly via `file://` 
 
 Every internal link and asset reference (`assets/styles.css`, `../about/`, etc.) is **relative to the page it's on**, not root-relative — deliberately, so the exact same files work unmodified whether Pages serves this repo at a domain root, a custom domain, *or* a project subpath like `https://gdgiorg.github.io/gdgiorg/`. There's no base-path setting to configure and no find-and-replace needed for any of those cases. (If you hand-edit or add a page, keep this pattern: link to other pages and assets by relative path, e.g. from `projects/foo/index.html` use `../../about/`, not `/about/` — or just run `node generator/build.mjs`, which always gets this right.)
 
+### Pointing globaldisabilitiesgi.com at this site
+
+The repo root has a `CNAME` file (generated from `site.domain`) telling GitHub Pages to serve this site on `globaldisabilitiesgi.com`. Two things still need doing outside this repo, since neither GitHub Pages settings nor cPanel DNS live in Git:
+
+1. **GitHub** — Settings → Pages → Custom domain → enter `globaldisabilitiesgi.com` → Save. (The `CNAME` file alone usually gets picked up on the next deploy, but setting it explicitly here is what triggers GitHub's DNS check and, once that passes, automatic HTTPS certificate issuance.)
+2. **cPanel** — in the domain's DNS Zone Editor, replace whatever A record currently points the apex domain at the old WordPress host with these four A records (all for `@` / the bare domain), and add one CNAME record:
+
+   | Type | Host | Value |
+   |---|---|---|
+   | A | `@` | `185.199.108.153` |
+   | A | `@` | `185.199.109.153` |
+   | A | `@` | `185.199.110.153` |
+   | A | `@` | `185.199.111.153` |
+   | CNAME | `www` | `gdgiorg.github.io.` |
+
+   These are GitHub Pages' standard IPs, the same for every custom domain — not specific to this repo. **Leave MX records alone** — if `info@globaldisabilitiesgi.com` mail is hosted through this same cPanel account, changing only the A/CNAME records above doesn't touch it; only removing or editing MX records would.
+
+DNS changes typically take anywhere from a few minutes to a few hours to propagate (rarely the full 24–48h some registrars quote). Once it does, GitHub Pages issues an HTTPS certificate automatically — the "Enforce HTTPS" checkbox in Pages settings becomes available once that's ready. Until DNS is switched, the domain keeps serving the current WordPress site exactly as it does today; nothing about this cutover touches the old host until you change those cPanel records.
+
 ## Logo
 
 `assets/logo.png` (512×512, for og:image/social previews), `assets/logo-80.png` (the header mark), `favicon-32.png`, and `apple-touch-icon.png` are all derived from the real GDGI logo, masked to a transparent circle from the source file. To update the logo, replace `assets/logo.png` with the new master image and regenerate the other three sizes from it (any image tool works — they're plain resizes of the same circular crop), then re-run `node generator/build.mjs` so every page's header and favicon links pick it up.
@@ -108,7 +127,7 @@ Things this rebuild could not resolve without your input:
 - **The one live job listing** — still points at "Apply link pending"; no replacement URL was supplied for it. (Volunteer, Partnership, Contact, and the Summit registration are all already live — see above.)
 - **`date to be reconfirmed`** — the Solar Installation Training Cohort 2 event date conflict (see `events/disability-inclusive-solar-installation-training-cohort-2/index.html`).
 - **Advisory Board** — all eight now have real photos, but no biography text was supplied for any of them; their cards are intentionally non-clickable (no bio page to link to) rather than linking to a broken image file, as the old site did.
-- **Domain/DNS** — whether `globaldisabilitiesgi.com` will point at this GitHub Pages deployment, and who controls that DNS record, is still open. See [Deployment](#deployment) for what changes if it doesn't.
+- **Domain/DNS cutover** — in progress. See [Pointing globaldisabilitiesgi.com at this site](#pointing-globaldisabilitiesgicom-at-this-site) for the exact GitHub + cPanel steps.
 
 ## Sources reviewed
 

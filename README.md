@@ -1,4 +1,4 @@
-(https://github.com/user-attachments/files/31929281/README.md)
+[README (2).md](https://github.com/user-attachments/files/31986658/README.2.md)
 # Global Disabilities Green Initiative — website
 
 A rebuild of [globaldisabilitiesgi.com](https://globaldisabilitiesgi.com), replacing the previous WordPress/Elementor install.
@@ -123,11 +123,10 @@ The Summit event's `photo` field is intentionally unset — its artwork is still
 Things this rebuild could not resolve without your input:
 
 - **Paystack / contact form endpoint / summit artwork** — see [Forms & payments](#forms--payments) above; each just needs a URL or file dropped in.
-- **Organizational Profile PDF** — GDGI has confirmed the "Strictly Confidential" watermark is fine to publish as-is. Drop the file in `assets/` (e.g. `assets/gdgi-organizational-profile-2025.pdf`), set `site.orgProfileUrl` to that path in `generator/data.mjs`, and re-run the generator — the About page's download button goes live automatically.
 - **The one live job listing** — still points at "Apply link pending"; no replacement URL was supplied for it. (Volunteer, Partnership, Contact, and the Summit registration are all already live — see above.)
 - **`date to be reconfirmed`** — the Solar Installation Training Cohort 2 event date conflict (see `events/disability-inclusive-solar-installation-training-cohort-2/index.html`).
 - **Advisory Board** — all eight now have real photos, but no biography text was supplied for any of them; their cards are intentionally non-clickable (no bio page to link to) rather than linking to a broken image file, as the old site did.
-- **Domain/DNS cutover** — in progress. See [Pointing globaldisabilitiesgi.com at this site](#pointing-globaldisabilitiesgicom-at-this-site) for the exact GitHub + cPanel steps.
+- **International Partners photos** — Mariame Kanté and Takang Aya Ayuk's `/people/` pages are live with full bios but no photo yet (their cards show initials instead). Drop the files in `assets/photos/` as `mariame-kante.jpg` and `takang-aya-ayuk.jpg`, add a matching `photo:` field to each entry in `generator/data.mjs`, and re-run the generator.
 
 ## Sources reviewed
 

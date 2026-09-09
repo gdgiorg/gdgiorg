@@ -161,6 +161,26 @@ export const people = [
       'He has served as Principal Information Officer with the Federal Ministry of Arts, Culture and Creative Economy, as a technical assistant to the House Committee on Persons with Disabilities, and as a former employment consultant to the Senior Special Assistant to the President on Disability Matters.',
       'Originally from Obudu Local Government Area of Cross River State, Nigeria, he is married with children. His experience as an administrator and disability advocate is widely recognized, and his awards include Most Vibrant Member of the House of Parliament, University of Jos (2014), and the NYSC State Chairman’s Award (2015).',
     ] },
+  // International partners — GDGI's representatives and allied advocates
+  // outside Nigeria. `photo` is intentionally unset for both until the
+  // client uploads the two photos supplied for this page (see README);
+  // add e.g. photo: 'assets/photos/mariame-kante.jpg' and re-run the
+  // generator once they're in the repo.
+  { slug: 'mariame-kante', name: 'Mariame Kanté', role: 'GDGI Representative in Guinea · State Registered Nurse', group: 'international',
+    bio: [
+      'Mariame Kanté is a Guinean State Registered Nurse, project coordinator, and civil society leader. She works mainly in community health, disability rights, sexual and reproductive health, prevention of gender-based violence, and the leadership of women and young people.',
+      'She has experience in project planning, community mobilisation, training, advocacy, monitoring and reporting, with a particular focus on improving access to health services, information and leadership opportunities for women and girls with disabilities.',
+      'Mariame is also President of Plateforme Santé Handicap en Guinée, a member of the AWLN Guinea Youth Caucus, and the Representative of the Global Disabilities Green Initiative in Guinea. Through these roles, she promotes disability inclusion, women’s leadership, community participation and greater awareness of environmental issues affecting persons with disabilities.',
+      'Her goal is to contribute to a more inclusive society where women, young people and persons with disabilities can fully participate in community development and decision-making.',
+    ] },
+  { slug: 'takang-aya-ayuk', name: 'Takang Aya Ayuk', role: 'President, Close the Gap Association · Country Coordinator, Disability Awareness Day (Cameroon)', group: 'international',
+    bio: [
+      'Takang Aya Ayuk is a dedicated disability rights advocate and community leader who has contributed significantly to promoting the rights, dignity, inclusion, and participation of persons with disabilities.',
+      'He currently serves as President of the Close the Gap Association in Kumba, Cameroon, and as Cameroon Country Coordinator for Disability Awareness Day — roles through which he promotes disability awareness, social inclusion, empowerment, and equal opportunities within his community and beyond.',
+      'Takang is a person with a mobility impairment who has shown remarkable resilience and determination in navigating life’s challenges. Having lost both parents, he has faced significant personal hardship while continuing to pursue his livelihood, leadership responsibilities, and advocacy for persons with disabilities.',
+      'He is also a skilled shoemaker and shoe mender, and through his craft has built a livelihood that demonstrates the importance of skills development, self-reliance, and economic empowerment for persons with disabilities.',
+      'Takang remains committed to advancing disability inclusion, raising awareness of the rights and potential of persons with disabilities, and contributing to a society where everyone can participate meaningfully and live with dignity.',
+    ] },
   { slug: 'agbo-christian-obiora', name: 'Agbo Christian Obiora', role: 'Advisory Board Member', group: 'advisory', photo: 'assets/photos/agbo-christian-obiora.jpg' },
   { slug: 'chidi-magnus-onuoha', name: 'Prof. Chidi Magnus Onuoha', role: 'Advisory Board Member', group: 'advisory', photo: 'assets/photos/chidi-magnus-onuoha.jpg' },
   { slug: 'segun-adaju', name: 'Dr. Segun Adaju', role: 'Advisory Board Member', group: 'advisory', photo: 'assets/photos/segun-adaju.jpg' },

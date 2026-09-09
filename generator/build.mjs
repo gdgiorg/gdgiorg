@@ -472,23 +472,29 @@ ${section({ tone: 'surface', inner: site.orgProfileUrl ? `
 // PEOPLE
 // ======================================================================
 const trustees = people.filter((p) => p.group === 'trustee')
+const international = people.filter((p) => p.group === 'international')
 const advisory = people.filter((p) => p.group === 'advisory')
+// Everyone with their own bio page — trustees and international partners,
+// but not Advisory Board members (see personCard: advisory cards are
+// intentionally non-clickable, no page to link to).
+const profiledPeople = [...trustees, ...international]
 
 {
   const path = '/people/'
   write('people/index.html', page({
     title: 'Board & Advisory',
-    description: "Meet GDGI's Board of Trustees and Advisory Board.",
+    description: "Meet GDGI's Board of Trustees, international partners, and Advisory Board.",
     path,
     bodyHtml: `
 ${hero({ path, kicker: 'Leadership', title: 'Board &amp; Advisory Board', variant: 'grid' })}
 ${section({ tone: 'surface', inner: `${sectionHead({ kicker: 'Governance', title: 'Board of Trustees' })}<div class="grid grid-2 mt-lg">${trustees.map((p) => personCard(path, p)).join('')}</div>` })}
-${section({ inner: `${sectionHead({ kicker: 'Strategic guidance', title: 'Advisory Board', subtitle: 'No public biography or photograph has been supplied yet for advisory members — cards are shown for reference only.' })}<div class="grid grid-3 mt-lg">${advisory.map((p) => personCard(path, p)).join('')}</div>` })}
+${section({ inner: `${sectionHead({ kicker: 'Global network', title: 'International Partners' })}<div class="grid grid-2 mt-lg">${international.map((p) => personCard(path, p)).join('')}</div>` })}
+${section({ tone: 'surface', inner: `${sectionHead({ kicker: 'Strategic guidance', title: 'Advisory Board', subtitle: 'No public biography or photograph has been supplied yet for advisory members — cards are shown for reference only.' })}<div class="grid grid-3 mt-lg">${advisory.map((p) => personCard(path, p)).join('')}</div>` })}
 `,
   }))
 }
 
-for (const p of trustees) {
+for (const p of profiledPeople) {
   const path = `/people/${p.slug}/`
   write(`people/${p.slug}/index.html`, page({
     title: p.name,
@@ -880,7 +886,7 @@ writeFileSync(resolve(OUT, 'CNAME'), `${site.domain.replace(/^https?:\/\//, '')}
 
 const allRoutes = [
   '/', '/about/', '/people/', '/projects/', '/events/', '/insights/', '/get-involved/', '/donate/', '/contact/',
-  ...trustees.map((p) => `/people/${p.slug}/`),
+  ...profiledPeople.map((p) => `/people/${p.slug}/`),
   ...projects.map((p) => `/projects/${p.slug}/`),
   ...events.map((e) => `/events/${e.slug}/`),
   ...posts.map((p) => `/insights/${p.slug}/`),

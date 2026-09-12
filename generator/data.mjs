@@ -5,7 +5,7 @@ export const site = {
   founded: '24 October 2024',
   domain: 'https://globaldisabilitiesgi.com',
   email: 'info@globaldisabilitiesgi.com',
-  phones: ['+234 802 253 7699', '+234 701 223 3816', '+234 706 227 3271', '+234 816 866 9998'],
+  phones: ['+234 802 253 7699', '+234 903 944 3310'],
   address: { line1: 'No. 9 Morija Close, Wuse 2', line2: 'Abuja, FCT, Nigeria', mapQuery: 'No 9 Morija Close, Wuse 2, Abuja, FCT, Nigeria' },
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/gdginative/' },
@@ -13,11 +13,13 @@ export const site = {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/global-disabilities-green-initiative-420799353' },
     { label: 'X', href: 'https://x.com/Gdginitiative' },
   ],
-  // Paystack payment page URL — leave empty until GDGI supplies it. The
-  // Donate page shows a real "Donate via Paystack" button once this is
-  // set; until then it shows the mailto fallback. No code changes needed
-  // beyond pasting the URL here and re-running node generator/build.mjs.
-  paystackUrl: '',
+  // Flutterwave donation page URL. The Donate page shows a real "Donate
+  // via Flutterwave" button once this is set; until then it shows a
+  // mailto fallback. GDGI's Flutterwave payment link should have its own
+  // "redirect URL after payment" (set in the Flutterwave dashboard, not
+  // here) pointed at `${site.domain}/donate/thank-you/` so donors land on
+  // the thank-you page below once they've actually paid.
+  donateUrl: 'https://flutterwave.com/donate/w7eaohr1kf9i',
   // The Organizational Profile PDF (GDGI has confirmed it's fine to publish
   // as-is, "Strictly Confidential" watermark included). Leave empty until
   // the file is in the repo; set to its path (e.g.

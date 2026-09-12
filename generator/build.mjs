@@ -153,7 +153,7 @@ function footer(path) {
 </footer>`
 }
 
-function page({ title, description, path, bodyHtml }) {
+function page({ title, description, path, bodyHtml, noindex }) {
   const fullTitle = title === 'Home' ? site.name : `${title} — ${site.shortName}`
   const url = `${site.domain}${path === '/404.html' ? '/404.html' : path}`
   return `<!doctype html>
@@ -162,7 +162,7 @@ function page({ title, description, path, bodyHtml }) {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#146152" />
-<title>${esc(fullTitle)}</title>
+${noindex ? '<meta name="robots" content="noindex" />\n' : ''}<title>${esc(fullTitle)}</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${url}" />
 <meta property="og:title" content="${esc(fullTitle)}" />
@@ -782,17 +782,53 @@ ${section({ inner: `
     </div>
   </div>
 ` })}
-${section({ tone: 'surface', inner: site.paystackUrl ? `
+${section({ tone: 'surface', inner: site.donateUrl ? `
   <div class="callout-dashed text-center">
     <h2 style="font-size:18px">How to give</h2>
-    <p style="margin:8px auto 0;max-width:52ch;font-size:15px;color:var(--ink-soft)">Give securely online via Paystack — cards, bank transfer, and USSD accepted.</p>
-    <a class="btn btn-primary mt-lg" href="${esc(site.paystackUrl)}" target="_blank" rel="noreferrer">Donate via Paystack</a>
+    <p style="margin:8px auto 0;max-width:52ch;font-size:15px;color:var(--ink-soft)">Give securely online via Flutterwave — cards, bank transfer, and mobile money accepted.</p>
+    <a class="btn btn-primary mt-lg" href="${esc(site.donateUrl)}" target="_blank" rel="noreferrer">Donate via Flutterwave</a>
   </div>
 ` : `
   <div class="callout-dashed">
     <h2 style="font-size:18px">How to give</h2>
-    <p style="margin-top:8px;font-size:15px;color:var(--ink-soft)">Online giving via Paystack is being set up — this button will go live as soon as GDGI confirms the payment page. In the meantime, please reach us directly to arrange your gift.</p>
+    <p style="margin-top:8px;font-size:15px;color:var(--ink-soft)">Online giving is being set up — this button will go live as soon as GDGI confirms the payment page. In the meantime, please reach us directly to arrange your gift.</p>
     <a class="btn btn-primary mt-lg" href="mailto:${site.email}?subject=Donation%20enquiry">Contact us to give</a>
+  </div>
+` })}
+`,
+  }))
+}
+
+// ======================================================================
+// DONATE — THANK YOU
+// ======================================================================
+// The landing page for a donor after a successful Flutterwave payment.
+// This site can't know a payment actually happened — that connection is
+// made on Flutterwave's side: GDGI's Flutterwave dashboard needs this
+// page's URL (${site.domain}/donate/thank-you/) set as the payment
+// link's "redirect URL after payment". Not linked from anywhere else on
+// the site and excluded from the sitemap, so it's only ever reached via
+// that redirect.
+{
+  const path = '/donate/thank-you/'
+  const L = (t) => R(path, t)
+  write('donate/thank-you/index.html', page({
+    title: 'Thank You',
+    description: 'Thank you for your donation to the Global Disabilities Green Initiative.',
+    path,
+    noindex: true,
+    bodyHtml: `
+${section({ tone: 'brand', size: 'loose', inner: `<div class="text-center">
+  <p class="eyebrow" style="color:var(--gold-soft)">Donation received</p>
+  <h1 style="font-size:32px;margin-top:10px;color:#fff">Thank you for standing with us</h1>
+  <p style="margin:14px auto 0;max-width:52ch;color:rgba(255,255,255,.85)">Your gift helps GDGI put persons with disabilities at the center of climate action — from solar energy access to policy advocacy. We've received your donation and are genuinely grateful.</p>
+</div>` })}
+${section({ inner: `
+  ${sectionHead({ kicker: 'Where it goes', title: 'What your gift supports' })}
+  <ul class="grid grid-2 mt-lg" style="list-style:none;padding:0;margin:0">${impactAreas.map((a) => `<li class="card" style="padding:18px">${esc(a)}</li>`).join('')}</ul>
+  <div class="btn-row mt-lg" style="justify-content:center">
+    <a class="btn btn-primary" href="${L('/')}">Back to home</a>
+    <a class="btn btn-outline" href="${L('/get-involved/')}">See other ways to help</a>
   </div>
 ` })}
 `,

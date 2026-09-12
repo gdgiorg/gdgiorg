@@ -1,4 +1,4 @@
-[README (2).md](https://github.com/user-attachments/files/31986658/README.2.md)
+[README.md](https://github.com/user-attachments/files/32148701/README.md)
 # Global Disabilities Green Initiative — website
 
 A rebuild of [globaldisabilitiesgi.com](https://globaldisabilitiesgi.com), replacing the previous WordPress/Elementor install.
@@ -99,12 +99,13 @@ To add or change a photo: drop the file in `assets/photos/`, point a `photo:` fi
 
 ## Forms & payments
 
-The National Summit registration form is live: it submits to a Make.com webhook (`site.formEndpoints.summitRegistration`) with a hidden `tag=cot-summit` field so that scenario can route/filter submissions from this form specifically. Two more things are wired in the code and waiting on one URL each — no template changes needed, just fill in `generator/data.mjs` and re-run `node generator/build.mjs`:
+The National Summit registration form is live: it submits to a Make.com webhook (`site.formEndpoints.summitRegistration`) with a hidden `tag=cot-summit` field so that scenario can route/filter submissions from this form specifically. The Donate button is live too, linking to GDGI's Flutterwave payment page (`site.donateUrl`). One thing is still wired in the code and waiting on a URL — no template changes needed, just fill in `generator/data.mjs` and re-run `node generator/build.mjs`:
 
 | What | Field in `generator/data.mjs` | Until it's set |
 |---|---|---|
-| Donate button | `site.paystackUrl` | Donate page shows a `mailto:`-based "Contact us to give" instead |
 | Contact form | `site.formEndpoints.contact` | Submitting composes a `mailto:` to `site.email` instead of posting anywhere |
+
+**Donate → thank-you page:** `/donate/thank-you/` is a real page on this site (noindexed, not linked from navigation or the sitemap — it's only ever reached via the redirect below), but this repo can't wire the two together on its own. Flutterwave's own payment link has a separate "redirect URL after payment" setting, configured in the Flutterwave dashboard for this specific link, not in this repo. Point that setting at `https://globaldisabilitiesgi.com/donate/thank-you/` so donors land there right after paying. Until that's set, Flutterwave will redirect to whatever default it currently has configured (or none at all).
 
 Each form (`class="js-backend-form"` in the generated HTML) submits to its `action` URL via `fetch()` once one is set, showing an inline "Thanks…" message in place of the form on success — see `assets/script.js`. Pick any form/webhook provider that accepts a browser POST (Formspree, Getform, a Zapier/Make catch-hook, etc.), create the endpoint there, and paste its URL into the matching field. The fetch uses `mode: 'no-cors'`, because most webhook receivers don't return CORS headers for a plain browser POST — the request still goes out, but the page can't read the response, so success shows optimistically once the request is sent rather than after a confirmed 200. **A static site cannot send email itself** — if you want a form to auto-reply to whoever submitted it (e.g. summit registrants), that autoresponder has to be configured on whichever form/webhook service you pick (most have one), not in this repo.
 
@@ -122,7 +123,8 @@ The Summit event's `photo` field is intentionally unset — its artwork is still
 
 Things this rebuild could not resolve without your input:
 
-- **Paystack / contact form endpoint / summit artwork** — see [Forms & payments](#forms--payments) above; each just needs a URL or file dropped in.
+- **Contact form endpoint / summit artwork** — see [Forms & payments](#forms--payments) above; each just needs a URL or file dropped in.
+- **Flutterwave redirect URL** — set the Donate payment link's "redirect URL after payment," in the Flutterwave dashboard, to `https://globaldisabilitiesgi.com/donate/thank-you/`. See [Forms & payments](#forms--payments).
 - **The one live job listing** — still points at "Apply link pending"; no replacement URL was supplied for it. (Volunteer, Partnership, Contact, and the Summit registration are all already live — see above.)
 - **`date to be reconfirmed`** — the Solar Installation Training Cohort 2 event date conflict (see `events/disability-inclusive-solar-installation-training-cohort-2/index.html`).
 - **Advisory Board** — all eight now have real photos, but no biography text was supplied for any of them; their cards are intentionally non-clickable (no bio page to link to) rather than linking to a broken image file, as the old site did.

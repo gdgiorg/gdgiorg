@@ -615,6 +615,7 @@ ${hero({
 })}
 ${section({ tone: 'surface', inner: `<div class="prose" style="margin:0 auto">${e.body.map((b) => `<p style="color:var(--ink-soft)">${esc(b)}</p>`).join('')}</div>` })}
 ${isSummit ? `
+${section({ tone: 'brand', inner: `<div class="deadline-strip"><div class="wrap" style="padding:0"><p><strong>It's already underway</strong> — on 19 August 2026, GDGI convened Honourable Members, government institutions, UN agencies and Organisations of Persons with Disabilities at the National Assembly Complex to help shape this summit.</p><a class="btn btn-outline-light" href="${L('/insights/stakeholders-meeting-national-summit/')}">Read the recap</a></div></div>` })}
 ${section({ inner: `
   ${sectionHead({ kicker: 'Co-hosts', title: 'Co-hosted with' })}
   <div class="grid grid-3 mt-lg">${e.partners.cohosts.map(partnerBadge(L)).join('')}</div>
@@ -680,6 +681,7 @@ ${section({ inner: `<div class="grid grid-3">${sortedPosts.map((p) => postCard(p
 
 for (const p of posts) {
   const path = `/insights/${p.slug}/`
+  const L = (t) => R(path, t)
   write(`insights/${p.slug}/index.html`, page({
     title: p.title,
     description: p.summary,
@@ -687,6 +689,17 @@ for (const p of posts) {
     bodyHtml: `
 ${hero({ path, kicker: p.dateDisplay, title: p.title, variant: 'canopy', photo: p.photo })}
 ${section({ tone: 'surface', inner: `<div class="prose" style="margin:0 auto">${p.body.map((b) => `<p style="color:var(--ink-soft)">${esc(b)}</p>`).join('')}</div>` })}
+${p.youtubeId ? section({ inner: `
+  <div style="max-width:760px;margin:0 auto">
+    <div style="position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#000">
+      <iframe src="https://www.youtube-nocookie.com/embed/${p.youtubeId}" title="${esc(p.title)}" style="position:absolute;inset:0;width:100%;height:100%;border:0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+` }) : ''}
+${p.gallery?.length ? section({ inner: `
+  ${sectionHead({ kicker: 'In pictures', title: 'From the meeting' })}
+  <div class="gallery-grid mt-lg">${p.gallery.map((g) => `<img src="${L(`/${g.src}`)}" alt="${esc(g.alt)}" loading="lazy" />`).join('')}</div>
+` }) : ''}
 `,
   }))
 }

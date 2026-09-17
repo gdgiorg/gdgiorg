@@ -5,7 +5,7 @@ export const site = {
   founded: '24 October 2024',
   domain: 'https://globaldisabilitiesgi.com',
   email: 'info@globaldisabilitiesgi.com',
-  phones: ['+234 802 253 7699', '+234 903 944 3310'],
+  phones: ['+234 802 253 7699', '+234 701 223 3816', '+234 706 227 3271', '+234 816 866 9998'],
   address: { line1: 'No. 9 Morija Close, Wuse 2', line2: 'Abuja, FCT, Nigeria', mapQuery: 'No 9 Morija Close, Wuse 2, Abuja, FCT, Nigeria' },
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/gdginative/' },
@@ -339,6 +339,36 @@ export const posts = [
     body: [
       'On 6–7 October 2025, GDGI took part in the National Council on Climate Change Secretariat\'s validation workshop for Nigeria\'s Just Transition Guidelines and Action Plan (JT-GAP), held in collaboration with the International Labour Organization (ILO), UNIDO, and the UN Development Programme (UNDP).',
       'GDGI contributed disability provisions to the JT-GAP during 2025, and the National Summit on Disability-Inclusive Climate Action (14–15 October 2026) will track implementation of those provisions and generate evidence for the framework\'s next review cycle.',
+    ] },
+  { slug: 'stakeholders-meeting-national-summit', title: 'Stakeholders\' Meeting on the National Summit on Disability-Inclusive Climate Action', isoDate: '2026-08-19', dateDisplay: '19 August 2026',
+    photo: 'assets/photos/sm15.jpg',
+    summary: 'GDGI convened Honourable Members, government institutions, UN agencies, and Organisations of Persons with Disabilities at the National Assembly Complex to shape the October Summit — Founder Angelina Ugben calling for it to move "from visibility to meaningful participation, from participation to leadership, and from leadership to measurable action."',
+    // Video: opening speech / meeting highlights, supplied by GDGI.
+    youtubeId: 'viYO1-Qjt5M',
+    // Committee-room and group photos from the meeting, supplied by GDGI.
+    gallery: [
+      { src: 'assets/photos/sm1.jpg', alt: 'Stakeholders seated around the committee table, Committee Room 301' },
+      { src: 'assets/photos/sm2.jpg', alt: 'Delegates at the stakeholders\' meeting on the National Summit' },
+      { src: 'assets/photos/sm3.jpg', alt: 'A delegate speaking during the stakeholders\' meeting' },
+      { src: 'assets/photos/sm4.jpg', alt: 'Stakeholders following proceedings in Committee Room 301' },
+      { src: 'assets/photos/sm5.jpg', alt: 'Delegates seated at the committee table with laptops and notes' },
+      { src: 'assets/photos/sm6.jpg', alt: 'A stakeholder addressing the meeting' },
+      { src: 'assets/photos/sm7.jpg', alt: 'Delegates in discussion during the stakeholders\' meeting' },
+      { src: 'assets/photos/sm8.jpg', alt: 'A delegate reviewing meeting documents' },
+      { src: 'assets/photos/sm9.jpg', alt: 'Stakeholders at the committee table, National Assembly Complex' },
+      { src: 'assets/photos/sm10.jpg', alt: 'A delegate speaking at the stakeholders\' meeting' },
+      { src: 'assets/photos/sm11.jpg', alt: 'Delegates seated around the committee room table' },
+      { src: 'assets/photos/sm12.jpg', alt: 'A stakeholder taking notes during the meeting' },
+      { src: 'assets/photos/sm13.jpg', alt: 'Delegates in conversation during a break in proceedings' },
+      { src: 'assets/photos/sm14.jpg', alt: 'A speaker addressing the stakeholders\' meeting' },
+    ],
+    body: [
+      'On 19 August 2026, GDGI convened a Stakeholders\' Meeting on the National Summit on Disability-Inclusive Climate Action in Committee Room 301 of the House of Representatives, National Assembly Complex, Abuja — bringing together Honourable Members, government institutions, development partners, UN agencies, civil society organisations, Organisations of Persons with Disabilities, and private-sector partners to help shape the summit now scheduled for 14–15 October 2026.',
+      'In her opening speech, GDGI Founder and President Angelina Ugben set out why the meeting mattered: climate change affects everyone, but not equally. Persons with disabilities — particularly women, children, and those in vulnerable communities — often face greater barriers during climate-related disasters, while remaining underrepresented in climate policy, decision-making, green jobs, renewable energy, and climate financing. "This must change," she told the room.',
+      'She linked the summit directly to COP31 in Antalya, Türkiye, positioned as an implementation-focused COP that will judge climate commitments by measurable, practical results across clean energy and electrification, climate finance, resilient cities and infrastructure, sustainable agriculture, green industrial transformation, and the circular economy. "As Nigeria prepares its climate priorities for COP31, we must ensure that persons with disabilities are not left behind in the implementation of climate commitments," Ugben said, naming renewable energy access, green skills and decent green jobs, climate-smart agriculture, accessible infrastructure, climate information, adaptation programmes, and inclusive climate finance as the specific gaps the summit must address.',
+      'Ugben was explicit that the summit is not meant to be another conference of speeches and photographs. "We want this Summit to produce clear commitments, partnerships, policy recommendations and practical actions that can contribute to Nigeria\'s climate agenda and strengthen the meaningful participation and leadership of persons with disabilities" — a goal she said depends on a coalition, not one organisation: government, development partners, UN agencies, the private sector, civil society, academia, media, and, most importantly, Organisations of Persons with Disabilities themselves.',
+      '"Nothing about persons with disabilities should be decided without their meaningful participation," Ugben said — persons with disabilities must not only be present at the table, but part of shaping the policies, programmes and solutions themselves. She thanked the Office of the Senior Special Assistant to the President on Climate Technology and Operations, the Federal Ministry of Environment, the National Council on Climate Change, the ILO, UNDP, the National Assembly, and the development partners, government institutions and Organisations of Persons with Disabilities who have already committed to the initiative — the same co-hosts and sponsors now confirmed on the summit\'s own registration page.',
+      'The meeting\'s outcomes will directly shape the October summit — from its five policy dialogue tracks to the Abuja Declaration on Disability-Inclusive Climate Action it aims to produce. As Ugben put it in closing: "Let this Summit be a turning point — from visibility to meaningful participation, from participation to leadership, and from leadership to measurable action."',
     ] },
 ]
 

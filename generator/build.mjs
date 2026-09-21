@@ -365,9 +365,9 @@ ${hero({
   subtitle: 'Creating a world where sustainability is inclusive, accessible, and driven by the voices of Persons with Disabilities.',
   variant: 'contour',
   photo: 'assets/photos/hero-home.jpg',
-  ctas: `<a class="btn btn-primary" href="${L('/get-involved/')}">Get Involved</a><a class="btn btn-outline-light" href="${L(`/events/${summit.slug}/`)}">National Summit 2026</a>`,
+  ctas: `<a class="btn btn-primary" href="${L('/get-involved/')}">Get Involved</a><a class="btn btn-outline-light" href="${L(`/events/${summit.slug}/`)}">National Summit 2026</a><a class="btn btn-outline-light" href="${L('/donate/')}">Donate</a>`,
 })}
-${section({ tone: 'brand', inner: `<div class="deadline-strip"><div class="wrap" style="padding:0"><p><strong>National Summit on Disability-Inclusive Climate Action</strong> — 14–15 October 2026, Abuja. Sponsorship and registration close 11 September 2026.</p><a class="btn btn-outline-light" href="${L(`/events/${summit.slug}/`)}">View the ask</a></div></div>` })}
+${section({ tone: 'brand', inner: `<div class="deadline-strip"><div class="wrap" style="padding:0"><p><strong>National Summit on Disability-Inclusive Climate Action</strong>, 14–15 October 2026, Abuja.</p><a class="btn btn-outline-light" href="${L(`/events/${summit.slug}/`)}">View the ask</a></div></div>` })}
 ${section({ inner: `
   <div class="grid grid-2">
     <div class="card"><h2 style="font-size:20px">Inclusive Energy. Empowered Communities.</h2><p>Designing renewable energy solutions that work for everyone — ensuring Persons with Disabilities lead the clean energy revolution.</p></div>
@@ -627,15 +627,15 @@ ${section({ tone: 'surface', inner: `
   <div class="card mt-lg" style="max-width:640px">${registrationForm(path, e)}</div>
 ` })}
 ${section({ inner: `
-  ${sectionHead({ kicker: 'Ahead of the summit', title: 'Pre-summit webinars' })}
-  <div class="grid grid-2 mt-lg">${e.webinars.map((w) => `<div class="card"><span class="eyebrow">${esc(w.label)} · ${esc(w.dateDisplay)}</span><h3 style="font-size:17px">${esc(w.title)}</h3><p>${esc(w.partner)}</p></div>`).join('')}</div>
+  ${sectionHead({ kicker: 'Ahead of the summit', title: e.webinars.length === 1 ? 'Pre-summit webinar' : 'Pre-summit webinars' })}
+  <div class="grid mt-lg" style="grid-template-columns:${e.webinars.length === 1 ? 'minmax(0,480px)' : 'repeat(2,1fr)'}">${e.webinars.map((w) => `<div class="card"><span class="eyebrow">${esc(w.label)} · ${esc(w.dateDisplay)}</span><h3 style="font-size:17px">${esc(w.title)}</h3><p>${esc(w.partner)}</p></div>`).join('')}</div>
 ` })}
 ${section({ tone: 'surface', inner: `
   ${sectionHead({ kicker: 'Who\'s speaking', title: 'Featured speakers' })}
   ${e.speakers.length ? `
-    <div class="grid grid-2 mt-lg">${e.speakers.map((s) => `<div class="card" style="flex-direction:row;gap:16px;align-items:flex-start">
+    <div class="grid mt-lg" style="grid-template-columns:${e.speakers.length === 1 ? '1fr' : 'repeat(2,1fr)'}">${e.speakers.map((s) => `<div class="card" style="flex-direction:row;gap:16px;align-items:flex-start">
       ${s.photo ? `<img src="${L(`/${s.photo}`)}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none" />` : `<div class="avatar" style="width:72px;height:72px;flex:none" aria-hidden="true">${initials(s.name)}</div>`}
-      <div><span class="eyebrow">${s.type === 'international' ? 'International Speaker' : 'National Speaker'}</span><h3 style="font-size:17px">${esc(s.name)}</h3><p style="font-size:13px;color:var(--ink-faint);margin-top:2px">${esc(s.role)}</p><p style="margin-top:8px">${esc(s.bio)}</p></div>
+      <div><span class="eyebrow">${s.type === 'international' ? 'International Speaker' : 'National Speaker'}</span><h3 style="font-size:17px">${esc(s.name)}</h3><p style="font-size:13px;color:var(--ink-faint);margin-top:2px">${esc(s.role)}</p>${s.topic ? `<p style="margin-top:8px;font-weight:600;color:var(--brand)">Speaking on: ${esc(s.topic)}</p>` : ''}<p style="margin-top:8px">${esc(s.bio)}</p></div>
     </div>`).join('')}</div>
   ` : `<p class="callout-dashed mt-lg" style="display:block">Speaker announcements — two international, two national — are coming soon.</p>`}
 ` })}
@@ -651,7 +651,7 @@ ${section({ tone: 'surface', inner: `
 ` })}
 ${section({ tone: 'brand', size: 'loose', inner: `
   <div class="text-center">
-    <h2 style="font-size:26px">Sponsorship &amp; registration close 11 September 2026</h2>
+    <h2 style="font-size:26px">Support the National Summit</h2>
     <p style="margin:12px auto 0;max-width:46ch;color:rgba(255,255,255,.8)">Contact GDGI to discuss adopting a budget line, a full section, or an anchor sponsorship for the National Summit on Disability-Inclusive Climate Action.</p>
     <div class="btn-row" style="justify-content:center;margin-top:22px"><a class="btn btn-primary" href="${L('/contact/')}">Partner with us</a></div>
   </div>

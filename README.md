@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/32447651/README.md)
+[README.md](https://github.com/user-attachments/files/32448100/README.md)
 # Global Disabilities Green Initiative — website
 
 A rebuild of [globaldisabilitiesgi.com](https://globaldisabilitiesgi.com), replacing the previous WordPress/Elementor install.

@@ -169,6 +169,7 @@ export const people = [
   // add e.g. photo: 'assets/photos/mariame-kante.jpg' and re-run the
   // generator once they're in the repo.
   { slug: 'mariame-kante', name: 'Mariame Kanté', role: 'GDGI Representative in Guinea · State Registered Nurse', group: 'international',
+    photo: 'assets/photos/mariame-kante.jpg',
     bio: [
       'Mariame Kanté is a Guinean State Registered Nurse, project coordinator, and civil society leader. She works mainly in community health, disability rights, sexual and reproductive health, prevention of gender-based violence, and the leadership of women and young people.',
       'She has experience in project planning, community mobilisation, training, advocacy, monitoring and reporting, with a particular focus on improving access to health services, information and leadership opportunities for women and girls with disabilities.',
@@ -176,6 +177,7 @@ export const people = [
       'Her goal is to contribute to a more inclusive society where women, young people and persons with disabilities can fully participate in community development and decision-making.',
     ] },
   { slug: 'takang-aya-ayuk', name: 'Takang Aya Ayuk', role: 'President, Close the Gap Association · Country Coordinator, Disability Awareness Day (Cameroon)', group: 'international',
+    photo: 'assets/photos/takang-aya-ayuk.jpg',
     bio: [
       'Takang Aya Ayuk is a dedicated disability rights advocate and community leader who has contributed significantly to promoting the rights, dignity, inclusion, and participation of persons with disabilities.',
       'He currently serves as President of the Close the Gap Association in Kumba, Cameroon, and as Cameroon Country Coordinator for Disability Awareness Day — roles through which he promotes disability awareness, social inclusion, empowerment, and equal opportunities within his community and beyond.',
@@ -226,14 +228,12 @@ export const events = [
     // this page keeps the brand SVG placeholder until it's ready, then add
     // e.g. photo: 'assets/photos/summit-2026.jpg' and re-run the generator.
     summary: '"From Belém Commitments to COP31 Implementation" — 200 physical delegates and 2,000 virtual participants from 20+ countries, co-hosted with the Federal Ministry of Environment and the National Council on Climate Change, with confirmed sponsorship from UNDP, ILO and Oxfam Nigeria.',
-    cta: { label: 'Partner with us before 11 September', href: '/contact/' },
-    // Pre-summit webinars still ahead of the October summit. Source: the
-    // National Summit proposal's four-webinar series (W1 20 Aug, W2 3 Sep,
-    // W3 17 Sep, W4 1 Oct 2026) — these are the two remaining at time of
-    // writing.
+    cta: { label: 'Partner with us', href: '/contact/' },
+    // Pre-summit webinar still ahead of the October summit. GDGI confirmed
+    // only one webinar is happening now (not the four originally proposed),
+    // taking place 1 October 2026.
     webinars: [
-      { label: 'Webinar 3', dateDisplay: 'Thursday, 17 September 2026', title: 'Loss, Damage and Community Resilience: Centring Persons with Disabilities in Nigeria\'s Adaptation and Disaster Response', partner: 'Oxfam Nigeria, with SARPIC' },
-      { label: 'Webinar 4', dateDisplay: 'Thursday, 1 October 2026', title: 'Governing Inclusive Climate Action: The Climate Change Act 2021, Actions for Climate Empowerment and the Disability Act 2018 in Practice', partner: 'National Council on Climate Change, with NCPWD and the House Committees on Disability Matters and on Climate Change' },
+      { label: 'Webinar', dateDisplay: 'Thursday, 1 October 2026', title: 'Governing Inclusive Climate Action: The Climate Change Act 2021, Actions for Climate Empowerment and the Disability Act 2018 in Practice', partner: 'National Council on Climate Change, with NCPWD and the House Committees on Disability Matters and on Climate Change' },
     ],
     // Attendee registration form fields — data-driven so a new field GDGI
     // asks for later is a one-line addition here, not a template change.
@@ -252,12 +252,17 @@ export const events = [
       { name: 'disability_specify', label: 'Please specify your disability', type: 'text', required: false },
       { name: 'accessibility_needs', label: 'Any accessibility requirements we should prepare for? (optional)', type: 'textarea', required: false },
     ],
-    // Speakers — none supplied yet; GDGI's client will send 2 international
-    // + 2 national speakers with bios. Add entries here in the shape below
-    // and re-run the generator; the page shows a "to be announced" notice
-    // until at least one exists.
-    // { name: '', role: '', type: 'international' | 'national', bio: '', photo: 'assets/photos/…' }
-    speakers: [],
+    // Speakers — GDGI's client will send the remaining international and
+    // national speakers with bios. Add entries here in the shape below and
+    // re-run the generator. `topic` is optional, for a speaker presenting a
+    // paper or named session.
+    // { name: '', role: '', type: 'international' | 'national', bio: '', topic: '', photo: 'assets/photos/…' }
+    speakers: [
+      { name: 'Adv. Abhishek Kumar', role: 'Founder, The Sangyan · India', type: 'international',
+        photo: 'assets/partners/Adv-Abhishek-Kumar.jpg',
+        topic: 'Disability-Inclusive Climate Finance: Pathways for the Green Climate Fund, the Adaptation Fund and Nigeria\'s Climate Change Fund',
+        bio: 'Abhishek Kumar is a lawyer, environmental researcher, and disability rights advocate, and the founder of The Sangyan, an initiative on the convergence of law, inclusion, and sustainability. He serves on India\'s Core Group on Disability-inclusive Disaster Risk Reduction, UNESCO-MGIEP\'s Youth Advisory Group, Sphere India\'s Sector Committee on Protection for Disaster Resilience and Humanitarian Response, and NCPEDP\'s National Disability Network. He has represented India at the 14th UNESCO Youth Forum, the 18th International Conference on Community-Based Adaptation, and the G20 Brasil Youth Pre-Summit, and is a recipient of the 15th NCPEDP-Mphasis Universal Design Award (2024) and a Diversability D-30 Disability Impact List Honoree (2024), for his work on disability-inclusive and universally accessible climate action and disaster risk reduction.' },
+    ],
     // Co-hosts and confirmed sponsors. `logo` is optional per entry — while
     // it's unset the page shows the organisation's name as a plain text
     // badge; once the actual logo file is in assets/partners/ (see README),
@@ -280,7 +285,7 @@ export const events = [
       'Nigeria is home to an estimated 19 million persons with disabilities who face two to four times higher climate vulnerability than the general population, yet only 30% of national climate plans worldwide contain disability-specific measures. The summit maps every session directly onto Nigeria’s existing climate governance architecture — the Climate Change Act 2021, the National Climate Change Policy 2021–2030, NDC 3.0, the Energy Transition Plan, and the Just Transition Guidelines and Action Plan — so its outcomes plug directly into national policy rather than sitting alongside it.',
       'The primary outcome is the Abuja Declaration on Disability-Inclusive Climate Action: ten actionable national recommendations, technically validated by the NCCC, jointly signed by GDGI and its co-hosts, and transmitted to the COP31 Presidency and the UNFCCC Secretariat.',
       'The summit runs five thematic policy dialogue tracks — Climate Finance & Green Investment, PWD-Led Climate Adaptation & Community Resilience, Loss & Damage, Inclusive Climate Education & Technology, and Green Jobs & Entrepreneurship — each chaired by a named partner, alongside four pre-summit webinars (August–October 2026) and four peer-reviewed research papers.',
-      'The Ask: GDGI is seeking USD 87,000 (NGN 139,200,000) in cash sponsorship and USD 38,000 (NGN 60,800,000) in in-kind support against a fully itemised USD 125,000 budget — every line, from accessibility services to virtual-platform interpretation, is individually sponsorable. Sponsorship and registration close 11 September 2026.',
+      'The Ask: GDGI is seeking USD 87,000 (NGN 139,200,000) in cash sponsorship and USD 38,000 (NGN 60,800,000) in in-kind support against a fully itemised USD 125,000 budget — every line, from accessibility services to virtual-platform interpretation, is individually sponsorable.',
     ] },
   { slug: 'disability-inclusive-solar-installation-training-cohort-2', title: 'Disability-Inclusive Solar Installation Training (Cohort 2 Launch)', state: 'past',
     dateDisplay: 'July 2025 (date to be reconfirmed with GDGI — see README)', location: 'Abuja, Nigeria',
@@ -309,25 +314,28 @@ export const posts = [
       'The launch featured panel discussions on disability-led climate action, setting out GDGI’s intent to place persons with disabilities at the center of Nigeria’s renewable energy, climate policy, and sustainable agriculture agendas — not as beneficiaries alone, but as leaders shaping the transition.',
     ] },
   { slug: 'advocacy-visit-un-house-abuja', title: 'Advocacy Visit to the UN House, Abuja', isoDate: '2025-03-04', dateDisplay: '4 March 2025',
+    photo: 'assets/photos/visit-to-un.jpg',
     summary: 'GDGI President Angelina Ugben led a delegation to the UN House in Abuja, welcomed by Resident Coordinator Mohamed Malick Fall, opening pathways for collaboration with the United Nations.',
     body: [
       'On 4 March 2025, GDGI took a step toward global impact when President Angelina Ugben led a delegation to the UN House in Abuja, Nigeria, welcomed by Mr. Mohamed Malick Fall, UN Resident Coordinator and Humanitarian Coordinator, and his team.',
       'The visit reaffirmed GDGI’s commitment to intertwining disability rights with environmental sustainability, and illuminated pathways for collaboration with the United Nations on joint initiatives that amplify GDGI’s mission.',
     ] },
   { slug: 'cren-2025-agm', title: "Participating in CREN's 2025 AGM", isoDate: '2025-02-28', dateDisplay: '28 February 2025',
+    photo: 'assets/photos/cren.jpg',
     summary: 'GDGI joined the Council for Renewable Energy Nigeria (CREN) at its Annual General Meeting in Abuja, deepening a shared vision for disability inclusion in Nigeria’s renewable energy future.',
     body: [
       'On 28 February 2025, GDGI marked a milestone by joining the Council for Renewable Energy Nigeria (CREN) at its Annual General Meeting, hosted at the Nicon Luxury Hotel in Abuja.',
       'The participation deepened GDGI’s partnership with CREN and its shared vision to weave Persons with Disabilities into the fabric of Nigeria’s renewable energy future, alongside trailblazing stakeholders and experts from across the sector.',
     ] },
   { slug: 'partnership-house-committee-disability-matters', title: 'Partnership with the Office of the Chairman, House Committee on Disability Matters', isoDate: '2025-03-19', dateDisplay: '19 March 2025',
-    photo: 'assets/photos/house-committee-partnership.jpg',
+    photo: 'assets/photos/partnership-with-the-Chairman-House-Committee.jpg',
     summary: 'GDGI President Angelina Ugben met with Rt. Hon. Bashiru Dawodu Anyila to strengthen partnership and formally receive a letter of collaboration on merging disability inclusion with climate action.',
     body: [
       'On 19 March 2025, GDGI President Angelina Ugben led a team to meet with Rt. Hon. Bashiru Dawodu Anyila, Chairman of the House Committee on Disability Matters, to strengthen GDGI’s partnership with the Committee.',
       'During the meeting, the Chairman presented a letter of collaboration to Mrs. Ugben and her team — a milestone in merging disability inclusion into climate action — with discussions centered on strategies to empower persons with disabilities in climate action and address the unique challenges this community faces.',
     ] },
   { slug: 'visit-ecowas-commission-abuja', title: 'Visit to ECOWAS Commission, Abuja', isoDate: '2025-04-10', dateDisplay: '10 April 2025',
+    photo: 'assets/photos/Visit-to-ECOWAS-Commission.jpg',
     summary: 'GDGI, alongside partners ASTEVEN Group and WAANSA, met the ECOWAS Commission to explore partnership opportunities integrating disability inclusion into regional green-environment policy.',
     body: [
       'On 10 April 2025, GDGI President Angelina Ugben led a delegation of GDGI’s partners — ASTEVEN Group and WAANSA — to the ECOWAS Commission Annex Office in Abuja to explore partnership opportunities.',

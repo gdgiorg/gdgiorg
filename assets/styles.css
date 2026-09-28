@@ -144,7 +144,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 /* Person cards */
 .person-card { display: flex; align-items: flex-start; gap: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
-.person-card .avatar {
+.avatar {
   display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; flex: none;
   background: var(--brand-soft); color: var(--brand-dark); font-family: var(--font-display); font-weight: 700; font-size: 18px;
 }

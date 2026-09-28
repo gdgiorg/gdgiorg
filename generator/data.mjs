@@ -5,7 +5,7 @@ export const site = {
   founded: '24 October 2024',
   domain: 'https://globaldisabilitiesgi.com',
   email: 'info@globaldisabilitiesgi.com',
-  phones: ['+234 802 253 7699', '+234 701 223 3816', '+234 706 227 3271', '+234 816 866 9998'],
+  phones: ['+234 802 253 7699', '+234 903 944 3310'],
   address: { line1: 'No. 9 Morija Close, Wuse 2', line2: 'Abuja, FCT, Nigeria', mapQuery: 'No 9 Morija Close, Wuse 2, Abuja, FCT, Nigeria' },
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/gdginative/' },
@@ -26,12 +26,12 @@ export const site = {
   // 'assets/gdgi-organizational-profile-2025.pdf') and re-run the generator
   // to make the About page's download button live.
   orgProfileUrl: 'assets/gdgi-organizational-profile-2025.pdf',
-  // Backend form endpoints — leave empty until GDGI picks a form/webhook
+  // Backend form endpoints, leave empty until GDGI picks a form/webhook
   // provider (Formspree, Getform, a Zapier/Make catch-hook, etc.) and
   // supplies the submission URL. Each form submits to its endpoint via
   // fetch() once set (see assets/script.js); while empty, forms fall back
   // to composing a mailto: instead, so nothing is ever a dead end. No
-  // other code changes needed — paste the URL here and re-run the
+  // other code changes needed, paste the URL here and re-run the
   // generator.
   formEndpoints: {
     contact: '',
@@ -43,7 +43,7 @@ export const site = {
     summitRegistration: 'cot-summit',
   },
   // Volunteer and Partnership sign-up now go through GDGI's own Google
-  // Forms rather than a custom in-page form — the Get Involved page links
+  // Forms rather than a custom in-page form, the Get Involved page links
   // straight out to whichever URL is set here. To swap either form later,
   // just replace the URL and re-run node generator/build.mjs.
   getInvolved: {
@@ -68,7 +68,7 @@ export const site = {
   mission: 'To spearhead a transformative global movement that champions disability rights advocacy by delivering accessible technological innovation and sustainable energy solutions, fostering environmental stewardship, driving climate action, and advancing sustainable agriculture for an inclusive future.',
   story: [
     'Founded on October 24, 2024, the Global Disabilities Green Initiative (GDGI) is dedicated to a profound commitment to inclusivity and sustainability. GDGI works to dismantle the barriers that traditionally segregate environmental initiatives from the rights and needs of persons with disabilities.',
-    "GDGI's approach is comprehensive, aiming to weave disability rights advocacy into the very fabric of energy solutions, accessible technological innovation, environmental stewardship, climate action, and sustainable agriculture — creating a more equitable, resilient, and inclusive future for all.",
+    "GDGI's approach is comprehensive, aiming to weave disability rights advocacy into the very fabric of energy solutions, accessible technological innovation, environmental stewardship, climate action, and sustainable agriculture, creating a more equitable, resilient, and inclusive future for all.",
   ],
   objectives: [
     'Develop and deploy accessible renewable energy technologies for Persons with Disabilities.',
@@ -83,7 +83,7 @@ export const site = {
     'Create enduring legacy projects that support long-term advocacy and education in inclusive sustainability.',
   ],
   values: [
-    { name: 'Accessibility', body: "We strive to make all aspects of sustainability — energy, agriculture, environment, and climate action — accessible and beneficial for Persons with Disabilities, ensuring no barriers exist in participation or benefit from green initiatives." },
+    { name: 'Accessibility', body: "We strive to make all aspects of sustainability, energy, agriculture, environment, and climate action, accessible and beneficial for Persons with Disabilities, ensuring no barriers exist in participation or benefit from green initiatives." },
     { name: 'Collaboration', body: 'We foster dynamic collaborations across sectors, cultures, and abilities to innovate, implement, and scale solutions that are both environmentally sustainable and socially inclusive, amplifying our impact.' },
     { name: 'Empowerment', body: 'We empower Persons with Disabilities not just as beneficiaries but as active leaders and changemakers in sustainability, providing them with the tools, education, and platforms needed to drive and shape environmental and social progress.' },
     { name: 'Equity', body: 'We are committed to equity, ensuring that all resources, opportunities, and benefits from sustainable development are distributed fairly, recognizing and addressing the unique needs of Persons with Disabilities within environmental contexts.' },
@@ -94,15 +94,15 @@ export const site = {
   funding: {
     intro: 'GDGI employs a diverse and strategic funding model that emphasizes transparency, accountability, and sustainability, ensuring the continuation of our mission to empower persons with disabilities through inclusive, sustainable initiatives.',
     sources: [
-      'Contributions from Trustees — a foundational element of our funding, reflecting the Board of Trustees’ personal commitment to our mission.',
-      'Individual Donations — support from a broader community of people who share our vision.',
-      'Funded Projects and Grants from Donor Agencies — secured from national and international donors and earmarked for specific initiatives.',
+      'Contributions from Trustees, a foundational element of our funding, reflecting the Board of Trustees’ personal commitment to our mission.',
+      'Individual Donations, support from a broader community of people who share our vision.',
+      'Funded Projects and Grants from Donor Agencies, secured from national and international donors and earmarked for specific initiatives.',
     ],
     practices: [
-      'Zero Operating Budget — GDGI does not maintain a fixed operational budget; funds from Trustees and individual donations cover immediate operational costs, reducing overhead.',
-      'Project-Based Budgeting — each project is budgeted individually, with financial plans reviewed, approved, and monitored by the Board.',
-      'Financial Oversight — the Board of Trustees and designated financial committees review all financial decisions.',
-      'Annual Financial Review — an annual examination of financial practices to assess efficiency and impact.',
+      'Zero Operating Budget, GDGI does not maintain a fixed operational budget; funds from Trustees and individual donations cover immediate operational costs, reducing overhead.',
+      'Project-Based Budgeting, each project is budgeted individually, with financial plans reviewed, approved, and monitored by the Board.',
+      'Financial Oversight, the Board of Trustees and designated financial committees review all financial decisions.',
+      'Annual Financial Review, an annual examination of financial practices to assess efficiency and impact.',
     ],
   },
 }
@@ -112,10 +112,10 @@ export const people = [
     photo: 'assets/photos/angelina-ugben.jpg',
     bio: [
       'Angelina Ungianumbeye Ugben is a globally respected Nigerian disability rights advocate, climate leader, and social entrepreneur working at the intersection of disability inclusion, sustainable development, and women’s empowerment. She is widely recognized for her bold leadership in advancing the participation of persons with disabilities (PWDs) in climate action, inclusive governance, and economic development across Africa and beyond.',
-      'She is the Founder and Chief Executive Officer of the Global Disabilities Green Initiative (GDGI) — officially launched in June 2025 at Nigeria’s National Assembly Complex — committed to empowering 10,000 persons with disabilities as Green Leaders by 2030 through programs in renewable energy, sustainable agriculture, climate resilience, and green entrepreneurship. Under her leadership, GDGI is transforming marginalization into opportunity, redefining the role of PWDs in Africa’s green economy and global climate solutions.',
-      'Angelina also serves as Executive Director of the Inclusive Skills Development Initiative (ISDI), leading programs that equip women with disabilities with practical skills, leadership capacity, and access to economic opportunities across diverse sectors. As National Social Welfare Secretary of the Joint National Association of Persons with Disabilities (JONAPWD), Nigeria, she contributes directly to shaping inclusive public policy and national development strategy — through GDGI–JONAPWD collaboration she has led nationwide tree-planting campaigns and the distribution of solar lamps to students with disabilities.',
-      'Beyond advocacy, she is a visionary social entrepreneur: Founder of God’s Habitation International and Angels Enterprise Development (AED), enterprises empowering persons with disabilities — particularly women and girls — with business skills, entrepreneurship training, and access to sustainable livelihoods. A 2023 alumna of the Tony Elumelu Foundation Entrepreneurship Programme, she continues to demonstrate the economic potential and leadership capacity of entrepreneurs with disabilities.',
-      'A passionate champion for gender-responsive governance, Angelina is a strong advocate for Nigeria’s Reserved Seats Bill, which seeks to increase women’s representation in parliament, including women with disabilities, and consistently emphasizes that inclusive leadership is essential to addressing challenges such as insecurity, unemployment, and social inequality. She engages at national and international levels — United Nations workshops, climate policy dialogues, and collaborations with the International Labour Organization (ILO), UNESCO, government institutions, civil society, and development partners including Connected Development (CODE) — bridging disability inclusion, environmental justice, and women’s leadership.',
+      'She is the Founder and Chief Executive Officer of the Global Disabilities Green Initiative (GDGI), officially launched in June 2025 at Nigeria’s National Assembly Complex, committed to empowering 10,000 persons with disabilities as Green Leaders by 2030 through programs in renewable energy, sustainable agriculture, climate resilience, and green entrepreneurship. Under her leadership, GDGI is transforming marginalization into opportunity, redefining the role of PWDs in Africa’s green economy and global climate solutions.',
+      'Angelina also serves as Executive Director of the Inclusive Skills Development Initiative (ISDI), leading programs that equip women with disabilities with practical skills, leadership capacity, and access to economic opportunities across diverse sectors. As National Social Welfare Secretary of the Joint National Association of Persons with Disabilities (JONAPWD), Nigeria, she contributes directly to shaping inclusive public policy and national development strategy. Through GDGI–JONAPWD collaboration, she has led nationwide tree-planting campaigns and the distribution of solar lamps to students with disabilities.',
+      'Beyond advocacy, she is a visionary social entrepreneur: Founder of God’s Habitation International and Angels Enterprise Development (AED), enterprises empowering persons with disabilities, particularly women and girls, with business skills, entrepreneurship training, and access to sustainable livelihoods. A 2023 alumna of the Tony Elumelu Foundation Entrepreneurship Programme, she continues to demonstrate the economic potential and leadership capacity of entrepreneurs with disabilities.',
+      'A passionate champion for gender-responsive governance, Angelina is a strong advocate for Nigeria’s Reserved Seats Bill, which seeks to increase women’s representation in parliament, including women with disabilities, and consistently emphasizes that inclusive leadership is essential to addressing challenges such as insecurity, unemployment, and social inequality. She engages at national and international levels: United Nations workshops, climate policy dialogues, and collaborations with the International Labour Organization (ILO), UNESCO, government institutions, civil society, and development partners including Connected Development (CODE), bridging disability inclusion, environmental justice, and women’s leadership.',
       'Her recognition includes a place among the 100 Most Influential Women in Africa by Women Who Win Africa, the Challenge Champion and Heroes Award (2024), and an Honorary Doctorate in Philosophy from United Graduate College and Seminary International (USA).',
     ] },
   { slug: 'dr-sunny-akpoyibo', name: 'Dr. Sunny Akpoyibo', role: 'Member, Board of Trustees', group: 'trustee',
@@ -140,12 +140,12 @@ export const people = [
   { slug: 'dr-paul-abolo', name: 'Dr. Paul Abolo', role: 'Member, Board of Trustees', group: 'trustee',
     photo: 'assets/photos/paul-abolo.jpg',
     bio: [
-      'Dr. Paul Abolo is a distinguished figure in environmental sustainability, climate finance, and social development. As Executive Director at Empath and President of Ecologistics Integrated Services — a firm specializing in climate change investment and sustainable development — he has significantly influenced global strategies in these domains, and convenes both the Nigeria Climate Change Investment Forum (NCCIF) and the Africa Climate Change Investment Forum (ACCIF), platforms that foster investment in climate action across Africa.',
+      'Dr. Paul Abolo is a distinguished figure in environmental sustainability, climate finance, and social development. As Executive Director at Empath and President of Ecologistics Integrated Services, a firm specializing in climate change investment and sustainable development, he has significantly influenced global strategies in these domains. He also convenes both the Nigeria Climate Change Investment Forum (NCCIF) and the Africa Climate Change Investment Forum (ACCIF), platforms that foster investment in climate action across Africa.',
       'His expertise extends to his roles as Executive Director of Connect Earth Initiatives and a member of the Climate Solutions Advancement Network (Climate SAN). He has served as a Safeguard Specialist Consultant for the World Bank on the Nigeria Green Bond and as a Country Expert for Stantec on an African Development Bank project related to Nationally Determined Contributions (NDCs), led a groundbreaking study on Gender Mainstreaming for the UN REDD+ Programme in Nigeria, and led the accreditation of the Central Bank of Nigeria’s Agric Corporation (NIRSAL Plc.) as a Direct Access Entity for the Green Climate Fund (GCF).',
       'His academic background spans Environmental Studies, Business Management, Finance, and a Doctor of Management degree specializing in Environmental and Social Sustainability (ESS), alongside strategic finance training from Harvard Business School and an MBA. He is known for conceptualizing and developing sustainable development strategies, publications, and initiatives.',
-      'His social impact is profound, particularly through needs analysis for internally displaced persons’ camps and intervention programs for vulnerable groups focused on sustainable livelihoods — generating jobs and revenue through climate change mitigation and adaptation while engaging youth and addressing gender issues.',
+      'His social impact is profound, particularly through needs analysis for internally displaced persons’ camps and intervention programs for vulnerable groups focused on sustainable livelihoods, generating jobs and revenue through climate change mitigation and adaptation while engaging youth and addressing gender issues.',
       'A global thought leader on the United Nations Framework Convention on Climate Change (UNFCCC), Net-Zero targets, and energy transition, he pioneered the Nigerian Pavilion at COP24 in Katowice, Poland, deepening dialogue between subnational entities, the private sector, and international climate action. His key contributions include the Nigeria Climate Finance Readiness Plan, the Abuja Declaration 2016, and initiatives supporting the transition from linear to circular economies.',
-      'He continues to help developing nations access global climate support, promoting the carbon market in Africa and advancing innovative finance for green projects and energy transitions worldwide — work that addresses immediate environmental and social challenges while laying the groundwork for a sustainable, equitable future.',
+      'He continues to help developing nations access global climate support, promoting the carbon market in Africa and advancing innovative finance for green projects and energy transitions worldwide, work that addresses immediate environmental and social challenges while laying the groundwork for a sustainable, equitable future.',
     ] },
   { slug: 'adama-ojochogwu-innocent-esq', name: 'Adama, Ojochogwu Innocent, Esq.', role: 'Member, Board of Trustees', group: 'trustee',
     photo: 'assets/photos/adama-ojochogwu-innocent.jpg',
@@ -163,7 +163,7 @@ export const people = [
       'He has served as Principal Information Officer with the Federal Ministry of Arts, Culture and Creative Economy, as a technical assistant to the House Committee on Persons with Disabilities, and as a former employment consultant to the Senior Special Assistant to the President on Disability Matters.',
       'Originally from Obudu Local Government Area of Cross River State, Nigeria, he is married with children. His experience as an administrator and disability advocate is widely recognized, and his awards include Most Vibrant Member of the House of Parliament, University of Jos (2014), and the NYSC State Chairman’s Award (2015).',
     ] },
-  // International partners — GDGI's representatives and allied advocates
+  // International partners, GDGI's representatives and allied advocates
   // outside Nigeria. `photo` is intentionally unset for both until the
   // client uploads the two photos supplied for this page (see README);
   // add e.g. photo: 'assets/photos/mariame-kante.jpg' and re-run the
@@ -180,7 +180,7 @@ export const people = [
     photo: 'assets/photos/takang-aya-ayuk.jpg',
     bio: [
       'Takang Aya Ayuk is a dedicated disability rights advocate and community leader who has contributed significantly to promoting the rights, dignity, inclusion, and participation of persons with disabilities.',
-      'He currently serves as President of the Close the Gap Association in Kumba, Cameroon, and as Cameroon Country Coordinator for Disability Awareness Day — roles through which he promotes disability awareness, social inclusion, empowerment, and equal opportunities within his community and beyond.',
+      'He currently serves as President of the Close the Gap Association in Kumba, Cameroon, and as Cameroon Country Coordinator for Disability Awareness Day, roles through which he promotes disability awareness, social inclusion, empowerment, and equal opportunities within his community and beyond.',
       'Takang is a person with a mobility impairment who has shown remarkable resilience and determination in navigating life’s challenges. Having lost both parents, he has faced significant personal hardship while continuing to pursue his livelihood, leadership responsibilities, and advocacy for persons with disabilities.',
       'He is also a skilled shoemaker and shoe mender, and through his craft has built a livelihood that demonstrates the importance of skills development, self-reliance, and economic empowerment for persons with disabilities.',
       'Takang remains committed to advancing disability inclusion, raising awareness of the rights and potential of persons with disabilities, and contributing to a society where everyone can participate meaningfully and live with dignity.',
@@ -198,36 +198,39 @@ export const people = [
 export const projects = [
   { slug: 'solar-lamp-outreach-schools-learning-centres', title: 'Solar Lamp Outreach for Schools & Learning Centres', status: 'completed', date: '24 June 2025', location: 'Bwari & Municipal Area Council, Abuja',
     photo: 'assets/photos/solar-lamp-outreach.jpg',
+    photoAlt: 'GDGI representatives with a group of schoolchildren in green uniforms, each holding a solar-powered reading lamp',
     summary: 'Over 150 solar-powered reading lamps delivered to students at two Abuja schools, improving study conditions and building climate awareness.',
     partners: ['Smiling Simon Greenbuild Foundation', 'Light Up Africa'], people: ['dr-angelina-ugben', 'chief-dr-anita-nana-okuribido'],
     body: [
       'On 24 June 2025 in Abuja, GDGI, in partnership with the Smiling Simon Greenbuild Foundation through Light Up Africa, delivered over 150 solar-powered reading lamps to students at Child Care Trust School (Bwari) and GSS Piwoyi (Municipal Area Council).',
-      'The distribution was led by GDGI President Angelina Ugben and supported by Chief Dr. Anita Nana Okuribido, and forms part of GDGI’s wider Energy Solutions focus area — extending clean, reliable light to students so that lack of electricity is no longer a barrier to studying after dark.',
+      'The distribution was led by GDGI President Angelina Ugben and supported by Chief Dr. Anita Nana Okuribido, and forms part of GDGI’s wider Energy Solutions focus area, extending clean, reliable light to students so that lack of electricity is no longer a barrier to studying after dark.',
     ] },
   { slug: 'disability-inclusive-solar-training-deployment-program', title: 'Disability-Inclusive Solar Training & Deployment Program', status: 'completed',
     photo: 'assets/photos/solar-training.jpg',
+    photoAlt: 'Solar installation trainees and GDGI representatives in yellow safety vests and hard hats outside the ASTEVEN Energy Institute, several using wheelchairs or crutches',
     summary: 'Hands-on solar PV training for persons with disabilities, pairing new technical skills with starter tools and installations for low-income households.',
     partners: ['ASTEVEN Energy Institute'],
     body: [
-      'This program equips persons with disabilities with practical solar photovoltaic installation and maintenance skills, then follows through with starter tools and completed installations for low-income households — turning training into visible, working energy access.',
+      'This program equips persons with disabilities with practical solar photovoltaic installation and maintenance skills, then follows through with starter tools and completed installations for low-income households, turning training into visible, working energy access.',
       'It runs alongside GDGI’s Cohort 2 solar installation training (see Events) and sits within the organization’s Energy Solutions and Green Jobs focus areas: building a pipeline of PWD-led installers, not just recipients, of the clean-energy transition.',
     ] },
   { slug: 'community-urban-greening-tree-restoration-initiative', title: 'Community Urban Greening & Tree Restoration Initiative', status: 'completed',
     photo: 'assets/photos/tree-planting.jpg',
+    photoAlt: 'GDGI representatives, two seated in wheelchairs, planting a tree sapling with community members',
     summary: 'More than 500 drought-resistant trees planted across vulnerable communities to restore green cover and build local climate resilience.',
     body: [
       'GDGI’s urban greening work has planted more than 500 drought-resistant trees across communities identified as climate-vulnerable, restoring green cover while directly involving persons with disabilities in the planning and planting process.',
-      'The initiative reflects GDGI’s Environmental Stewardship focus area — inclusive, community-based conservation that treats accessibility as a design requirement from the outset, not an afterthought.',
+      'The initiative reflects GDGI’s Environmental Stewardship focus area: inclusive, community-based conservation that treats accessibility as a design requirement from the outset, not an afterthought.',
     ] },
 ]
 
 export const events = [
   { slug: 'national-summit-disability-inclusive-climate-action', title: 'National Summit on Disability-Inclusive Climate Action', state: 'upcoming', dateDisplay: '14–15 October 2026',
-    location: 'Shehu Musa Yar’Adua Centre, Abuja, Nigeria · with international virtual participation', featured: true,
-    // Event artwork is being designed separately — leave `photo` unset so
+    location: 'Main Conference Hall, Office of the Secretary to the Government of the Federation, Shehu Shagari Complex, Three Arms Zone, Abuja · with international virtual participation', featured: true,
+    // Event artwork is being designed separately, leave `photo` unset so
     // this page keeps the brand SVG placeholder until it's ready, then add
     // e.g. photo: 'assets/photos/summit-2026.jpg' and re-run the generator.
-    summary: '"From Belém Commitments to COP31 Implementation" — 200 physical delegates and 2,000 virtual participants from 20+ countries, co-hosted with the Federal Ministry of Environment and the National Council on Climate Change, with confirmed sponsorship from UNDP, ILO and Oxfam Nigeria.',
+    summary: '"From Belém Commitments to COP31 Implementation": 200 physical delegates and 2,000 virtual participants from 20+ countries, co-hosted with the Federal Ministry of Environment and the National Council on Climate Change, with confirmed sponsorship from UNDP, ILO and Oxfam Nigeria.',
     cta: { label: 'Partner with us', href: '/contact/' },
     // Pre-summit webinar still ahead of the October summit. GDGI confirmed
     // only one webinar is happening now (not the four originally proposed),
@@ -235,7 +238,7 @@ export const events = [
     webinars: [
       { label: 'Webinar', dateDisplay: 'Thursday, 1 October 2026', title: 'Governing Inclusive Climate Action: The Climate Change Act 2021, Actions for Climate Empowerment and the Disability Act 2018 in Practice', partner: 'National Council on Climate Change, with NCPWD and the House Committees on Disability Matters and on Climate Change' },
     ],
-    // Attendee registration form fields — data-driven so a new field GDGI
+    // Attendee registration form fields, data-driven so a new field GDGI
     // asks for later is a one-line addition here, not a template change.
     // type: 'text' | 'email' | 'tel' | 'select' | 'textarea'; options for 'select'.
     registrationFields: [
@@ -252,7 +255,7 @@ export const events = [
       { name: 'disability_specify', label: 'Please specify your disability', type: 'text', required: false },
       { name: 'accessibility_needs', label: 'Any accessibility requirements we should prepare for? (optional)', type: 'textarea', required: false },
     ],
-    // Speakers — GDGI's client will send the remaining international and
+    // Speakers, GDGI's client will send the remaining international and
     // national speakers with bios. Add entries here in the shape below and
     // re-run the generator. `topic` is optional, for a speaker presenting a
     // paper or named session.
@@ -260,10 +263,18 @@ export const events = [
     speakers: [
       { name: 'Adv. Abhishek Kumar', role: 'Founder, The Sangyan · India', type: 'international',
         photo: 'assets/partners/Adv-Abhishek-Kumar.jpg',
+        attendanceMode: 'Virtual',
         topic: 'Disability-Inclusive Climate Finance: Pathways for the Green Climate Fund, the Adaptation Fund and Nigeria\'s Climate Change Fund',
         bio: 'Abhishek Kumar is a lawyer, environmental researcher, and disability rights advocate, and the founder of The Sangyan, an initiative on the convergence of law, inclusion, and sustainability. He serves on India\'s Core Group on Disability-inclusive Disaster Risk Reduction, UNESCO-MGIEP\'s Youth Advisory Group, Sphere India\'s Sector Committee on Protection for Disaster Resilience and Humanitarian Response, and NCPEDP\'s National Disability Network. He has represented India at the 14th UNESCO Youth Forum, the 18th International Conference on Community-Based Adaptation, and the G20 Brasil Youth Pre-Summit, and is a recipient of the 15th NCPEDP-Mphasis Universal Design Award (2024) and a Diversability D-30 Disability Impact List Honoree (2024), for his work on disability-inclusive and universally accessible climate action and disaster risk reduction.' },
+      { name: 'Prof. Ngozi Obeta Anadi', role: 'Professor of Criminology & Security Studies, Nile University of Nigeria', type: 'national',
+        attendanceMode: 'In person',
+        topic: 'Gender, Disability and Climate Resilience: Women and Girls with Disabilities in Nigeria\'s Climate and Disaster Response',
+        bio: 'Ngozi Obeta Anadi is a Professor of Criminology and Security Studies at Nile University of Nigeria, Abuja, where she also serves as Head of Department and Deputy Dean of the School of Postgraduate Studies. She holds a bachelor\'s and master\'s degree in law, a master\'s degree in criminal justice, and a doctorate in public policy, and previously served as an Assistant Professor of Criminal Justice at Southern University, New Orleans. Her research spans climate-change law and policy, gender inequality, human rights, and environmental governance, including work on the evolution of Common but Differentiated Responsibilities in international climate law and the development of a green economy in Nigeria\'s Niger Delta.' },
+      { name: 'Prof. Oluwafemi Kehinde Akande', role: 'Professor of Architecture, Nile University of Nigeria', type: 'national',
+        topic: 'Green Jobs, Just Transition & Decent Work',
+        bio: 'Oluwafemi Kehinde Akande is a Professor of Architecture at Nile University of Nigeria, Abuja, with a PhD in Architecture from Anglia Ruskin University and postdoctoral research at the University of Leeds. A Chartered Member of the Chartered Association of Building Engineers and the Chartered Institute of Architectural Technologists (UK), his research spans energy-efficient buildings, sustainable construction, and accessible design, including work on assistive technology in higher education and universal design in public library buildings. He has over 160 publications and more than 20 research best paper awards across Africa, Asia, Europe, and the UK.' },
     ],
-    // Co-hosts and confirmed sponsors. `logo` is optional per entry — while
+    // Co-hosts and confirmed sponsors. `logo` is optional per entry, while
     // it's unset the page shows the organisation's name as a plain text
     // badge; once the actual logo file is in assets/partners/ (see README),
     // add e.g. logo: 'assets/partners/undp.png' and re-run the generator.
@@ -281,40 +292,44 @@ export const events = [
       ],
     },
     body: [
-      'GDGI proposes the inaugural National Summit on Disability-Inclusive Climate Action at the Shehu Musa Yar’Adua Centre, Abuja, on 14–15 October 2026. The summit is co-hosted by the Federal Ministry of Environment, the Office of the Senior Special Assistant to the President on Climate Technology and Operations, and the National Council on Climate Change (NCCC), with financial sponsorship confirmed from the Nigeria country offices of UNDP, ILO, and Oxfam.',
-      'Nigeria is home to an estimated 19 million persons with disabilities who face two to four times higher climate vulnerability than the general population, yet only 30% of national climate plans worldwide contain disability-specific measures. The summit maps every session directly onto Nigeria’s existing climate governance architecture — the Climate Change Act 2021, the National Climate Change Policy 2021–2030, NDC 3.0, the Energy Transition Plan, and the Just Transition Guidelines and Action Plan — so its outcomes plug directly into national policy rather than sitting alongside it.',
+      'GDGI proposes the inaugural National Summit on Disability-Inclusive Climate Action at the Main Conference Hall, Office of the Secretary to the Government of the Federation, Shehu Shagari Complex, Three Arms Zone, Abuja, on 14–15 October 2026. The summit is co-hosted by the Federal Ministry of Environment, the Office of the Senior Special Assistant to the President on Climate Technology and Operations, and the National Council on Climate Change (NCCC), with financial sponsorship confirmed from the Nigeria country offices of UNDP, ILO, and Oxfam.',
+      'Nigeria is home to an estimated 19 million persons with disabilities who face two to four times higher climate vulnerability than the general population, yet only 30% of national climate plans worldwide contain disability-specific measures. The summit maps every session directly onto Nigeria’s existing climate governance architecture: the Climate Change Act 2021, the National Climate Change Policy 2021–2030, NDC 3.0, the Energy Transition Plan, and the Just Transition Guidelines and Action Plan. Its outcomes plug directly into national policy rather than sitting alongside it.',
       'The primary outcome is the Abuja Declaration on Disability-Inclusive Climate Action: ten actionable national recommendations, technically validated by the NCCC, jointly signed by GDGI and its co-hosts, and transmitted to the COP31 Presidency and the UNFCCC Secretariat.',
-      'The summit runs five thematic policy dialogue tracks — Climate Finance & Green Investment, PWD-Led Climate Adaptation & Community Resilience, Loss & Damage, Inclusive Climate Education & Technology, and Green Jobs & Entrepreneurship — each chaired by a named partner, alongside four pre-summit webinars (August–October 2026) and four peer-reviewed research papers.',
-      'The Ask: GDGI is seeking USD 87,000 (NGN 139,200,000) in cash sponsorship and USD 38,000 (NGN 60,800,000) in in-kind support against a fully itemised USD 125,000 budget — every line, from accessibility services to virtual-platform interpretation, is individually sponsorable.',
+      'The summit runs five thematic policy dialogue tracks: Climate Finance & Green Investment, PWD-Led Climate Adaptation & Community Resilience, Loss & Damage, Inclusive Climate Education & Technology, and Green Jobs & Entrepreneurship, each chaired by a named partner, alongside a pre-summit webinar and three peer-reviewed research papers.',
+      'The Ask: GDGI is seeking USD 87,000 (NGN 139,200,000) in cash sponsorship and USD 38,000 (NGN 60,800,000) in in-kind support against a fully itemised USD 125,000 budget, every line, from accessibility services to virtual-platform interpretation, is individually sponsorable.',
     ] },
   { slug: 'disability-inclusive-solar-installation-training-cohort-2', title: 'Disability-Inclusive Solar Installation Training (Cohort 2 Launch)', state: 'past',
-    dateDisplay: 'July 2025 (date to be reconfirmed with GDGI — see README)', location: 'Abuja, Nigeria',
+    dateDisplay: 'July 2025 (date to be reconfirmed with GDGI, see README)', location: 'Abuja, Nigeria',
     photo: 'assets/photos/solar-training.jpg',
+    photoAlt: 'Solar installation trainees and GDGI representatives in yellow safety vests and hard hats outside the ASTEVEN Energy Institute, several using wheelchairs or crutches',
     summary: 'A two-week, hands-on program equipping persons with disabilities with technical knowledge and skills in solar PV installation, maintenance, and renewable-energy entrepreneurship.',
     body: [
       'This flagship capacity-building program equips Persons with Disabilities with technical knowledge and hands-on skills in solar PV installation, maintenance, and renewable energy entrepreneurship, in partnership with the ASTEVEN Energy Institute.',
-      'Target group: Persons with Disabilities (PWDs). Duration: two weeks. The program covers practical solar installation and wiring, safety and troubleshooting, solar business opportunities, team projects, certification assessments, and mentorship — designed to open accessible pathways into the fast-growing renewable energy sector.',
+      'Target group: Persons with Disabilities (PWDs). Duration: two weeks. The program covers practical solar installation and wiring, safety and troubleshooting, solar business opportunities, team projects, certification assessments, and mentorship, designed to open accessible pathways into the fast-growing renewable energy sector.',
     ] },
-  { slug: 'pre-launch-lecture-disability-climate-change', title: 'Pre-Launch Lecture: "Disability & Climate Change — The Untapped Connection"', state: 'past',
+  { slug: 'pre-launch-lecture-disability-climate-change', title: 'Pre-Launch Lecture: "Disability & Climate Change, The Untapped Connection"', state: 'past',
     dateDisplay: '18 June 2025', location: 'Virtual, via Zoom',
     photo: 'assets/photos/pre-launch-lecture-flyer.jpg',
+    photoAlt: 'Promotional flyer for GDGI\'s Pre-Launch Lecture, "Disability & Climate Change: The Untapped Connection," with photos and names of the three speakers and the event\'s date and Zoom details',
     summary: 'Ahead of GDGI\'s official launch, a virtual lecture bringing together disability-climate advocates from Nigeria, the USA, and Cameroon to make the case that disability inclusion is central to climate action.',
     body: [
-      'On 18 June 2025, GDGI held a Pre-Launch Lecture — "Disability & Climate Change: The Untapped Connection" — over Zoom, ahead of its official launch on 26 June 2025 at the National Assembly Complex, Abuja.',
-      'The lecture featured Angelina Ugben, Founder & President of GDGI (Nigeria, host); Dr. Sefakor G.M.A. Komabu-Pomeyie, Founder of EEPD Africa (USA, lecturer); and Nogning Armelle A., Founder of CCCWGD (Cameroon, special guest) — framing the gathering, in GDGI\'s own words, as "the dawn of a new era where persons with disabilities lead climate action."',
+      'On 18 June 2025, GDGI held a Pre-Launch Lecture titled "Disability & Climate Change: The Untapped Connection" over Zoom, ahead of its official launch on 26 June 2025 at the National Assembly Complex, Abuja.',
+      'The lecture featured Angelina Ugben, Founder & President of GDGI (Nigeria, host); Dr. Sefakor G.M.A. Komabu-Pomeyie, Founder of EEPD Africa (USA, lecturer); and Nogning Armelle A., Founder of CCCWGD (Cameroon, special guest), framing the gathering, in GDGI\'s own words, as "the dawn of a new era where persons with disabilities lead climate action."',
     ] },
 ]
 
 export const posts = [
   { slug: 'gdgi-launches-national-assembly-complex-abuja', title: 'GDGI Officially Launches at the National Assembly Complex, Abuja', isoDate: '2025-06-26', dateDisplay: '26 June 2025',
     photo: 'assets/photos/national-assembly-launch.jpg',
+    photoAlt: 'A packed National Assembly chamber in Abuja, with hundreds of attendees standing and waving during GDGI\'s official launch event',
     summary: 'Disability leaders, government representatives, royal representatives, and country directors from ILO, WHO and UNDP gathered for GDGI’s official launch and a panel on disability-led climate action.',
     body: [
       'The Global Disabilities Green Initiative officially launched on 26 June 2025 at the National Assembly Complex, Abuja, bringing together disability leaders, government representatives, royal representatives, and country directors from the ILO, WHO and UNDP.',
-      'The launch featured panel discussions on disability-led climate action, setting out GDGI’s intent to place persons with disabilities at the center of Nigeria’s renewable energy, climate policy, and sustainable agriculture agendas — not as beneficiaries alone, but as leaders shaping the transition.',
+      'The launch featured panel discussions on disability-led climate action, setting out GDGI’s intent to place persons with disabilities at the center of Nigeria’s renewable energy, climate policy, and sustainable agriculture agendas, not as beneficiaries alone, but as leaders shaping the transition.',
     ] },
   { slug: 'advocacy-visit-un-house-abuja', title: 'Advocacy Visit to the UN House, Abuja', isoDate: '2025-03-04', dateDisplay: '4 March 2025',
     photo: 'assets/photos/visit-to-un.jpg',
+    photoAlt: 'GDGI representatives in discussion around a table with UN House staff in Abuja',
     summary: 'GDGI President Angelina Ugben led a delegation to the UN House in Abuja, welcomed by Resident Coordinator Mohamed Malick Fall, opening pathways for collaboration with the United Nations.',
     body: [
       'On 4 March 2025, GDGI took a step toward global impact when President Angelina Ugben led a delegation to the UN House in Abuja, Nigeria, welcomed by Mr. Mohamed Malick Fall, UN Resident Coordinator and Humanitarian Coordinator, and his team.',
@@ -322,6 +337,7 @@ export const posts = [
     ] },
   { slug: 'cren-2025-agm', title: "Participating in CREN's 2025 AGM", isoDate: '2025-02-28', dateDisplay: '28 February 2025',
     photo: 'assets/photos/cren.jpg',
+    photoAlt: 'A large group photo of delegates, including a wheelchair user, at the CREN Annual General Meeting',
     summary: 'GDGI joined the Council for Renewable Energy Nigeria (CREN) at its Annual General Meeting in Abuja, deepening a shared vision for disability inclusion in Nigeria’s renewable energy future.',
     body: [
       'On 28 February 2025, GDGI marked a milestone by joining the Council for Renewable Energy Nigeria (CREN) at its Annual General Meeting, hosted at the Nicon Luxury Hotel in Abuja.',
@@ -329,28 +345,32 @@ export const posts = [
     ] },
   { slug: 'partnership-house-committee-disability-matters', title: 'Partnership with the Office of the Chairman, House Committee on Disability Matters', isoDate: '2025-03-19', dateDisplay: '19 March 2025',
     photo: 'assets/photos/partnership-with-the-Chairman-House-Committee.jpg',
+    photoAlt: 'GDGI representatives, including a wheelchair user, with the Chairman of the House Committee on Disability Matters, who holds a signed letter of collaboration',
     summary: 'GDGI President Angelina Ugben met with Rt. Hon. Bashiru Dawodu Anyila to strengthen partnership and formally receive a letter of collaboration on merging disability inclusion with climate action.',
     body: [
       'On 19 March 2025, GDGI President Angelina Ugben led a team to meet with Rt. Hon. Bashiru Dawodu Anyila, Chairman of the House Committee on Disability Matters, to strengthen GDGI’s partnership with the Committee.',
-      'During the meeting, the Chairman presented a letter of collaboration to Mrs. Ugben and her team — a milestone in merging disability inclusion into climate action — with discussions centered on strategies to empower persons with disabilities in climate action and address the unique challenges this community faces.',
+      'During the meeting, the Chairman presented a letter of collaboration to Mrs. Ugben and her team, a milestone in merging disability inclusion into climate action, with discussions centered on strategies to empower persons with disabilities in climate action and address the unique challenges this community faces.',
     ] },
   { slug: 'visit-ecowas-commission-abuja', title: 'Visit to ECOWAS Commission, Abuja', isoDate: '2025-04-10', dateDisplay: '10 April 2025',
     photo: 'assets/photos/Visit-to-ECOWAS-Commission.jpg',
+    photoAlt: 'GDGI representatives, including two wheelchair users, meeting with ECOWAS Commission staff',
     summary: 'GDGI, alongside partners ASTEVEN Group and WAANSA, met the ECOWAS Commission to explore partnership opportunities integrating disability inclusion into regional green-environment policy.',
     body: [
-      'On 10 April 2025, GDGI President Angelina Ugben led a delegation of GDGI’s partners — ASTEVEN Group and WAANSA — to the ECOWAS Commission Annex Office in Abuja to explore partnership opportunities.',
+      'On 10 April 2025, GDGI President Angelina Ugben led a delegation of GDGI’s partners, ASTEVEN Group and WAANSA, to the ECOWAS Commission Annex Office in Abuja to explore partnership opportunities.',
       'Receiving the delegation, Dr. Alves D’Almada Fernando Jorge, Head of the Division of Social Affairs at the ECOWAS Commission, emphasized the need to integrate the disability community into policies that enhance green environment and promote sustainable agricultural techniques for food security in the sub-region, and pledged the Commission’s support for GDGI’s mission.',
     ] },
   { slug: 'national-validation-workshop-just-transition-guidelines', title: 'National Validation Workshop: Nigeria\'s Just Transition Guidelines and Action Plan', isoDate: '2025-10-06', dateDisplay: '6–7 October 2025',
     photo: 'assets/photos/jtgap-workshop.jpg',
-    summary: 'GDGI joined the National Council on Climate Change Secretariat, in collaboration with ILO, UNIDO and UNDP, to validate Nigeria\'s Just Transition Guidelines and Action Plan (JT-GAP) — the framework GDGI helped shape with disability provisions in 2025.',
+    photoAlt: 'GDGI representatives, several using wheelchairs, on stage at the National Council on Climate Change\'s validation workshop for Nigeria\'s Just Transition Guidelines and Action Plan',
+    summary: 'GDGI joined the National Council on Climate Change Secretariat, in collaboration with ILO, UNIDO and UNDP, to validate Nigeria\'s Just Transition Guidelines and Action Plan (JT-GAP), the framework GDGI helped shape with disability provisions in 2025.',
     body: [
       'On 6–7 October 2025, GDGI took part in the National Council on Climate Change Secretariat\'s validation workshop for Nigeria\'s Just Transition Guidelines and Action Plan (JT-GAP), held in collaboration with the International Labour Organization (ILO), UNIDO, and the UN Development Programme (UNDP).',
       'GDGI contributed disability provisions to the JT-GAP during 2025, and the National Summit on Disability-Inclusive Climate Action (14–15 October 2026) will track implementation of those provisions and generate evidence for the framework\'s next review cycle.',
     ] },
   { slug: 'stakeholders-meeting-national-summit', title: 'Stakeholders\' Meeting on the National Summit on Disability-Inclusive Climate Action', isoDate: '2026-08-19', dateDisplay: '19 August 2026',
     photo: 'assets/photos/sm15.jpg',
-    summary: 'GDGI convened Honourable Members, government institutions, UN agencies, and Organisations of Persons with Disabilities at the National Assembly Complex to shape the October Summit — Founder Angelina Ugben calling for it to move "from visibility to meaningful participation, from participation to leadership, and from leadership to measurable action."',
+    photoAlt: 'Group photo of stakeholders at the National Summit planning meeting, National Assembly Complex, Abuja',
+    summary: 'GDGI convened Honourable Members, government institutions, UN agencies, and Organisations of Persons with Disabilities at the National Assembly Complex to shape the October Summit, with Founder Angelina Ugben calling for it to move "from visibility to meaningful participation, from participation to leadership, and from leadership to measurable action."',
     // Video: opening speech / meeting highlights, supplied by GDGI.
     youtubeId: 'viYO1-Qjt5M',
     // Committee-room and group photos from the meeting, supplied by GDGI.
@@ -371,24 +391,25 @@ export const posts = [
       { src: 'assets/photos/sm14.jpg', alt: 'A speaker addressing the stakeholders\' meeting' },
     ],
     body: [
-      'On 19 August 2026, GDGI convened a Stakeholders\' Meeting on the National Summit on Disability-Inclusive Climate Action in Committee Room 301 of the House of Representatives, National Assembly Complex, Abuja — bringing together Honourable Members, government institutions, development partners, UN agencies, civil society organisations, Organisations of Persons with Disabilities, and private-sector partners to help shape the summit now scheduled for 14–15 October 2026.',
-      'In her opening speech, GDGI Founder and President Angelina Ugben set out why the meeting mattered: climate change affects everyone, but not equally. Persons with disabilities — particularly women, children, and those in vulnerable communities — often face greater barriers during climate-related disasters, while remaining underrepresented in climate policy, decision-making, green jobs, renewable energy, and climate financing. "This must change," she told the room.',
+      'On 19 August 2026, GDGI convened a Stakeholders\' Meeting on the National Summit on Disability-Inclusive Climate Action in Committee Room 301 of the House of Representatives, National Assembly Complex, Abuja, bringing together Honourable Members, government institutions, development partners, UN agencies, civil society organisations, Organisations of Persons with Disabilities, and private-sector partners to help shape the summit now scheduled for 14–15 October 2026.',
+      'In her opening speech, GDGI Founder and President Angelina Ugben set out why the meeting mattered: climate change affects everyone, but not equally. Persons with disabilities, particularly women, children, and those in vulnerable communities, often face greater barriers during climate-related disasters, while remaining underrepresented in climate policy, decision-making, green jobs, renewable energy, and climate financing. "This must change," she told the room.',
       'She linked the summit directly to COP31 in Antalya, Türkiye, positioned as an implementation-focused COP that will judge climate commitments by measurable, practical results across clean energy and electrification, climate finance, resilient cities and infrastructure, sustainable agriculture, green industrial transformation, and the circular economy. "As Nigeria prepares its climate priorities for COP31, we must ensure that persons with disabilities are not left behind in the implementation of climate commitments," Ugben said, naming renewable energy access, green skills and decent green jobs, climate-smart agriculture, accessible infrastructure, climate information, adaptation programmes, and inclusive climate finance as the specific gaps the summit must address.',
-      'Ugben was explicit that the summit is not meant to be another conference of speeches and photographs. "We want this Summit to produce clear commitments, partnerships, policy recommendations and practical actions that can contribute to Nigeria\'s climate agenda and strengthen the meaningful participation and leadership of persons with disabilities" — a goal she said depends on a coalition, not one organisation: government, development partners, UN agencies, the private sector, civil society, academia, media, and, most importantly, Organisations of Persons with Disabilities themselves.',
-      '"Nothing about persons with disabilities should be decided without their meaningful participation," Ugben said — persons with disabilities must not only be present at the table, but part of shaping the policies, programmes and solutions themselves. She thanked the Office of the Senior Special Assistant to the President on Climate Technology and Operations, the Federal Ministry of Environment, the National Council on Climate Change, the ILO, UNDP, the National Assembly, and the development partners, government institutions and Organisations of Persons with Disabilities who have already committed to the initiative — the same co-hosts and sponsors now confirmed on the summit\'s own registration page.',
-      'The meeting\'s outcomes will directly shape the October summit — from its five policy dialogue tracks to the Abuja Declaration on Disability-Inclusive Climate Action it aims to produce. As Ugben put it in closing: "Let this Summit be a turning point — from visibility to meaningful participation, from participation to leadership, and from leadership to measurable action."',
+      'Ugben was explicit that the summit is not meant to be another conference of speeches and photographs. "We want this Summit to produce clear commitments, partnerships, policy recommendations and practical actions that can contribute to Nigeria\'s climate agenda and strengthen the meaningful participation and leadership of persons with disabilities", a goal she said depends on a coalition, not one organisation: government, development partners, UN agencies, the private sector, civil society, academia, media, and, most importantly, Organisations of Persons with Disabilities themselves.',
+      '"Nothing about persons with disabilities should be decided without their meaningful participation," Ugben said. Persons with disabilities must not only be present at the table, but part of shaping the policies, programmes and solutions themselves. She thanked the Office of the Senior Special Assistant to the President on Climate Technology and Operations, the Federal Ministry of Environment, the National Council on Climate Change, the ILO, UNDP, the National Assembly, and the development partners, government institutions and Organisations of Persons with Disabilities who have already committed to the initiative, the same co-hosts and sponsors now confirmed on the summit\'s own registration page.',
+      'The meeting\'s outcomes will directly shape the October summit, from its five policy dialogue tracks to the Abuja Declaration on Disability-Inclusive Climate Action it aims to produce. As Ugben put it in closing: "Let this Summit be a turning point, from visibility to meaningful participation, from participation to leadership, and from leadership to measurable action."',
     ] },
 ]
 
 export const jobs = [
   { slug: 'communications-media-assistant', title: 'Communications & Media Assistant', location: 'Remote / Hybrid', type: 'Full-time', department: 'Media & Communications',
     photo: 'assets/photos/job-communications.jpg',
+    photoAlt: 'Stock photo of a person wearing a headset, with the text "Come Join Our Team"',
     summary: 'Drive GDGI’s storytelling through social media, digital campaigns, newsletters, and visual content that highlight our impact.',
     responsibilitiesIncomplete: true,
     responsibilities: ['Create engaging content for social media and the website.', 'Cover events and produce human-interest stories.', 'Assist with graphics, short videos, and advocacy materials.'] },
 ]
 
-// "Moments of Impact" gallery on the Projects page — candid photos from
+// "Moments of Impact" gallery on the Projects page, candid photos from
 // GDGI's advocacy engagements that don't each carry a full dated writeup.
 export const gallery = [
   { src: 'assets/photos/gallery-1.jpg', alt: 'GDGI representatives visiting a government office in Abuja' },

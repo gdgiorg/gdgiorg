@@ -1,11 +1,11 @@
 // Regenerates every page in the repo from data.mjs. Run with: node generator/build.mjs
-// See README "Content model" — this is optional tooling, not a build step.
+// See README "Content model", this is optional tooling, not a build step.
 // The shipped .html files are the real site; this just re-stamps them
 // consistently when a content change (a new person/project/event/post)
 // touches more than one page.
 //
 // All internal links (nav, cards, assets) are generated RELATIVE to each
-// page's own location — never root-relative ("/about/") — so the site
+// page's own location, never root-relative ("/about/"), so the site
 // works unmodified whether it's served at a domain root, a custom domain,
 // or a GitHub Pages project subpath like https://org.github.io/repo/.
 // See README "Deployment."
@@ -154,7 +154,7 @@ function footer(path) {
 }
 
 function page({ title, description, path, bodyHtml, noindex }) {
-  const fullTitle = title === 'Home' ? site.name : `${title} — ${site.shortName}`
+  const fullTitle = title === 'Home' ? site.name : `${title}, ${site.shortName}`
   const url = `${site.domain}${path === '/404.html' ? '/404.html' : path}`
   return `<!doctype html>
 <html lang="en">
@@ -189,9 +189,9 @@ ${footer(path)}
 `
 }
 
-function hero({ path, kicker, title, subtitle, variant = 'contour', photo, ctas = '' }) {
+function hero({ path, kicker, title, subtitle, variant = 'contour', photo, photoAlt = '', ctas = '' }) {
   const art = photo
-    ? `<img src="${R(path, `/${photo}`)}" alt="" />`
+    ? `<img src="${R(path, `/${photo}`)}" alt="${esc(photoAlt)}" />`
     : placeholderArt(variant)
   return `
 <section class="hero">
@@ -231,7 +231,7 @@ function initials(name) {
 }
 
 function projectCard(fromPath, p, variant) {
-  const art = p.photo ? `<img src="${R(fromPath, `/${p.photo}`)}" alt="" />` : placeholderArt(variant)
+  const art = p.photo ? `<img src="${R(fromPath, `/${p.photo}`)}" alt="${esc(p.photoAlt || p.title)}" />` : placeholderArt(variant)
   return `<a class="card" href="${R(fromPath, `/projects/${p.slug}/`)}">
     <div class="card-art">${art}</div>
     <span class="eyebrow">${p.status === 'ongoing' ? 'Ongoing' : 'Completed'}${p.date ? ` · ${p.date}` : ''}</span>
@@ -242,7 +242,7 @@ function projectCard(fromPath, p, variant) {
 }
 
 function eventCard(fromPath, e) {
-  const art = e.photo ? `<div class="card-art">${`<img src="${R(fromPath, `/${e.photo}`)}" alt="" />`}</div>` : ''
+  const art = e.photo ? `<div class="card-art">${`<img src="${R(fromPath, `/${e.photo}`)}" alt="${esc(e.photoAlt || e.title)}" />`}</div>` : ''
   return `<a class="card" href="${R(fromPath, `/events/${e.slug}/`)}">
     ${art}
     <div>
@@ -257,7 +257,7 @@ function eventCard(fromPath, e) {
 }
 
 function postCard(fromPath, p) {
-  const art = p.photo ? `<div class="card-art">${`<img src="${R(fromPath, `/${p.photo}`)}" alt="" />`}</div>` : ''
+  const art = p.photo ? `<div class="card-art">${`<img src="${R(fromPath, `/${p.photo}`)}" alt="${esc(p.photoAlt || p.title)}" />`}</div>` : ''
   return `<a class="card" href="${R(fromPath, `/insights/${p.slug}/`)}">
     ${art}
     <time class="eyebrow" datetime="${p.isoDate}">${esc(p.dateDisplay)}</time>
@@ -269,7 +269,7 @@ function postCard(fromPath, p) {
 
 function personCard(fromPath, p) {
   const avatar = p.photo
-    ? `<img class="avatar" src="${R(fromPath, `/${p.photo}`)}" alt="" />`
+    ? `<img class="avatar" src="${R(fromPath, `/${p.photo}`)}" alt="${esc(p.name)}" />`
     : `<div class="avatar" aria-hidden="true">${initials(p.name)}</div>`
   const inner = `${avatar}
     <div><div class="name">${esc(p.name)}</div><div class="role">${esc(p.role)}</div></div>`
@@ -298,7 +298,7 @@ function registrationForm(fromPath, e) {
   const endpoint = site.formEndpoints.summitRegistration
   const tag = site.formTags.summitRegistration
   return `<div id="register">
-  <form class="js-backend-form" action="${endpoint}" method="POST" data-to="${site.email}" data-subject="Summit registration — ${esc(e.title)}" data-success="Thanks — you're registered for the summit. GDGI will be in touch with joining details closer to 14–15 October 2026.">
+  <form class="js-backend-form" action="${endpoint}" method="POST" data-to="${site.email}" data-subject="Summit registration, ${esc(e.title)}" data-success="Thanks, you're registered for the summit. GDGI will be in touch with joining details closer to 14–15 October 2026.">
     ${tag ? `<input type="hidden" name="tag" value="${esc(tag)}" />` : ''}
     ${fields}
     <p class="form-note">${endpoint ? 'Your details go straight to GDGI\'s registration system.' : `Sending opens your email app addressed to ${site.email}.`} GDGI will use this information solely to plan and run the summit, including any accessibility arrangements you request.</p>
@@ -322,7 +322,7 @@ function redirectPage(fromPath, toPath) {
 <meta charset="UTF-8" />
 <meta http-equiv="refresh" content="0; url=${R(fromPath, toPath)}" />
 <link rel="canonical" href="${url}" />
-<title>Redirecting… — ${site.shortName}</title>
+<title>Redirecting…, ${site.shortName}</title>
 <link rel="stylesheet" href="${R(fromPath, '/assets/styles.css')}" />
 </head>
 <body>
@@ -355,7 +355,7 @@ const homeStats = [
   const L = (t) => R(path, t)
   write('index.html', page({
     title: 'Home',
-    description: 'Bridging Disability Rights & Climate Justice — creating a world where sustainability is inclusive, accessible, and driven by the voices of Persons with Disabilities.',
+    description: 'Bridging Disability Rights & Climate Justice, creating a world where sustainability is inclusive, accessible, and driven by the voices of Persons with Disabilities.',
     path,
     bodyHtml: `
 ${hero({
@@ -365,12 +365,13 @@ ${hero({
   subtitle: 'Creating a world where sustainability is inclusive, accessible, and driven by the voices of Persons with Disabilities.',
   variant: 'contour',
   photo: 'assets/photos/hero-home.jpg',
+  photoAlt: 'GDGI staff and board members, several using wheelchairs or crutches, posing together in front of a Sustainable Development Goals wheel display',
   ctas: `<a class="btn btn-primary" href="${L('/get-involved/')}">Get Involved</a><a class="btn btn-outline-light" href="${L(`/events/${summit.slug}/`)}">National Summit 2026</a><a class="btn btn-outline-light" href="${L('/donate/')}">Donate</a>`,
 })}
 ${section({ tone: 'brand', inner: `<div class="deadline-strip"><div class="wrap" style="padding:0"><p><strong>National Summit on Disability-Inclusive Climate Action</strong>, 14–15 October 2026, Abuja.</p><a class="btn btn-outline-light" href="${L(`/events/${summit.slug}/`)}">View the ask</a></div></div>` })}
 ${section({ inner: `
   <div class="grid grid-2">
-    <div class="card"><h2 style="font-size:20px">Inclusive Energy. Empowered Communities.</h2><p>Designing renewable energy solutions that work for everyone — ensuring Persons with Disabilities lead the clean energy revolution.</p></div>
+    <div class="card"><h2 style="font-size:20px">Inclusive Energy. Empowered Communities.</h2><p>Designing renewable energy solutions that work for everyone, ensuring Persons with Disabilities lead the clean energy revolution.</p></div>
     <div class="card"><h2 style="font-size:20px">Driving Policy. Inspiring Change. Transforming Lives.</h2><p>Championing disability inclusion across climate policy, national planning, and the institutions that shape Nigeria's green transition.</p></div>
   </div>
   <div class="stats mt-lg">
@@ -378,7 +379,7 @@ ${section({ inner: `
   </div>
 ` })}
 ${section({ tone: 'surface', inner: `
-  ${sectionHead({ kicker: 'What we do', title: 'Real projects, led with — not just for — Persons with Disabilities', subtitle: 'Three completed initiatives across energy access, skills, and environmental restoration.' })}
+  ${sectionHead({ kicker: 'What we do', title: 'Real projects, led with, not just for, Persons with Disabilities', subtitle: 'Three completed initiatives across energy access, skills, and environmental restoration.' })}
   <div class="grid grid-3 mt-lg">${projects.map((p, i) => projectCard(path, p, artCycle[i % artCycle.length])).join('')}</div>
   <div class="mt-lg"><a class="btn btn-outline" href="${L('/projects/')}">All projects</a></div>
 ` })}
@@ -411,7 +412,7 @@ ${section({ tone: 'brand', size: 'loose', inner: `
     description: 'Founded 24 October 2024, GDGI works at the intersection of disability rights, climate justice, renewable energy, and sustainable agriculture.',
     path,
     bodyHtml: `
-${hero({ path, kicker: 'About GDGI', title: 'A movement for a greener, fairer, and more inclusive world', variant: 'canopy', photo: 'assets/photos/hero-about.jpg' })}
+${hero({ path, kicker: 'About GDGI', title: 'A movement for a greener, fairer, and more inclusive world', variant: 'canopy', photo: 'assets/photos/hero-about.jpg', photoAlt: 'Four GDGI representatives, two using wheelchairs, posing together in front of a United Nations Sustainable Development Goals display' })}
 ${section({ tone: 'surface', inner: `
   <div class="grid" style="grid-template-columns:280px 1fr;gap:40px;align-items:center">
     <img src="${L('/assets/photos/about-secondary.jpg')}" alt="GDGI President Angelina Ugben at a Sustainable Development Goals engagement" style="width:100%;border-radius:8px;object-fit:cover" />
@@ -454,7 +455,7 @@ ${section({ inner: `
 ` })}
 ${section({ tone: 'surface', inner: site.orgProfileUrl ? `
   <div class="card" style="flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px">
-    <div><h2 style="font-size:20px">Organizational Profile (PDF)</h2><p style="margin-top:6px">GDGI's full organizational profile — mission, programs, and impact.</p></div>
+    <div><h2 style="font-size:20px">Organizational Profile (PDF)</h2><p style="margin-top:6px">GDGI's full organizational profile, mission, programs, and impact.</p></div>
     <a class="btn btn-primary" href="${L(`/${site.orgProfileUrl}`)}" target="_blank" rel="noreferrer">Download PDF</a>
   </div>
 ` : `
@@ -474,7 +475,7 @@ ${section({ tone: 'surface', inner: site.orgProfileUrl ? `
 const trustees = people.filter((p) => p.group === 'trustee')
 const international = people.filter((p) => p.group === 'international')
 const advisory = people.filter((p) => p.group === 'advisory')
-// Everyone with their own bio page — trustees and international partners,
+// Everyone with their own bio page, trustees and international partners,
 // but not Advisory Board members (see personCard: advisory cards are
 // intentionally non-clickable, no page to link to).
 const profiledPeople = [...trustees, ...international]
@@ -489,7 +490,7 @@ const profiledPeople = [...trustees, ...international]
 ${hero({ path, kicker: 'Leadership', title: 'Board &amp; Advisory Board', variant: 'grid' })}
 ${section({ tone: 'surface', inner: `${sectionHead({ kicker: 'Governance', title: 'Board of Trustees' })}<div class="grid grid-2 mt-lg">${trustees.map((p) => personCard(path, p)).join('')}</div>` })}
 ${section({ inner: `${sectionHead({ kicker: 'Global network', title: 'International Partners' })}<div class="grid grid-2 mt-lg">${international.map((p) => personCard(path, p)).join('')}</div>` })}
-${section({ tone: 'surface', inner: `${sectionHead({ kicker: 'Strategic guidance', title: 'Advisory Board', subtitle: 'No public biography or photograph has been supplied yet for advisory members — cards are shown for reference only.' })}<div class="grid grid-3 mt-lg">${advisory.map((p) => personCard(path, p)).join('')}</div>` })}
+${section({ tone: 'surface', inner: `${sectionHead({ kicker: 'Strategic guidance', title: 'Advisory Board', subtitle: 'No public biography or photograph has been supplied yet for advisory members. Cards are shown for reference only.' })}<div class="grid grid-3 mt-lg">${advisory.map((p) => personCard(path, p)).join('')}</div>` })}
 `,
   }))
 }
@@ -498,13 +499,13 @@ for (const p of profiledPeople) {
   const path = `/people/${p.slug}/`
   write(`people/${p.slug}/index.html`, page({
     title: p.name,
-    description: `${p.name} — ${p.role} at GDGI.`,
+    description: `${p.name}, ${p.role} at GDGI.`,
     path,
     bodyHtml: `
 ${section({ tone: 'surface', inner: `
   <div style="display:flex;align-items:center;gap:22px">
     ${p.photo
-      ? `<img class="avatar" src="${R(path, `/${p.photo}`)}" alt="" style="width:96px;height:96px" />`
+      ? `<img class="avatar" src="${R(path, `/${p.photo}`)}" alt="${esc(p.name)}" style="width:96px;height:96px" />`
       : `<div class="avatar" style="width:96px;height:96px;font-size:30px" aria-hidden="true">${initials(p.name)}</div>`}
     <div><h1 style="font-size:30px">${esc(p.name)}</h1><p style="margin-top:6px;color:var(--brand)">${esc(p.role)}</p></div>
   </div>
@@ -521,7 +522,7 @@ ${section({ inner: `<div class="prose" style="margin:0 auto">${p.bio.map((b) => 
   const path = '/projects/'
   write('projects/index.html', page({
     title: 'Our Projects',
-    description: "Energy access, skills training, and environmental restoration — GDGI's completed and ongoing projects.",
+    description: "Energy access, skills training, and environmental restoration: GDGI's completed and ongoing projects.",
     path,
     bodyHtml: `
 ${hero({ path, kicker: 'Our work', title: 'Projects', subtitle: 'Programs designed with, and led by, Persons with Disabilities.', variant: 'rays' })}
@@ -543,7 +544,7 @@ for (const p of projects) {
     description: p.summary,
     path,
     bodyHtml: `
-${hero({ path, kicker: p.status === 'ongoing' ? 'Ongoing project' : 'Completed project', title: p.title, variant: 'canopy', photo: p.photo })}
+${hero({ path, kicker: p.status === 'ongoing' ? 'Ongoing project' : 'Completed project', title: p.title, variant: 'canopy', photo: p.photo, photoAlt: p.photoAlt })}
 ${section({ tone: 'surface', inner: `
   <div class="grid" style="grid-template-columns:1fr 260px;gap:40px">
     <div class="prose">${p.body.map((b) => `<p style="color:var(--ink-soft)">${esc(b)}</p>`).join('')}</div>
@@ -569,14 +570,14 @@ const sponsorshipBands = [
   { band: 'In-Kind Partner', value: 'Any verifiable in-kind value', note: 'Credit proportional to contribution' },
 ]
 const tracks = [
-  'Disability-Inclusive Climate Finance & Green Investment — chaired by UNDP',
-  'PWD-Led Climate Adaptation & Community Resilience — chaired by NCCC',
-  'Loss & Damage: Disability-Specific Vulnerability & Response — chaired by Oxfam Nigeria',
-  'Inclusive Climate Education, Technology & the ACE Pillar — IDA advisory',
-  'Green Jobs, Clean Energy & Entrepreneurship for PWDs — chaired by ILO',
+  'Disability-Inclusive Climate Finance & Green Investment, chaired by UNDP',
+  'PWD-Led Climate Adaptation & Community Resilience, chaired by NCCC',
+  'Loss & Damage: Disability-Specific Vulnerability & Response, chaired by Oxfam Nigeria',
+  'Inclusive Climate Education, Technology & the ACE Pillar, IDA advisory',
+  'Green Jobs, Clean Energy & Entrepreneurship for PWDs, chaired by ILO',
 ]
 // A co-host/sponsor logo once its file exists in assets/partners/ (see
-// data.mjs), or a plain name badge until then — never a broken image.
+// data.mjs), or a plain name badge until then, never a broken image.
 const partnerBadge = (L) => (p) => p.logo
   ? `<div class="card" style="display:flex;align-items:center;justify-content:center;padding:20px;min-height:96px"><img src="${L(`/${p.logo}`)}" alt="${esc(p.name)}" style="max-width:100%;max-height:56px;object-fit:contain" /></div>`
   : `<div class="card" style="display:flex;align-items:center;justify-content:center;padding:20px;min-height:96px;text-align:center;font-weight:600;color:var(--ink-soft)">${esc(p.name)}</div>`
@@ -611,11 +612,12 @@ ${hero({
   subtitle: e.location,
   variant: isSummit ? 'grid' : 'canopy',
   photo: e.photo,
+  photoAlt: e.photoAlt,
   ctas: `${isSummit ? `<a class="btn btn-primary" href="${L('/events/national-summit-disability-inclusive-climate-action/')}#register">Register to attend</a>` : ''}${e.cta ? `<a class="btn ${isSummit ? 'btn-outline-light' : 'btn-primary'}" href="${L(e.cta.href)}">${esc(e.cta.label)}</a>` : ''}`,
 })}
 ${section({ tone: 'surface', inner: `<div class="prose" style="margin:0 auto">${e.body.map((b) => `<p style="color:var(--ink-soft)">${esc(b)}</p>`).join('')}</div>` })}
 ${isSummit ? `
-${section({ tone: 'brand', inner: `<div class="deadline-strip"><div class="wrap" style="padding:0"><p><strong>It's already underway</strong> — on 19 August 2026, GDGI convened Honourable Members, government institutions, UN agencies and Organisations of Persons with Disabilities at the National Assembly Complex to help shape this summit.</p><a class="btn btn-outline-light" href="${L('/insights/stakeholders-meeting-national-summit/')}">Read the recap</a></div></div>` })}
+${section({ tone: 'brand', inner: `<div class="deadline-strip"><div class="wrap" style="padding:0"><p><strong>It's already underway.</strong> On 19 August 2026, GDGI convened Honourable Members, government institutions, UN agencies and Organisations of Persons with Disabilities at the National Assembly Complex to help shape this summit.</p><a class="btn btn-outline-light" href="${L('/insights/stakeholders-meeting-national-summit/')}">Read the recap</a></div></div>` })}
 ${section({ inner: `
   ${sectionHead({ kicker: 'Co-hosts', title: 'Co-hosted with' })}
   <div class="grid grid-3 mt-lg">${e.partners.cohosts.map(partnerBadge(L)).join('')}</div>
@@ -623,7 +625,7 @@ ${section({ inner: `
   <div class="grid grid-4 mt-lg">${e.partners.sponsors.map(partnerBadge(L)).join('')}</div>
 ` })}
 ${section({ tone: 'surface', inner: `
-  ${sectionHead({ kicker: 'Attend', title: 'Register to attend', subtitle: 'In person in Abuja or joining virtually — tell us a little about yourself so we can plan the summit around every attendee.' })}
+  ${sectionHead({ kicker: 'Attend', title: 'Register to attend', subtitle: 'In person in Abuja or joining virtually, tell us a little about yourself so we can plan the summit around every attendee.' })}
   <div class="card mt-lg" style="max-width:640px">${registrationForm(path, e)}</div>
 ` })}
 ${section({ inner: `
@@ -634,10 +636,10 @@ ${section({ tone: 'surface', inner: `
   ${sectionHead({ kicker: 'Who\'s speaking', title: 'Featured speakers' })}
   ${e.speakers.length ? `
     <div class="grid mt-lg" style="grid-template-columns:${e.speakers.length === 1 ? '1fr' : 'repeat(2,1fr)'}">${e.speakers.map((s) => `<div class="card" style="flex-direction:row;gap:16px;align-items:flex-start">
-      ${s.photo ? `<img src="${L(`/${s.photo}`)}" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none" />` : `<div class="avatar" style="width:72px;height:72px;flex:none" aria-hidden="true">${initials(s.name)}</div>`}
-      <div><span class="eyebrow">${s.type === 'international' ? 'International Speaker' : 'National Speaker'}</span><h3 style="font-size:17px">${esc(s.name)}</h3><p style="font-size:13px;color:var(--ink-faint);margin-top:2px">${esc(s.role)}</p>${s.topic ? `<p style="margin-top:8px;font-weight:600;color:var(--brand)">Speaking on: ${esc(s.topic)}</p>` : ''}<p style="margin-top:8px">${esc(s.bio)}</p></div>
+      ${s.photo ? `<img src="${L(`/${s.photo}`)}" alt="${esc(s.name)}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none" />` : `<div class="avatar" style="width:72px;height:72px;flex:none" aria-hidden="true">${initials(s.name)}</div>`}
+      <div><span class="eyebrow">${s.type === 'international' ? 'International Speaker' : 'National Speaker'}${s.attendanceMode ? ` · ${s.attendanceMode}` : ''}</span><h3 style="font-size:17px">${esc(s.name)}</h3><p style="font-size:13px;color:var(--ink-faint);margin-top:2px">${esc(s.role)}</p>${s.topic ? `<p style="margin-top:8px;font-weight:600;color:var(--brand)">Speaking on: ${esc(s.topic)}</p>` : ''}<p style="margin-top:8px">${esc(s.bio)}</p></div>
     </div>`).join('')}</div>
-  ` : `<p class="callout-dashed mt-lg" style="display:block">Speaker announcements — two international, two national — are coming soon.</p>`}
+  ` : `<p class="callout-dashed mt-lg" style="display:block">Speaker announcements, two international, two national, are coming soon.</p>`}
 ` })}
 ${section({ inner: `
   ${sectionHead({ kicker: 'Partner with GDGI', title: 'Sponsorship bands', subtitle: 'Every line of the $125,000 budget is individually sponsorable.' })}
@@ -673,7 +675,7 @@ const sortedPosts = [...posts].sort((a, b) => b.isoDate.localeCompare(a.isoDate)
     description: "News and updates from GDGI's advocacy, partnerships, and programs across disability rights and climate justice.",
     path,
     bodyHtml: `
-${hero({ path, kicker: 'News & updates', title: 'Insights', variant: 'grid' })}
+${hero({ path, kicker: 'News & updates', title: 'Insights', variant: 'grid', photo: 'assets/photos/national-assembly-launch.jpg', photoAlt: 'A packed National Assembly chamber in Abuja, with hundreds of attendees standing and waving during GDGI\'s official launch event' })}
 ${section({ inner: `<div class="grid grid-3">${sortedPosts.map((p) => postCard(path, p)).join('')}</div>` })}
 `,
   }))
@@ -687,7 +689,7 @@ for (const p of posts) {
     description: p.summary,
     path,
     bodyHtml: `
-${hero({ path, kicker: p.dateDisplay, title: p.title, variant: 'canopy', photo: p.photo })}
+${hero({ path, kicker: p.dateDisplay, title: p.title, variant: 'canopy', photo: p.photo, photoAlt: p.photoAlt })}
 ${section({ tone: 'surface', inner: `<div class="prose" style="margin:0 auto">${p.body.map((b) => `<p style="color:var(--ink-soft)">${esc(b)}</p>`).join('')}</div>` })}
 ${p.youtubeId ? section({ inner: `
   <div style="max-width:760px;margin:0 auto">
@@ -720,7 +722,7 @@ ${hero({ path, kicker: 'Take action', title: 'Join Us in Building a Greener, Mor
 ${section({ tone: 'surface', inner: `<p style="max-width:70ch;margin:0 auto;font-size:17px;color:var(--ink-soft)">At GDGI, we believe that sustainable change happens when passionate individuals, visionary organizations, and dedicated professionals come together.</p>` })}
 ${section({ inner: `
   <div class="grid" style="grid-template-columns:280px 1fr;gap:40px;align-items:center">
-    <img src="${L('/assets/photos/volunteer.jpg')}" alt="" style="width:100%;border-radius:8px;object-fit:cover" />
+    <img src="${L('/assets/photos/volunteer.jpg')}" alt="GDGI representatives posing in front of a Global Disabilities Green Initiative banner" style="width:100%;border-radius:8px;object-fit:cover" />
     <div>
       ${sectionHead({ kicker: 'Volunteer opportunities', title: 'Be Part of the Movement. Make a Difference.' })}
       <p style="margin-top:14px;color:var(--ink-soft)">Join our growing network of volunteers committed to advancing disability-inclusive sustainability. From community engagements to environmental projects, research assistance, advocacy support, and event coordination, your time and skills can create real impact. We provide a simple application process through our volunteer form, where interested individuals can indicate their areas of strength and availability.</p>
@@ -737,29 +739,29 @@ ${section({ tone: 'surface', inner: `
       <p style="margin-top:14px;color:var(--ink-soft)">We welcome collaborations with organizations, agencies, institutions, and businesses that share our vision of merging disability inclusion with sustainability. Our partnership form makes it easy for interested stakeholders to submit their organization details and areas of interest, allowing us to explore potential collaborations that align with our mission.</p>
       <p style="margin-top:14px;font-weight:700">What partners gain:</p>
       <ul class="tag-list mt-lg">${site.getInvolved.partnershipBenefits.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>
-      <p style="margin-top:14px;color:var(--ink-soft)">Together, we can create more inclusive and sustainable communities — locally and globally.</p>
+      <p style="margin-top:14px;color:var(--ink-soft)">Together, we can create more inclusive and sustainable communities, locally and globally.</p>
       <a class="btn btn-primary mt-lg" href="${esc(site.getInvolved.partnershipFormUrl)}" target="_blank" rel="noreferrer">Partner with us</a>
     </div>
-    <img src="${L('/assets/photos/partnerships.jpg')}" alt="" style="width:100%;border-radius:8px;object-fit:cover" />
+    <img src="${L('/assets/photos/partnerships.jpg')}" alt="GDGI representatives posing for photos with a partner at a conference" style="width:100%;border-radius:8px;object-fit:cover" />
   </div>
 ` })}
 ${section({ inner: `
   ${sectionHead({ kicker: 'Careers', title: 'Open roles' })}
   <div class="grid" style="grid-template-columns:1fr;gap:18px" class="mt-lg">
     ${jobs.map((j) => `<div class="card" style="flex-direction:row;align-items:flex-start;gap:20px">
-      ${j.photo ? `<div class="card-art" style="width:140px;height:140px;flex:none">${`<img src="${L(`/${j.photo}`)}" alt="" />`}</div>` : ''}
+      ${j.photo ? `<div class="card-art" style="width:140px;height:140px;flex:none">${`<img src="${L(`/${j.photo}`)}" alt="${esc(j.photoAlt || j.title)}" />`}</div>` : ''}
       <div>
       <div class="eyebrow">${j.location} · ${j.type} · ${j.department}</div>
       <h3 style="font-size:20px">${esc(j.title)}</h3>
       <p>${esc(j.summary)}</p>
       <ul class="tag-list">${j.responsibilities.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
       ${j.responsibilitiesIncomplete ? `<p style="font-size:13px;font-style:italic;color:var(--ink-faint)">Full job description available from GDGI on request.</p>` : ''}
-      <span class="pending">Apply link pending — see README</span>
+      <span class="pending">Apply link pending, see README</span>
       </div>
     </div>`).join('')}
   </div>
 ` })}
-${section({ tone: 'brand', inner: `<div class="text-center"><h2 style="font-size:24px">Not sure where you fit?</h2><p style="margin-top:8px;color:rgba(255,255,255,.8)">Tell us about your skills and interests — we'll point you to a pathway.</p><div class="btn-row" style="justify-content:center;margin-top:18px"><a class="btn btn-primary" href="${L('/contact/')}">Contact GDGI</a></div></div>` })}
+${section({ tone: 'brand', inner: `<div class="text-center"><h2 style="font-size:24px">Not sure where you fit?</h2><p style="margin-top:8px;color:rgba(255,255,255,.8)">Tell us about your skills and interests, we'll point you to a pathway.</p><div class="btn-row" style="justify-content:center;margin-top:18px"><a class="btn btn-primary" href="${L('/contact/')}">Contact GDGI</a></div></div>` })}
 `,
   }))
 }
@@ -780,7 +782,7 @@ const impactAreas = [
   const L = (t) => R(path, t)
   write('donate/index.html', page({
     title: 'Donate',
-    description: 'Support inclusive climate action. Your contribution equips Persons with Disabilities with the tools, skills, and opportunities to participate — and lead — in the global green transition.',
+    description: 'Support inclusive climate action. Your contribution equips Persons with Disabilities with the tools, skills, and opportunities to participate, and lead, in the global green transition.',
     path,
     bodyHtml: `
 ${hero({ path, kicker: 'Support our vision', title: 'Support Inclusive Climate Action. Empower Lives. Transform Communities.', subtitle: 'At GDGI, every contribution fuels a future where sustainability is accessible to all.', variant: 'rays' })}
@@ -791,20 +793,20 @@ ${section({ inner: `
     <div>
       <h2 style="font-size:20px">Our commitment</h2>
       <p style="margin-top:10px;color:var(--ink-soft)">${esc(site.funding.intro)}</p>
-      <p style="margin-top:10px;color:var(--ink-soft)">GDGI operates on project-based budgeting with regular Board oversight and an annual financial review — every naira is directed toward a specific, accountable initiative.</p>
+      <p style="margin-top:10px;color:var(--ink-soft)">GDGI operates on project-based budgeting with regular Board oversight and an annual financial review. Every naira is directed toward a specific, accountable initiative.</p>
     </div>
   </div>
 ` })}
 ${section({ tone: 'surface', inner: site.donateUrl ? `
   <div class="callout-dashed text-center">
     <h2 style="font-size:18px">How to give</h2>
-    <p style="margin:8px auto 0;max-width:52ch;font-size:15px;color:var(--ink-soft)">Give securely online via Flutterwave — cards, bank transfer, and mobile money accepted.</p>
+    <p style="margin:8px auto 0;max-width:52ch;font-size:15px;color:var(--ink-soft)">Give securely online via Flutterwave, cards, bank transfer, and mobile money accepted.</p>
     <a class="btn btn-primary mt-lg" href="${esc(site.donateUrl)}" target="_blank" rel="noreferrer">Donate via Flutterwave</a>
   </div>
 ` : `
   <div class="callout-dashed">
     <h2 style="font-size:18px">How to give</h2>
-    <p style="margin-top:8px;font-size:15px;color:var(--ink-soft)">Online giving is being set up — this button will go live as soon as GDGI confirms the payment page. In the meantime, please reach us directly to arrange your gift.</p>
+    <p style="margin-top:8px;font-size:15px;color:var(--ink-soft)">Online giving is being set up. This button will go live as soon as GDGI confirms the payment page. In the meantime, please reach us directly to arrange your gift.</p>
     <a class="btn btn-primary mt-lg" href="mailto:${site.email}?subject=Donation%20enquiry">Contact us to give</a>
   </div>
 ` })}
@@ -813,10 +815,10 @@ ${section({ tone: 'surface', inner: site.donateUrl ? `
 }
 
 // ======================================================================
-// DONATE — THANK YOU
+// DONATE, THANK YOU
 // ======================================================================
 // The landing page for a donor after a successful Flutterwave payment.
-// This site can't know a payment actually happened — that connection is
+// This site can't know a payment actually happened, that connection is
 // made on Flutterwave's side: GDGI's Flutterwave dashboard needs this
 // page's URL (${site.domain}/donate/thank-you/) set as the payment
 // link's "redirect URL after payment". Not linked from anywhere else on
@@ -834,7 +836,7 @@ ${section({ tone: 'surface', inner: site.donateUrl ? `
 ${section({ tone: 'brand', size: 'loose', inner: `<div class="text-center">
   <p class="eyebrow" style="color:var(--gold-soft)">Donation received</p>
   <h1 style="font-size:32px;margin-top:10px;color:#fff">Thank you for standing with us</h1>
-  <p style="margin:14px auto 0;max-width:52ch;color:rgba(255,255,255,.85)">Your gift helps GDGI put persons with disabilities at the center of climate action — from solar energy access to policy advocacy. We've received your donation and are genuinely grateful.</p>
+  <p style="margin:14px auto 0;max-width:52ch;color:rgba(255,255,255,.85)">Your gift helps GDGI put persons with disabilities at the center of climate action, from solar energy access to policy advocacy. We've received your donation and are genuinely grateful.</p>
 </div>` })}
 ${section({ inner: `
   ${sectionHead({ kicker: 'Where it goes', title: 'What your gift supports' })}
@@ -870,7 +872,7 @@ ${section({ tone: 'surface', inner: `
     </div>
     <div class="card">
       <h2 style="font-size:18px">Send a message</h2>
-      <form class="js-backend-form" action="${site.formEndpoints.contact}" method="POST" data-to="${site.email}" data-subject="Website contact form" data-success="Thanks — your message has been sent." style="margin-top:16px">
+      <form class="js-backend-form" action="${site.formEndpoints.contact}" method="POST" data-to="${site.email}" data-subject="Website contact form" data-success="Thanks, your message has been sent." style="margin-top:16px">
         <div class="field"><label for="cf-name">Full name</label><input id="cf-name" name="name" type="text" required autocomplete="name" /></div>
         <div class="field"><label for="cf-email">Email address</label><input id="cf-email" name="email" type="email" required autocomplete="email" /></div>
         <div class="field"><label for="cf-message">Message</label><textarea id="cf-message" name="message" required rows="5"></textarea></div>
@@ -919,7 +921,7 @@ for (const p of trustees) redirectPage(`/${p.slug}/`, `/people/${p.slug}/`)
 // ======================================================================
 // STATIC ASSETS: robots.txt, sitemap.xml
 // (assets/styles.css, assets/script.js, assets/logo.png, assets/logo-80.png,
-// favicon-32.png and apple-touch-icon.png are hand-maintained real files —
+// favicon-32.png and apple-touch-icon.png are hand-maintained real files ,
 // this script does not touch or regenerate them)
 // ======================================================================
 
@@ -929,7 +931,7 @@ Allow: /
 Sitemap: ${site.domain}/sitemap.xml
 `)
 
-// Tells GitHub Pages which custom domain to serve this site on — see
+// Tells GitHub Pages which custom domain to serve this site on, see
 // README "Deployment" for the matching cPanel DNS records.
 writeFileSync(resolve(OUT, 'CNAME'), `${site.domain.replace(/^https?:\/\//, '')}\n`)
 

@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/32448100/README.md)
 # Global Disabilities Green Initiative — website
 
 A rebuild of [globaldisabilitiesgi.com](https://globaldisabilitiesgi.com), replacing the previous WordPress/Elementor install.
@@ -91,6 +90,8 @@ Two source images were deliberately excluded after review: one was a stock chari
 
 To add or change a photo: drop the file in `assets/photos/`, point a `photo:` field at it in `generator/data.mjs` (path relative to the repo root, no leading slash), and run `node generator/build.mjs`.
 
+**Alt text:** every meaningful image on the site has a real, descriptive `alt` attribute for screen reader users, not an empty one. For people, it's the person's name (`personCard()`, the person detail page, and speaker cards all use `esc(p.name)` / `esc(s.name)` automatically, no data change needed). For projects, events, and posts, it's a `photoAlt` field written alongside `photo:` in `generator/data.mjs`, describing what's actually in the photo, not just repeating the title, and it's reused everywhere that photo appears (hero banner and card thumbnail alike). Add a `photoAlt` string whenever you add a new `photo:`; if you skip it, the card thumbnail falls back to the item's title, but the hero banner will show no description at all, so don't skip it. The one deliberate exception is the logo in the site header: its `alt` is empty on purpose, since it sits right next to the visible "Global Disabilities Green Initiative" text inside the same link, and a screen reader would otherwise announce the organization's name twice.
+
 ## What changed from the old site
 
 - **Preserved:** every real page and its substance — mission, board bios, the Solar Lamp Distribution case study, event and project descriptions, Get Involved and Donate copy — carried over from the org's Organisational Profile, the National Summit proposal, and the live site's own content inventory.
@@ -119,7 +120,7 @@ Each form (`class="js-backend-form"` in the generated HTML) submits to its `acti
 
 The summit registration form's fields live in `generator/data.mjs` as `events[…].registrationFields` — an ordered array of `{name, label, type, required, options}`. Adding a field your client asks for later is one array entry, not a template edit; two fields (organisation name, "please specify your disability") are already wired to show only when relevant (see the `conditionalFields` list in `assets/script.js` — add a new pair there if a future field should be conditional too).
 
-**Summit speakers:** `events[…].speakers` currently has one confirmed speaker, Adv. Abhishek Kumar (international). Still waiting on the remaining international speaker and the two national speakers. Add each as `{ name, role, type: 'international' | 'national', bio, photo, topic }` (`photo` and `topic` both optional, `topic` is the paper or session title shown as "Speaking on") and re-run the generator.
+**Summit speakers:** `events[…].speakers` currently has three confirmed speakers: Adv. Abhishek Kumar (international, speaking virtually), Prof. Ngozi Obeta Anadi (national, in person), and Prof. Oluwafemi Kehinde Akande (national). Still waiting on the remaining international speaker. Add each as `{ name, role, type: 'international' | 'national', bio, photo, topic, attendanceMode }` (`photo`, `topic`, and `attendanceMode` all optional, `topic` is the paper or session title shown as "Speaking on", `attendanceMode` is `'In person'` or `'Virtual'`) and re-run the generator.
 
 **Summit co-hosts &amp; sponsors:** `events[…].partners.cohosts` and `.sponsors` list the summit's three co-hosts (Federal Ministry of Environment, National Council on Climate Change, Office of the SSA on Climate Technology and Operations) and four sponsors (ILO, UNDP, UNFPA, CMB International), each with a real logo in `assets/partners/`. Each entry shows as a plain text badge if its `logo` field is ever unset — to add or swap a logo, drop the file in `assets/partners/` and point `logo:` at it, then re-run `node generator/build.mjs`.
 
@@ -134,7 +135,7 @@ Things this rebuild could not resolve without your input:
 - **The one live job listing** — still points at "Apply link pending"; no replacement URL was supplied for it. (Volunteer, Partnership, Contact, and the Summit registration are all already live — see above.)
 - **`date to be reconfirmed`** — the Solar Installation Training Cohort 2 event date conflict (see `events/disability-inclusive-solar-installation-training-cohort-2/index.html`).
 - **Advisory Board** — all eight now have real photos, but no biography text was supplied for any of them; their cards are intentionally non-clickable (no bio page to link to) rather than linking to a broken image file, as the old site did.
-- **Summit speakers** — one confirmed (Adv. Abhishek Kumar, international); still waiting on the remaining international speaker and both national speakers.
+- **Summit speakers** — three confirmed (Abhishek Kumar, Ngozi Obeta Anadi, Oluwafemi Kehinde Akande); still waiting on the remaining international speaker.
 
 ## Sources reviewed
 

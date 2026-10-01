@@ -600,6 +600,7 @@ for (const e of events) {
   const path = `/events/${e.slug}/`
   const L = (t) => R(path, t)
   const isSummit = e.slug === summit.slug
+  const webinarSpeakers = e.webinars ? e.webinars.flatMap((w) => w.speakers || []) : []
   write(`events/${e.slug}/index.html`, page({
     title: e.title,
     description: e.summary,
@@ -630,7 +631,12 @@ ${section({ tone: 'surface', inner: `
 ` })}
 ${section({ inner: `
   ${sectionHead({ kicker: 'Ahead of the summit', title: e.webinars.length === 1 ? 'Pre-summit webinar' : 'Pre-summit webinars' })}
-  <div class="grid mt-lg" style="grid-template-columns:${e.webinars.length === 1 ? 'minmax(0,480px)' : 'repeat(2,1fr)'}">${e.webinars.map((w) => `<div class="card"><span class="eyebrow">${esc(w.label)} · ${esc(w.dateDisplay)}</span><h3 style="font-size:17px">${esc(w.title)}</h3><p>${esc(w.partner)}</p></div>`).join('')}</div>
+  <div class="grid mt-lg" style="grid-template-columns:${e.webinars.length === 1 ? 'minmax(0,640px)' : 'repeat(2,1fr)'}">${e.webinars.map((w) => `<div class="card">${w.flyer ? `<div style="border-radius:6px;overflow:hidden;margin-bottom:14px"><img src="${L(`/${w.flyer}`)}" alt="${esc(w.flyerAlt || w.title)}" style="width:100%;height:auto;display:block" /></div>` : ''}<span class="eyebrow">${esc(w.label)} · ${esc(w.dateDisplay)}${w.time ? ` · ${esc(w.time)}` : ''}</span><h3 style="font-size:17px">${esc(w.title)}</h3><p>${esc(w.partner)}</p></div>`).join('')}</div>
+  ${webinarSpeakers.length ? `<div style="margin-top:48px">${sectionHead({ kicker: 'Speakers', title: 'Webinar speakers' })}</div>
+  <div class="grid mt-lg" style="grid-template-columns:repeat(2,1fr)">${webinarSpeakers.map((s) => `<div class="card" style="flex-direction:row;gap:16px;align-items:flex-start">
+    ${s.photo ? `<img src="${L(`/${s.photo}`)}" alt="${esc(s.name)}" style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none" />` : `<div class="avatar" style="width:72px;height:72px;flex:none" aria-hidden="true">${initials(s.name)}</div>`}
+    <div><h3 style="font-size:17px">${esc(s.name)}</h3><p style="font-size:13px;color:var(--ink-faint);margin-top:2px">${esc(s.role)}</p><p style="margin-top:8px">${esc(s.bio)}</p></div>
+  </div>`).join('')}</div>` : ''}
 ` })}
 ${section({ tone: 'surface', inner: `
   ${sectionHead({ kicker: 'Who\'s speaking', title: 'Featured speakers' })}
@@ -658,6 +664,10 @@ ${section({ tone: 'brand', size: 'loose', inner: `
     <div class="btn-row" style="justify-content:center;margin-top:22px"><a class="btn btn-primary" href="${L('/contact/')}">Partner with us</a></div>
   </div>
 ` })}
+${e.partners.community?.length ? section({ tone: 'surface', inner: `
+  ${sectionHead({ kicker: 'Community partners', title: 'Partners supporting the Summit' })}
+  <div class="grid grid-4 mt-lg">${e.partners.community.map(partnerBadge(L)).join('')}</div>
+` }) : ''}
 ` : ''}
 `,
   }))

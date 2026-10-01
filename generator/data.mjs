@@ -234,9 +234,24 @@ export const events = [
     cta: { label: 'Partner with us', href: '/contact/' },
     // Pre-summit webinar still ahead of the October summit. GDGI confirmed
     // only one webinar is happening now (not the four originally proposed),
-    // taking place 1 October 2026.
+    // rescheduled to 6 October 2026, title and time per the official flyer
+    // (assets/photos/Pre-Summit-Dialogue.png).
     webinars: [
-      { label: 'Webinar', dateDisplay: 'Thursday, 1 October 2026', title: 'Governing Inclusive Climate Action: The Climate Change Act 2021, Actions for Climate Empowerment and the Disability Act 2018 in Practice', partner: 'National Council on Climate Change, with NCPWD and the House Committees on Disability Matters and on Climate Change' },
+      { label: 'Webinar', dateDisplay: 'Tuesday, 6 October 2026', time: '6:00 PM – 9:00 PM WAT, live on Zoom',
+        title: 'Disability-Inclusive Climate Action in Nigeria: From Policy to Implementation',
+        partner: 'National Council on Climate Change, with NCPWD and the House Committees on Disability Matters and on Climate Change',
+        flyer: 'assets/photos/Pre-Summit-Dialogue.png',
+        flyerAlt: 'Promotional flyer for GDGI\'s Pre-Summit Dialogue webinar, "Disability-Inclusive Climate Action in Nigeria: From Policy to Implementation," Tuesday 6 October 2026, 6:00 to 9:00 PM, live on Zoom, with headshots of speakers Alobu Innocent Onyemaechi, Amina Audu, Kenneth Echiche, and Dr. Ohere Afen Pius',
+        speakers: [
+          { name: 'Alobu Innocent Onyemaechi', role: 'Programme Coordinator, CBM International Nigeria', photo: 'assets/partners/Alobu-Innocent-Onyemaechi.jpg',
+            bio: 'Alobu Innocent Onyemaechi is a development and humanitarian professional with over 16 years of experience in disability-inclusive development, climate resilience, disaster risk reduction, WASH, and community-based inclusive development. He currently serves as Programme Coordinator at CBM International Nigeria, providing strategic and technical leadership for programmes that promote disability inclusion, community resilience, and sustainable development. Throughout his career, he has led and supported flagship initiatives including D-RAPID, ADID, BAADRIN, DIDRR, and disability law implementation projects across Nigeria. He holds a bachelor\'s degree in Environmental Engineering Technology and a master\'s degree in Health Planning and Management, and is currently pursuing a PhD in Climate Change Resilience and Sustainability. His work focuses on advancing inclusive policies, strengthening community resilience, and improving the socio-economic well-being and participation of persons with disabilities and other vulnerable groups.' },
+          { name: 'Amina Audu', role: 'Founder, Rebuilding Hope on Wheels Initiative (RHOWI)', photo: 'assets/partners/Amina-Audu.jpg',
+            bio: 'Amina Audu is an educator, researcher, and disability inclusion advocate, and the founder of the Rebuilding Hope on Wheels Initiative (RHOWI), where she works on disability inclusion, spinal cord injury awareness and rehabilitation, climate change and disability, inclusive education, and inclusive development. She is also a Lecturer at Federal University Gusau and is pursuing a PhD in Sociology of Education, researching disability, gender, and access to tertiary education in Northwest Nigeria. She served as a Pioneer Council Member of the National Commission for Persons with Disabilities (NCPWD), representing the North-West Zone, and also served as Acting Chairman of the Commission. She currently serves as a part-time Board Member of the School of Health Technology, Tsafe, a member of the Zamfara State Disability Board, and Chairperson of the Board of Trustees of the Spinal Cord Injury Association of Nigeria.' },
+          { name: 'Kenneth Echiche', role: 'Disability Inclusion & Employment Advocate', photo: 'assets/partners/Kenneth-Echiche.jpg',
+            bio: 'Kenneth Echiche is a disability inclusion advocate with extensive experience in economic empowerment and inclusive workplaces. He has facilitated the employment of 87 persons with disabilities into government organisations, and is currently coordinating the recruitment of over 1,500 applicants with disabilities into the ongoing Federal Civil Service Commission recruitment and paramilitary organisations such as the Nigeria Immigration Service and the Nigeria Security and Civil Defence Corps. He provides technical assistance on inclusive employment to the Federal House of Representatives Committee on Disability Matters and to the Office of the Senior Special Assistant to the President on Special Needs and Equal Opportunities. He began his journey as a disability advocate as State Chairman of the Joint National Association of Persons with Disabilities (JONAPWD), Cross River State chapter, chairman of the Economy Empowerment of Nigeria Association of the Blind, and Chairman of Information and Special Matters for the University of Jos Student\'s Parliament. He is a certified youth inclusion advocate with We Can Work and JONAPWD. Kenneth Echiche holds a bachelor\'s degree in Mass Communication and a master\'s degree in Disabilities Leadership and Practice, and is a Senior Cultural Officer with the Federal Ministry of Arts, Culture, Tourism and Creative Economy.' },
+          { name: 'Dr. Ohere Afen Pius', role: 'Member, Cross River State Disability Rights Commission', photo: 'assets/partners/Dr-Ohere-Afen-Pius.jpg',
+            bio: 'Dr. Ohere Afen Pius hails from Bekwarra Local Government Area of Cross River State, where he serves as a Member of the Cross River State Disability Rights Commission, representing the albinism community. His research interests span education, ethics, leadership, and the philosophy of disability.' },
+        ] },
     ],
     // Attendee registration form fields, data-driven so a new field GDGI
     // asks for later is a one-line addition here, not a template change.
@@ -267,12 +282,18 @@ export const events = [
         topic: 'Disability-Inclusive Climate Finance: Pathways for the Green Climate Fund, the Adaptation Fund and Nigeria\'s Climate Change Fund',
         bio: 'Abhishek Kumar is a lawyer, environmental researcher, and disability rights advocate, and the founder of The Sangyan, an initiative on the convergence of law, inclusion, and sustainability. He serves on India\'s Core Group on Disability-inclusive Disaster Risk Reduction, UNESCO-MGIEP\'s Youth Advisory Group, Sphere India\'s Sector Committee on Protection for Disaster Resilience and Humanitarian Response, and NCPEDP\'s National Disability Network. He has represented India at the 14th UNESCO Youth Forum, the 18th International Conference on Community-Based Adaptation, and the G20 Brasil Youth Pre-Summit, and is a recipient of the 15th NCPEDP-Mphasis Universal Design Award (2024) and a Diversability D-30 Disability Impact List Honoree (2024), for his work on disability-inclusive and universally accessible climate action and disaster risk reduction.' },
       { name: 'Prof. Ngozi Obeta Anadi', role: 'Professor of Criminology & Security Studies, Nile University of Nigeria', type: 'national',
+        photo: 'assets/partners/Professor-Ngozi-Obeta-Anadi.jpg',
         attendanceMode: 'In person',
         topic: 'Gender, Disability and Climate Resilience: Women and Girls with Disabilities in Nigeria\'s Climate and Disaster Response',
         bio: 'Ngozi Obeta Anadi is a Professor of Criminology and Security Studies at Nile University of Nigeria, Abuja, where she also serves as Head of Department and Deputy Dean of the School of Postgraduate Studies. She holds a bachelor\'s and master\'s degree in law, a master\'s degree in criminal justice, and a doctorate in public policy, and previously served as an Assistant Professor of Criminal Justice at Southern University, New Orleans. Her research spans climate-change law and policy, gender inequality, human rights, and environmental governance, including work on the evolution of Common but Differentiated Responsibilities in international climate law and the development of a green economy in Nigeria\'s Niger Delta.' },
       { name: 'Prof. Oluwafemi Kehinde Akande', role: 'Professor of Architecture, Nile University of Nigeria', type: 'national',
+        photo: 'assets/partners/Professor-Oluwafemi-Kehinde-Akande.jpg',
+        attendanceMode: 'In person',
         topic: 'Green Jobs, Just Transition & Decent Work',
         bio: 'Oluwafemi Kehinde Akande is a Professor of Architecture at Nile University of Nigeria, Abuja, with a PhD in Architecture from Anglia Ruskin University and postdoctoral research at the University of Leeds. A Chartered Member of the Chartered Association of Building Engineers and the Chartered Institute of Architectural Technologists (UK), his research spans energy-efficient buildings, sustainable construction, and accessible design, including work on assistive technology in higher education and universal design in public library buildings. He has over 160 publications and more than 20 research best paper awards across Africa, Asia, Europe, and the UK.' },
+      { name: 'Amina Batagarawa', role: 'Associate Professor; Convener, 54 Consortium', type: 'national',
+        photo: 'assets/partners/Amina-Batagarawa.jpg',
+        bio: 'Amina Batagarawa is a seasoned academic leader and researcher with expertise in education, energy, and gender. As an Associate Professor and former Head of Department, she has demonstrated exceptional leadership skills, guiding teams and fostering collaborative environments. She currently convenes the 54 Consortium, a pan-African collaboration on the research and development of clean cooking across African communities. Amina also chairs the Energy Transition Committee at the Women in Renewable Energy Association of Nigeria, and represents Africa and gender in the World Renewable Energy Network, chairing the annual Gender and Energy Session at the World Renewable Energy Congress. With her unique blend of academic and professional experience, Amina brings valuable insights and leadership expertise.' },
     ],
     // Co-hosts and confirmed sponsors. `logo` is optional per entry, while
     // it's unset the page shows the organisation's name as a plain text
@@ -286,9 +307,27 @@ export const events = [
       ],
       sponsors: [
         { name: 'International Labour Organization (ILO)', logo: 'assets/partners/ilo.png' },
-        { name: 'United Nations Development Programme (UNDP)', logo: 'assets/partners/undp.png' },
         { name: 'United Nations Population Fund (UNFPA)', logo: 'assets/partners/unfpa.png' },
         { name: 'CMB International', logo: 'assets/partners/cmb-international.jpg' },
+      ],
+      // Community/civil-society partners supporting the summit. Names for
+      // W-I-R-E-A, R-H-O-W-I, N-C-P-W-D, J-D-A-P-C-C-A-A, and ISDI_Logo are
+      // read directly off the artwork in each logo file, not guessed from
+      // the filename. Three (IFA, AWWDI, SARPIC) still have no logo, their
+      // files in assets/partners/ are empty placeholders GDGI said it will
+      // replace, and GDGI hasn't said what those acronyms stand for either,
+      // so they render as the bare acronym until both are supplied.
+      community: [
+        { name: 'Women in Renewable Energy Association (WiREA)', logo: 'assets/partners/W-I-R-E-A.jpg' },
+        { name: 'Rebuilding Hope on Wheels Initiatives (RHOWI)', logo: 'assets/partners/R-H-O-W-I.jpg' },
+        { name: 'National Commission for Persons with Disabilities (NCPWD)', logo: 'assets/partners/N-C-P-W-D.jpg' },
+        { name: 'Justice, Development and Peace Commission, Catholic Archdiocese of Abuja (JDAPCCAA)', logo: 'assets/partners/J-D-A-P-C-C-A-A.jpg' },
+        { name: 'Inclusive Skills Development Initiative (ISDI)', logo: 'assets/partners/ISDI_Logo.jpg' },
+        { name: 'Tubalcain Advertising Enterprise', logo: 'assets/partners/Tubalcain-ads-enterprise.jpg' },
+        { name: 'IFA' },
+        { name: 'AWWDI' },
+        { name: 'Joint National Association of Persons with Disabilities (JONAPWD)' },
+        { name: 'SARPIC' },
       ],
     },
     body: [

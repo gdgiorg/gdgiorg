@@ -316,10 +316,12 @@ export const events = [
       // Community/civil-society partners supporting the summit. Names for
       // W-I-R-E-A, R-H-O-W-I, N-C-P-W-D, J-D-A-P-C-C-A-A, and ISDI_Logo are
       // read directly off the artwork in each logo file, not guessed from
-      // the filename. Three (IFA, AWWDI, SARPIC) still have no logo, their
-      // files in assets/partners/ are empty placeholders GDGI said it will
-      // replace, and GDGI hasn't said what those acronyms stand for either,
-      // so they render as the bare acronym until both are supplied.
+      // the filename. GDGI has since supplied real logos and full names for
+      // AWWDI and SARPIC (now SARPIPC, not a typo, see its own logo) and
+      // added a new Corporate Inclusion LTD partner. Only IFA still has no
+      // logo and no confirmed full name, its file in assets/partners/ is
+      // still an empty placeholder, so it renders as the bare acronym until
+      // both are supplied.
       community: [
         { name: 'Women in Renewable Energy Association (WiREA)', logo: 'assets/partners/W-I-R-E-A.jpg' },
         { name: 'Rebuilding Hope on Wheels Initiatives (RHOWI)', logo: 'assets/partners/R-H-O-W-I.jpg' },
@@ -328,9 +330,10 @@ export const events = [
         { name: 'Inclusive Skills Development Initiative (ISDI)', logo: 'assets/partners/ISDI_Logo.jpg' },
         { name: 'Tubalcain Advertising Enterprise', logo: 'assets/partners/Tubalcain-ads-enterprise.jpg' },
         { name: 'IFA' },
-        { name: 'AWWDI' },
+        { name: 'Advocacy for Women with Disabilities Initiative (AWWDI)', logo: 'assets/partners/A-W-W-D-I.jpg' },
         { name: 'Joint National Association of Persons with Disabilities (JONAPWD)' },
-        { name: 'SARPIC' },
+        { name: 'Corporate Inclusion LTD', logo: 'assets/partners/Corporate-Inclusion-LTD.jpg' },
+        { name: 'Society for Alleviation of Rural Poverty and Integration of Peaceful Coexistence (SARPIPC)', logo: 'assets/partners/S-A-R-P-I-P-C.jpg' },
       ],
     },
     body: [

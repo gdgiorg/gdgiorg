@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/32931430/README.md)
+[README.md](https://github.com/user-attachments/files/32999705/README.md)
 # Global Disabilities Green Initiative — website
 
 A rebuild of [globaldisabilitiesgi.com](https://globaldisabilitiesgi.com), replacing the previous WordPress/Elementor install.
@@ -116,6 +116,23 @@ Each form (`class="js-backend-form"` in the generated HTML) submits to its `acti
 **Summit registration confirmation email:** `emails/summit-registration-confirmation.html` is a ready-to-use HTML email — GDGI's brand colors, event details, the remaining pre-summit webinar, a link back to the summit page. It's a plain file, not part of the generated site, meant to be pasted into whichever step in the Make.com scenario (or other ESP) actually sends mail once a registration comes in. It expects two merge fields from the registration submission — `{{full_name}}` and `{{attendance_mode}}` — rename those two placeholders to match whatever mapping syntax that email step actually uses before sending.
 
 **MailerLite opt-in thank-you email:** `emails/summit-optin-thank-you-mailerlite.html` is a second, simpler email for MailerLite specifically. It uses MailerLite's own merge tag syntax, `{$name}` and `{$unsubscribe}`, and it's meant for a MailerLite Automation triggered the moment someone opts in (joins the group tied to summit sign-ups), not for the full registration confirmation above. Set that trigger up in MailerLite, paste this file's HTML into the automation's email step, and it goes out automatically on every new opt-in. It covers the same event basics and pre-summit webinar, with a lighter, "you're on the list" tone rather than a formal registration confirmation.
+
+**The rest of the summit email sequence** is eight more plain files in `emails/`, all MailerLite-style (`{$name}` / `{$unsubscribe}`), meant to be scheduled as individual MailerLite campaigns, not automations, since each goes out on a specific calendar date GDGI sends it on, not in response to a subscriber action:
+
+| File | Send it |
+|---|---|
+| `summit-webinar-reminder-mailerlite.html` | 2 days before the pre-summit webinar (6 October). Carries the webinar flyer. |
+| `summit-webinar-zoom-link-mailerlite.html` | The morning of the webinar. Carries the Zoom join link. |
+| `summit-followup-1-mailerlite.html` | About one week before the summit (14&ndash;15 October). General reminder, encourages registration. |
+| `summit-followup-2-mailerlite.html` | Final week. Logistics: venue/access for in-person, what virtual attendees should expect. |
+| `summit-followup-3-mailerlite.html` | The day before (13 October). Final checklist. |
+| `summit-day1-mailerlite.html` | The morning of 14 October. Carries both the Zoom and live YouTube links for Day One. |
+| `summit-day2-mailerlite.html` | The morning of 15 October. Same, for Day Two. |
+| `summit-post-summit-thank-you-mailerlite.html` | After the summit closes. Thanks attendees, points to the Abuja Declaration and a future Insights recap. |
+
+Three of these (`summit-webinar-zoom-link-mailerlite.html` and both `summit-day*-mailerlite.html` files) have the Zoom and YouTube links as obvious placeholders (`https://zoom.us/REPLACE-WITH-REAL-MEETING-LINK`, `https://youtube.com/REPLACE-WITH-REAL-LIVE-LINK`), find-and-replace both the button `href` and the plain-text fallback link in each file with the real URLs before sending.
+
+**Webinar time discrepancy:** GDGI gave the Pre-Summit Dialogue webinar's time as 11:00 AM&ndash;1:00 PM WAT; the flyer graphic (`assets/photos/Pre-Summit-Dialogue.png`) itself prints 6:00&ndash;9:00 PM. The site and every email in this sequence use the 11:00 AM&ndash;1:00 PM time GDGI confirmed directly, the flyer image is still the one with 6&ndash;9 PM printed on it since that's static artwork this repo can't edit, a corrected flyer should be designed and swapped in before the reminder/Zoom emails go out.
 
 **Volunteer and Partnership sign-up** go straight to GDGI's own Google Forms rather than a custom in-page form — `site.getInvolved.volunteerFormUrl` and `.partnershipFormUrl` in `generator/data.mjs`. The Get Involved page's "Apply to volunteer" and "Partner with us" buttons just link out to whichever URL is set there (opened in a new tab); swap either URL and re-run the generator to point them elsewhere. The bullet lists under each ("What partners gain", etc.) live alongside them as `volunteerFeatures` / `partnershipBenefits`.
 

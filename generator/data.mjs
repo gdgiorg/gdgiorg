@@ -234,14 +234,17 @@ export const events = [
     cta: { label: 'Partner with us', href: '/contact/' },
     // Pre-summit webinar still ahead of the October summit. GDGI confirmed
     // only one webinar is happening now (not the four originally proposed),
-    // rescheduled to 6 October 2026, title and time per the official flyer
-    // (assets/photos/Pre-Summit-Dialogue.png).
+    // rescheduled to 6 October 2026, title per the official flyer (assets/
+    // photos/Pre-Summit-Dialogue.png). GDGI later gave the actual time as
+    // 11am-1pm WAT, which does not match the 6-9pm printed on that flyer
+    // graphic, it needs a corrected flyer; the site and emails use the
+    // 11am-1pm time GDGI confirmed directly.
     webinars: [
-      { label: 'Webinar', dateDisplay: 'Tuesday, 6 October 2026', time: '6:00 PM – 9:00 PM WAT, live on Zoom',
+      { label: 'Webinar', dateDisplay: 'Tuesday, 6 October 2026', time: '11:00 AM – 1:00 PM WAT, live on Zoom',
         title: 'Disability-Inclusive Climate Action in Nigeria: From Policy to Implementation',
         partner: 'National Council on Climate Change, with NCPWD and the House Committees on Disability Matters and on Climate Change',
         flyer: 'assets/photos/Pre-Summit-Dialogue.png',
-        flyerAlt: 'Promotional flyer for GDGI\'s Pre-Summit Dialogue webinar, "Disability-Inclusive Climate Action in Nigeria: From Policy to Implementation," Tuesday 6 October 2026, 6:00 to 9:00 PM, live on Zoom, with headshots of speakers Alobu Innocent Onyemaechi, Amina Audu, Kenneth Echiche, and Dr. Ohere Afen Pius',
+        flyerAlt: 'Promotional flyer for GDGI\'s Pre-Summit Dialogue webinar, "Disability-Inclusive Climate Action in Nigeria: From Policy to Implementation," Tuesday 6 October 2026, live on Zoom, with headshots of speakers Alobu Innocent Onyemaechi, Amina Audu, Kenneth Echiche, and Dr. Ohere Afen Pius. The flyer prints 6:00 to 9:00 PM, GDGI has since confirmed the actual time is 11:00 AM to 1:00 PM WAT',
         speakers: [
           { name: 'Alobu Innocent Onyemaechi', role: 'Programme Coordinator, CBM International Nigeria', photo: 'assets/partners/Alobu-Innocent-Onyemaechi.jpg',
             bio: 'Alobu Innocent Onyemaechi is a development and humanitarian professional with over 16 years of experience in disability-inclusive development, climate resilience, disaster risk reduction, WASH, and community-based inclusive development. He currently serves as Programme Coordinator at CBM International Nigeria, providing strategic and technical leadership for programmes that promote disability inclusion, community resilience, and sustainable development. Throughout his career, he has led and supported flagship initiatives including D-RAPID, ADID, BAADRIN, DIDRR, and disability law implementation projects across Nigeria. He holds a bachelor\'s degree in Environmental Engineering Technology and a master\'s degree in Health Planning and Management, and is currently pursuing a PhD in Climate Change Resilience and Sustainability. His work focuses on advancing inclusive policies, strengthening community resilience, and improving the socio-economic well-being and participation of persons with disabilities and other vulnerable groups.' },

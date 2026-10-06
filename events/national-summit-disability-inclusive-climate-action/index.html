@@ -229,5 +229,40 @@
   </div>
 </footer>
 <script src="../../assets/script.js" defer></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const formContainer = document.getElementById("register");
+  if (!formContainer) return;
+
+  // Configuration for the flyer button
+  const flyerUrl = "https://getdp.co/GDGISUMMIT-26";
+  const buttonStyle = "display:inline-block; margin-top:20px; padding:12px 24px; background-color:#10b981; color:#ffffff; text-decoration:none; border-radius:6px; font-weight:bold; font-family:sans-serif; text-align:center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);";
+  
+  // Create the actual button element safely
+  const ctaButton = document.createElement("a");
+  ctaButton.href = flyerUrl;
+  ctaButton.target = "_blank";
+  ctaButton.style.cssText = buttonStyle;
+  ctaButton.innerText = "Create Your 'I Am Attending' Flyer 🚀";
+
+  // Watch the register container for changes (when the form disappears/success text displays)
+  const observer = new MutationObserver(function (mutations, obs) {
+    // Check if the form success message contains our target text snippet
+    if (formContainer.innerText.includes("Thanks, you're registered")) {
+      // Prevent infinite loops by checking if we already added the button
+      if (!formContainer.querySelector(`a[href="${flyerUrl}"]`)) {
+        formContainer.appendChild(document.createElement("br"));
+        formContainer.appendChild(ctaButton);
+        obs.disconnect(); // Stop watching once successfully injected
+      }
+    }
+  });
+
+  observer.observe(formContainer, { childList: true, subtree: true });
+});
+</script>
+
+  
 </body>
 </html>
